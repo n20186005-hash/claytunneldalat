@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Configuración de cookies y almacenamiento local de esta guía independiente del Monte de San Pedro." />
+    <title>Configuración de cookies · Monte de San Pedro</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <main class="mx-auto max-w-3xl px-5 py-20">
+      <a href="/" class="font-black">← Volver</a>
+      <p class="kicker mt-10 text-[var(--sea)]">Privacidad</p>
+      <h1 class="display mt-3 text-5xl">Configuración de cookies</h1>
+      <div class="mt-8 space-y-5 leading-8 text-slate-700">
+        <p>Esta guía no carga analítica ni publicidad por defecto. Solo puede guardar en tu navegador una preferencia local para recordar tu elección.</p>
+        <p>Los contenidos de terceros que abras —por ejemplo Google Maps o Wikimedia Commons— se rigen por las políticas de esos proveedores.</p>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <button id="necessary" class="rounded-full border border-slate-300 px-5 py-3 font-black">Solo necesarias</button>
+        <button id="optional" class="rounded-full bg-[#e99a54] px-5 py-3 font-black text-[#08232b]">Aceptar opcionales</button>
+        <button id="clear" class="rounded-full border border-slate-300 px-5 py-3 font-black">Borrar preferencia</button>
+      </div>
+      <p id="status" class="mt-5 text-sm text-slate-600" aria-live="polite"></p>
+    </main>
+    <script>
+      const key = 'msp-cookie-choice';
+      const status = document.getElementById('status');
+      const paint = () => {
+        const value = localStorage.getItem(key);
+        if (status) status.textContent = value ? `Preferencia actual: ${value === 'accepted' ? 'opcionales aceptadas' : 'solo necesarias'}.` : 'No hay una preferencia guardada.';
+      };
+      document.getElementById('necessary')?.addEventListener('click', () => { localStorage.setItem(key, 'necessary'); paint(); });
+      document.getElementById('optional')?.addEventListener('click', () => { localStorage.setItem(key, 'accepted'); paint(); });
+      document.getElementById('clear')?.addEventListener('click', () => { localStorage.removeItem(key); paint(); });
+      paint();
+    </script>
+  </body>
+</html>

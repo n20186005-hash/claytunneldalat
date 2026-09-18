@@ -146,7 +146,7 @@ const faqLd = {
 
     <main id="top">
       <section class="relative min-h-[90svh] overflow-hidden bg-[var(--ink)] text-white">
-        <img src="/images/clay-tunnel-hero.jpg" data-fallback={photos.hero} alt={`${fullName} - Main view in ${city}, ${country}`} class="photo absolute inset-0 opacity-72" />
+        <img src="/images/clay-tunnel-hero.jpg" data-fallback={photos.hero} data-fallback2="/images/clay-tunnel-hero.svg" alt={`${fullName} - Main view in ${city}, ${country}`} class="photo absolute inset-0 opacity-72" />
         <div class="absolute inset-0 bg-gradient-to-t from-[#061c22] via-[#08262d]/35 to-[#061c22]/20"></div>
         <div class="contour absolute inset-0"></div>
         <div class="relative mx-auto flex min-h-[90svh] max-w-7xl items-end px-5 pb-14 pt-32 lg:px-8 lg:pb-20">
@@ -180,7 +180,7 @@ const faqLd = {
             <div class="grid gap-6 sm:grid-cols-2">
               <article class="card shell overflow-hidden sm:col-span-2">
                 <div class="grid md:grid-cols-2">
-                  <div class="min-h-72"><img src="/images/clay-tunnel-tunnel.jpg" data-fallback={photos.tunnel} alt={`Clay sculptures inside ${fullName} near ${shortName}`} class="photo" loading="lazy" /></div>
+                  <div class="min-h-72"><img src="/images/clay-tunnel-tunnel.jpg" data-fallback={photos.tunnel} data-fallback2="/images/clay-tunnel-tunnel.svg" alt={`Clay sculptures inside ${fullName} near ${shortName}`} class="photo" loading="lazy" /></div>
                   <div class="p-7 sm:p-9">
                     <span class="kicker text-[var(--sun)]">The clay models</span>
                     <h3 class="display mt-3 text-4xl">A story in clay</h3>
@@ -191,7 +191,7 @@ const faqLd = {
               </article>
 
               <article class="card shell overflow-hidden">
-                <div class="aspect-[4/3]"><img src="/images/clay-tunnel-lake.jpg" data-fallback={photos.lake} alt={`${nearby1} near ${shortName}`} class="photo" loading="lazy" /></div>
+                <div class="aspect-[4/3]"><img src="/images/clay-tunnel-lake.jpg" data-fallback={photos.lake} data-fallback2="/images/clay-tunnel-lake.svg" alt={`${nearby1} near ${shortName}`} class="photo" loading="lazy" /></div>
                 <div class="p-7">
                   <span class="kicker text-[var(--sea)]">By the lake</span>
                   <h3 class="display mt-2 text-3xl">{nearby1}</h3>
@@ -201,7 +201,7 @@ const faqLd = {
               </article>
 
               <article class="card shell overflow-hidden">
-                <div class="aspect-[4/3]"><img src="/images/clay-tunnel-tunnel2.jpg" data-fallback={photos.tunnel2} alt={`Clay tunnel entrance at ${fullName}`} class="photo" loading="lazy" /></div>
+                <div class="aspect-[4/3]"><img src="/images/clay-tunnel-tunnel2.jpg" data-fallback={photos.tunnel2} data-fallback2="/images/clay-tunnel-tunnel2.svg" alt={`Clay tunnel entrance at ${fullName}`} class="photo" loading="lazy" /></div>
                 <div class="p-7">
                   <span class="kicker text-[var(--sea)]">The entrance</span>
                   <h3 class="display mt-2 text-3xl">Walking the path</h3>
@@ -241,7 +241,7 @@ const faqLd = {
                   <p class="mt-6 leading-7 text-slate-700">The sculpture tunnel sits within a cluster of {city}'s southern highlights. Landmarks &amp; Attractions Around {shortName} include <strong>{nearby1}</strong> — a peaceful lake ringed by pine forest — and <strong>{nearby2}</strong>, a hillside Zen monastery overlooking the water.</p>
                   <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="mt-7 inline-block rounded-full border border-[#0a2931]/25 px-5 py-3 text-sm font-black">Open in Google Maps ↗</a>
                 </div>
-                <div class="min-h-80"><img src="/images/clay-tunnel-lake2.jpg" data-fallback={photos.lake2} alt={`${nearby2} near ${shortName}`} class="photo" loading="lazy" /></div>
+                <div class="min-h-80"><img src="/images/clay-tunnel-lake2.jpg" data-fallback={photos.lake2} data-fallback2="/images/clay-tunnel-lake2.svg" alt={`${nearby2} near ${shortName}`} class="photo" loading="lazy" /></div>
               </div>
             </div>
             <aside class="shell bg-[#e99a54] p-8 sm:p-10">
@@ -367,10 +367,17 @@ const faqLd = {
 
     <script is:inline>
       document.querySelectorAll('img[data-fallback]').forEach((img) => {
-        img.addEventListener('error', () => {
-          const fallback = img.getAttribute('data-fallback');
-          if (fallback && img.getAttribute('src') !== fallback) img.setAttribute('src', fallback);
-        }, { once: true });
+        const tryFallback = () => {
+          const cur = img.getAttribute('src');
+          const f1 = img.getAttribute('data-fallback');
+          const f2 = img.getAttribute('data-fallback2');
+          if (f1 && cur !== f1) { img.setAttribute('src', f1); return; }
+          if (f2 && cur !== f2) { img.setAttribute('src', f2); }
+        };
+        img.addEventListener('error', tryFallback);
+        // Race guard: an eager above-the-fold image (e.g. the hero) may have
+        // already failed before this listener attached, so apply the fallback now.
+        if (img.complete && img.naturalWidth === 0) tryFallback();
       });
       const banner = document.getElementById('cookie-banner');
       const key = 'ctd-cookie-choice';

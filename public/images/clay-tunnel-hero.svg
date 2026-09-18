@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Clay Tunnel Da Lat hero landscape">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7e2c4"/>
+      <stop offset="0.45" stop-color="#f0c79c"/>
+      <stop offset="0.75" stop-color="#bcd9cf"/>
+      <stop offset="1" stop-color="#7fb4a8"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd9a0"/>
+      <stop offset="0.6" stop-color="#e99a54"/>
+      <stop offset="1" stop-color="#e99a54" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3f7d74"/>
+      <stop offset="1" stop-color="#163b3f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="870" cy="240" r="150" fill="url(#sun)"/>
+  <circle cx="870" cy="240" r="62" fill="#ffcf94"/>
+  <path d="M0 470 L210 300 L360 440 L520 280 L700 460 L860 320 L1020 470 L1200 360 L1200 540 L0 540 Z" fill="#6f9c93" opacity="0.55"/>
+  <path d="M0 560 L260 420 L460 540 L660 400 L880 540 L1080 430 L1200 520 L1200 620 L0 620 Z" fill="#3f7d74"/>
+  <rect y="600" width="1200" height="200" fill="url(#water)"/>
+  <rect y="600" width="1200" height="14" fill="#9bc3bb" opacity="0.5"/>
+  <g fill="#0a2931">
+    <path d="M150 600 q120 -150 240 0 Z"/>
+    <rect x="250" y="560" width="40" height="60"/>
+    <path d="M820 600 q110 -130 220 0 Z"/>
+    <rect x="910" y="570" width="36" height="50"/>
+  </g>
+  <g fill="#0a2931" opacity="0.92">
+    <path d="M520 800 v-150 a90 90 0 0 1 180 0 v150 Z"/>
+    <path d="M560 800 v-110 a50 50 0 0 1 100 0 v110 Z" fill="#163b3f"/>
+  </g>
+  <g fill="#163b3f">
+    <polygon points="60,720 80,660 100,720"/>
+    <polygon points="100,725 122,655 144,725"/>
+    <polygon points="1060,715 1082,650 1104,715"/>
+    <polygon points="1100,720 1124,648 1148,720"/>
+  </g>
+</svg>

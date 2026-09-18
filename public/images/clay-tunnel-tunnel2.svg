@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Entrance of the Clay Tunnel">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9efe6"/>
+      <stop offset="1" stop-color="#d6d7bd"/>
+    </linearGradient>
+    <linearGradient id="arch" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cf9e6e"/>
+      <stop offset="1" stop-color="#9c6638"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg3)"/>
+  <rect y="470" width="800" height="130" fill="#cbb78f"/>
+  <path d="M210 470 v-180 a190 190 0 0 1 380 0 v180 Z" fill="url(#arch)"/>
+  <path d="M210 470 v-180 a190 190 0 0 1 380 0 v180 Z" fill="none" stroke="#7a4d28" stroke-width="8" opacity="0.4"/>
+  <path d="M280 470 v-140 a120 120 0 0 1 240 0 v140 Z" fill="#163b3f"/>
+  <g fill="#0a2931" opacity="0.85">
+    <rect x="150" y="360" width="36" height="120"/>
+    <circle cx="168" cy="345" r="26"/>
+    <rect x="610" y="360" width="36" height="120"/>
+    <circle cx="628" cy="345" r="26"/>
+  </g>
+  <circle cx="120" cy="120" r="40" fill="#e99a54"/>
+  <g fill="#3f7d74" opacity="0.5">
+    <polygon points="40,470 70,400 100,470"/>
+    <polygon points="700,470 730,405 760,470"/>
+  </g>
+</svg>

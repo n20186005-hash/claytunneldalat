@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Tuyen Lam Lake near the Clay Tunnel">
+  <defs>
+    <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe6df"/>
+      <stop offset="1" stop-color="#e9efe6"/>
+    </linearGradient>
+    <linearGradient id="lake" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4b9b91"/>
+      <stop offset="1" stop-color="#163b3f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#sky2)"/>
+  <path d="M0 300 L180 200 L340 290 L520 190 L700 300 Z" fill="#3f7d74" opacity="0.6"/>
+  <path d="M0 330 L220 250 L420 330 L640 250 L800 330 L800 360 L0 360 Z" fill="#2f6f6a"/>
+  <rect y="360" width="800" height="240" fill="url(#lake)"/>
+  <g fill="#9bc3bb" opacity="0.45">
+    <rect x="60" y="380" width="680" height="6"/>
+    <rect x="120" y="430" width="560" height="5"/>
+    <rect x="180" y="490" width="440" height="4"/>
+  </g>
+  <g fill="#0a2931">
+    <polygon points="120,360 150,300 180,360"/>
+    <polygon points="640,360 668,308 696,360"/>
+    <polygon points="400,360 430,296 460,360"/>
+  </g>
+  <circle cx="650" cy="110" r="42" fill="#e99a54"/>
+</svg>

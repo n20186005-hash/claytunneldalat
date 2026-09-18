@@ -1,8 +1,8 @@
-# Monte de San Pedro · A Coruña
+# Clay Tunnel Da Lat · Đường Hầm Điêu Khắc
 
-Micrositio editorial independiente construido específicamente alrededor del carácter atlántico, paisajístico y militar del Monte de San Pedro.
+Independent editorial microsite for the clay sculpture tunnel (Đường Hầm Điêu Khắc / Clay Tunnel Da Lat) near Tuyen Lam Lake, Da Lat, Lam Dong, Vietnam.
 
-## Stack fijado
+## Stack
 
 - Astro `7.2.4`
 - Tailwind CSS `4.3.3`
@@ -12,15 +12,15 @@ Micrositio editorial independiente construido específicamente alrededor del car
 - TypeScript `6.0.3`
 - pnpm `11.25.0`
 - Node.js `24.20.0` (LTS)
-- Cloudflare Workers Static Assets; Wrangler fijado en el script de deploy a `4.134.0`
+- Cloudflare Workers Static Assets; Wrangler fixed in the deploy script to `4.134.0`
 
-No hay base de datos, login ni CMS.
+No database, login, or CMS.
 
-## Dominio en un solo lugar
+## Domain in one place
 
-Edita únicamente `SITE_URL` en `astro.config.mjs`. Si queda vacío, el proyecto sigue construyéndose; se omiten canonical absoluto, `og:url` y sitemap. Cuando tenga un dominio real, el sitemap y las URLs absolutas se derivan de esa única configuración.
+Edit only `SITE_URL` in `astro.config.mjs`. It is set to `https://claytunneldalat.com`, which drives the canonical URL, `og:url`, sitemap, and absolute `image`/`@id` in the JSON-LD. Leave it empty to build without absolute URLs.
 
-## Instalación
+## Install
 
 ```bash
 corepack enable
@@ -30,15 +30,15 @@ pnpm check
 pnpm build
 ```
 
-## Fotos reales
+## Real photos
 
-El sitio espera cinco JPG en `public/images/`. Por limitación de salida binaria del entorno que generó este paquete, las fotografías no pudieron descargarse automáticamente durante la creación del ZIP. Se incluye un descargador determinista:
+The site expects five JPGs in `public/images/`. They are pulled from Wikimedia Commons via a deterministic downloader:
 
 ```bash
 pnpm photos
 ```
 
-Después de ejecutar ese comando, las cinco fotografías reales de Wikimedia Commons quedan guardadas localmente con los nombres que usa el sitio. Mientras falten, la página utiliza las mismas fotos desde su URL original como fallback para evitar imágenes rotas. Ver `PHOTO-SOURCES.md` y `/creditos/`.
+After running that command, the five real photos are stored locally with the names the site uses. Until they exist, the page uses the same photos from their `Special:FilePath` URL as a fallback to avoid broken images. See `PHOTO-SOURCES.md` and `/creditos/`.
 
 ## Cloudflare Workers
 
@@ -46,14 +46,14 @@ Después de ejecutar ese comando, las cinco fotografías reales de Wikimedia Com
 pnpm deploy
 ```
 
-`wrangler.jsonc` publica `./dist` mediante Static Assets.
+`wrangler.jsonc` publishes `./dist` via Static Assets.
 
-## Comprobaciones editoriales
+## Editorial notes
 
-- No se fija un horario general del parque sin fuente operacional estable.
-- El ascensor panorámico se marca como “cerrado temporalmente” porque así figura actualmente en la web turística municipal consultada el 18/09/2026.
-- La información histórica y técnica de las baterías procede de documentación municipal. Ver `SOURCES.md`.
+- The visitor rating (4.2, ~16,550 reviews) and review count are synchronized from Google Maps user reviews and were last updated in September 2026. They are displayed on the page only and are **not** placed in the JSON-LD (to respect Google's terms). The source note is shown on the page and in the Sources section.
+- Opening hours and ticket prices are stated as typically published; confirm at the gate.
+- The attraction charges an entrance ticket, so `isAccessibleForFree` is `false` in the structured data.
 
-## Estado de verificación
+## Verification status
 
-Consulta `QA-STATUS.md`. Esta entrega prioriza un lockfile completo y sincronizado. El sandbox de creación no tiene acceso al registro npm, por lo que no se declara falsamente que el clean install/check/build haya pasado aquí.
+See `QA-STATUS.md`. This delivery prioritizes a complete, synchronized lockfile. The build sandbox has no npm registry access, so a clean install/check/build is not falsely claimed to have passed here.

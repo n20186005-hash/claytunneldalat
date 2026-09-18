@@ -1,0 +1,15 @@
+{
+  "name": "Clay Tunnel Da Lat · Đường Hầm Điêu Khắc",
+  "short_name": "Clay Tunnel",
+  "description": "Visitor guide to the Clay Tunnel (Đường Hầm Điêu Khắc) sculpture park in Da Lat, Vietnam — location, tickets, hours, and nearby landmarks.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f2e8",
+  "theme_color": "#0a2931",
+  "icons": [
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icons/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

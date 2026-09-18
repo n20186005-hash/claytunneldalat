@@ -40,7 +40,7 @@ for (const f of textFiles) {
   for (const rx of forbidden) if (rx.test(t)) throw new Error(`Cadena prohibida ${rx} en ${path.relative(root,f)}`);
 }
 const home = fs.readFileSync(path.join(root,'src/pages/index.astro'),'utf8');
-for (const marker of ['TouristAttraction','Park','Cúpula Atlántica','Vickers','cerrado temporalmente','Google Maps']) {
+for (const marker of ['TouristAttraction','Đường Hầm Điêu Khắc','Da Lat','Google Maps','FAQPage','Sculpture Tunnel','claytunneldalat.com']) {
   if (!home.includes(marker)) throw new Error(`Falta contenido requerido: ${marker}`);
 }
 console.log(`SOURCE_AUDIT: PASS (${required.length} archivos obligatorios, ${Object.keys(specs).length} dependencias directas exactas)`);

@@ -1,20 +1,11 @@
-# Fuentes editoriales
+# Editorial sources
 
-- Turismo A Coruña — Monte de San Pedro: https://www.coruna.gal/tourism/en/what-to-do-in-a-coruna/nature-and-sports/parks-and-gardens/mount-san-pedro?argIdioma=es
-  - Reconversión para uso ciudadano desde 1999.
-  - Superficie superior a 90.000 m².
-  - Dos piezas Vickers adquiridas en 1929 e instaladas en 1933.
-  - Descripción de las panorámicas, Cúpula Atlántica y ascensor panorámico.
-  - El ascensor aparece marcado como cerrado temporalmente en la consulta realizada el 18/09/2026.
+- Vietnam National Administration of Tourism — official regional tourism portal: https://vietnam.travel/
+  - General travel and regional information for Vietnam, including Da Lat / Lam Dong.
 
-- Ayuntamiento de A Coruña — “Las instalaciones P. San Pedro” (PDF): https://www.coruna.gal/descarga/1351649544564/LAS-INSTALACIONES.pdf
-  - Cañones de más de 17 m de longitud y 38,1 cm de diámetro.
-  - Proyectiles de 885 kg.
-  - Alcance aproximado de 35 km.
-  - Contexto histórico y operativo de la batería.
+- Google Maps — verified location, coordinates 11.8825052, 108.4115694, and the visitor rating shown on the page.
+  - Place: KDL Đường Hầm Điêu Khắc (Đường Hầm Điêu Khắc), Ward 4, Da Lat City, Lam Dong 66000, Vietnam.
+  - Share link: https://maps.app.goo.gl/Sb8LguKYD3Kt2PHM9
+  - The rating (4.2) and review count (~16,550) are synchronized from Google Maps user reviews and were last updated in September 2026. They are displayed on the page only, not in the JSON-LD.
 
-- Guía turística municipal reciente: https://www.coruna.gal/descarga/1453793743423/guiavisitcoruna.pdf
-  - Acceso gratuito a miradores.
-  - Ascensor panorámico indicado como temporalmente cerrado en la guía consultada.
-
-- Google Maps — ubicación proporcionada para este proyecto: 43.3774825, -8.4380656; Estrada Os Fortes, 7, 15011 A Coruña.
+- Travel references for opening hours and ticket prices (typically: daily 07:00–17:00; 90,000 VND over 1.3 m, 30,000 VND under 1.3 m). Confirm at the gate.

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Clay Tunnel Da Lat">
+  <rect width="512" height="512" fill="#0a2931"/>
+  <circle cx="256" cy="220" r="130" fill="none" stroke="#e99a54" stroke-width="28"/>
+  <path d="M96 430 H416" stroke="#4b9b91" stroke-width="28" stroke-linecap="round"/>
+  <path d="M150 430 V310 M256 430 V290 M362 430 V310" stroke="#d6d7bd" stroke-width="24" stroke-linecap="round"/>
+</svg>

@@ -1,138 +1,212 @@
 ---
 import '../styles/global.css';
 
-const mapUrl = 'https://www.google.com/maps/place/Monte+de+San+Pedro/data=!4m7!3m6!1s0xd2e7c4cf3b92b7f:0x1e758d734281db12!8m2!3d43.3774825!4d-8.4380656!16s%2Fg%2F11cn6btncm!19sChIJfyu580x8Lg0REtuBQnONdR4?authuser=0&hl=es&rclk=1';
-const officialUrl = 'https://www.coruna.gal/tourism/en/what-to-do-in-a-coruna/nature-and-sports/parks-and-gardens/mount-san-pedro?argIdioma=es';
+const domain = 'claytunneldalat.com';
+const fullName = 'Đường Hầm Điêu Khắc';
+const shortName = 'Clay Tunnel Da Lat';
+const city = 'Da Lat';
+const province = 'Lam Dong';
+const country = 'Vietnam';
+const countryCode = 'VN';
+const postalCode = '66000';
+const latitude = 11.8825052;
+const longitude = 108.4115694;
+
+const mapUrl = 'https://maps.app.goo.gl/Sb8LguKYD3Kt2PHM9';
+const officialUrl = 'https://vietnam.travel/';
+const mapsEmbed = `https://www.google.com/maps?q=${latitude},${longitude}&hl=en&z=15&output=embed`;
+
+const rating = 4.2;
+const reviewCount = 16550;
+const ratingMonthVi = '2026 年 9 月';
+const ratingMonthEn = 'September 2026';
+
+const nearby1 = 'Tuyen Lam Lake';
+const nearby2 = 'Truc Lam Zen Monastery';
+
+const reviewSourceNote = '同步自 Google 地图用户评价，同步时间 2026 年 9 月；版权归原作者与 Google 地图所有';
+
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
-const ogImage = Astro.site ? new URL('/images/monte-san-pedro-hero.jpg', Astro.site).href : undefined;
+
+// Wikimedia Commons images are fetched locally by `pnpm photos`; until then the
+// Special:FilePath URLs act as a remote fallback so no image is ever broken.
+const file = (name: string) => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(name)}`;
+const photos = {
+  hero: file('Đường vào đường hầm điêu khắc đất sét - panoramio.jpg'),
+  tunnel: file('Đường vào đường hầm điêu khắc đất sét - panoramio (1).jpg'),
+  lake: file('Đường vào đường hầm điêu khắc đất sét quanh hồ tuyền lâm - panoramio.jpg'),
+  tunnel2: file('Đường vào đường hầm điêu khắc đất sét - panoramio (2).jpg'),
+  lake2: file('Đường vào đường hầm điêu khắc đất sét quanh hồ tuyền lâm - panoramio (1).jpg')
+};
+
+const ogImage = photos.hero;
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': ['TouristAttraction', 'Park'],
-  name: 'Monte de San Pedro',
-  alternateName: 'Parque do Monte de San Pedro',
-  description: 'Parque-mirador costero de A Coruña, antiguo enclave defensivo reconvertido en espacio público con baterías Vickers, panorámicas atlánticas y la Cúpula Atlántica.',
+  '@type': 'TouristAttraction',
+  '@id': `https://${domain}/#attraction`,
+  name: fullName,
+  alternateName: [shortName, 'Khu Du Lịch Đường Hầm Điêu Khắc', 'Sculpture Tunnel'],
+  description: `Visitor guide to ${fullName} (${shortName}), the clay sculpture tunnel near ${nearby1} in ${city}, ${province}, ${country}: location, opening hours, tickets, nearby ${nearby1} and ${nearby2}, and travel tips.`,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Estrada Os Fortes, 7',
-    postalCode: '15011',
-    addressLocality: 'A Coruña',
-    addressRegion: 'Galicia',
-    addressCountry: 'ES'
+    streetAddress: fullName,
+    addressLocality: city,
+    addressRegion: province,
+    postalCode: postalCode,
+    addressCountry: countryCode
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 43.3774825,
-    longitude: -8.4380656
+    latitude: latitude,
+    longitude: longitude
   },
-  isAccessibleForFree: true,
-  sameAs: [officialUrl, mapUrl],
+  openingHours: 'Mo-Su 07:00-17:00',
+  isAccessibleForFree: false,
+  hasMap: mapUrl,
+  sameAs: [mapUrl, officialUrl],
   ...(canonical ? { url: canonical } : {}),
   ...(ogImage ? { image: ogImage } : {})
 };
 
-const photos = {
-  hero: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Monte_de_San_Pedro._A_Coru%C3%B1a-c1.jpg',
-  cannon: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/Can%C3%B3n_no_Monte_de_San_Pedro._A_Coru%C3%B1a-c1.jpg',
-  panorama: 'https://upload.wikimedia.org/wikipedia/commons/2/28/A_Coru%C3%B1a_desde_o_Monte_de_San_Pedro.jpg',
-  elevator: 'https://upload.wikimedia.org/wikipedia/commons/6/6c/Ascensor_del_Monte_de_San_Pedro%2C_La_Coru%C3%B1a%2C_Espa%C3%B1a%2C_2015-09-25%2C_DD_95.JPG',
-  dome: 'https://upload.wikimedia.org/wikipedia/commons/0/0f/C%C3%BApula_Atl%C3%A1ntica%2C_Parque_de_San_Pedro%2C_La_Coru%C3%B1a%2C_Espa%C3%B1a%2C_2015-09-25%2C_DD_131.JPG'
+const faqItems = [
+  {
+    q: `Where is ${fullName} located?`,
+    a: `${fullName} is in Ward 4, ${city} City, ${province} Province, ${country}, near ${nearby1} — about 12 km south of the city center.`
+  },
+  {
+    q: `What is the ${shortName}?`,
+    a: `The ${shortName} (${fullName}, also called the Clay Tunnel) is a kilometer-long open-air clay sculpture park. Its models retell the history, culture and landscapes of ${city} and the Central Highlands through clay.`
+  },
+  {
+    q: 'What are the opening hours?',
+    a: 'The attraction is open daily from 07:00 to 17:00.'
+  },
+  {
+    q: 'How much is the entrance ticket?',
+    a: 'The ticket is 90,000 VND per person for visitors over 1.3 m tall, and 30,000 VND for children under 1.3 m. Always confirm the current price at the entrance.'
+  },
+  {
+    q: `How do I get to the ${shortName} from ${city} center?`,
+    a: `It is roughly 12 km south of ${city} center. The easiest way is a taxi or motorbike via the road to ${nearby1}, passing ${nearby2}.`
+  },
+  {
+    q: 'Is photography allowed at the Sculpture Tunnel?',
+    a: `Yes. The clay sculptures, miniature landmarks and lake views make the ${shortName} one of ${city}'s most photogenic spots — bring a camera or phone.`
+  }
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a }
+  }))
 };
 ---
+
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#0a2931" />
-    <meta name="description" content="Guía práctica del Monte de San Pedro en A Coruña: miradores, baterías Vickers, Cúpula Atlántica, acceso, ruta y consejos para fotografiar el Atlántico." />
-    <title>Monte de San Pedro · Mirador atlántico de A Coruña</title>
+    <title>Đường Hầm Điêu Khắc (Da Lat) · Clay Tunnel Visitor Guide</title>
+    <meta name="description" content={`Discover ${fullName} (${shortName}), the clay sculpture tunnel near ${nearby1} in ${city}, ${province}, ${country}. View location, opening hours, tickets, nearby ${nearby1} & ${nearby2}, and travel tips.`} />
     {canonical && <link rel="canonical" href={canonical} />}
-    <meta property="og:title" content="Monte de San Pedro · Mirador atlántico de A Coruña" />
-    <meta property="og:description" content="Un antiguo enclave defensivo convertido en parque: mar, artillería histórica y una de las panorámicas más abiertas de A Coruña." />
+    <meta property="og:title" content="Đường Hầm Điêu Khắc · Clay Tunnel Da Lat Travel Guide" />
+    <meta property="og:description" content={`Visitor guide to the Clay Tunnel (${fullName}) sculpture park in ${city}, ${country} — location, tickets, hours, and nearby landmarks.`} />
     <meta property="og:type" content="website" />
     {canonical && <meta property="og:url" content={canonical} />}
     {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:alt" content={`${fullName} in ${city}, ${country}`} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/icon.svg" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)}></script>
   </head>
   <body>
     <header class="absolute inset-x-0 top-0 z-30 text-white">
       <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-6 lg:px-8">
         <a href="#top" class="flex items-center gap-3 font-semibold">
-          <span class="grid size-10 place-items-center rounded-full border border-white/30 bg-white/10 backdrop-blur">MSP</span>
-          <span class="hidden sm:inline">Monte de San Pedro</span>
+          <span class="grid size-10 place-items-center rounded-full border border-white/30 bg-white/10 backdrop-blur">CT</span>
+          <span class="hidden sm:inline">{shortName}</span>
         </a>
         <nav class="flex gap-5 text-sm font-semibold">
-          <a href="#descubrir" class="hover:opacity-70">Descubrir</a>
-          <a href="#ruta" class="hover:opacity-70">Ruta</a>
-          <a href="#visita" class="hover:opacity-70">Visita</a>
+          <a href="#about" class="hover:opacity-70">About</a>
+          <a href="#visit" class="hover:opacity-70">Visit</a>
+          <a href="#reviews" class="hover:opacity-70">Reviews</a>
+          <a href="#faq" class="hover:opacity-70">FAQ</a>
         </nav>
       </div>
     </header>
 
     <main id="top">
       <section class="relative min-h-[90svh] overflow-hidden bg-[var(--ink)] text-white">
-        <img src="/images/monte-san-pedro-hero.jpg" data-fallback={photos.hero} alt="Praderas del Monte de San Pedro frente al Atlántico y A Coruña" class="photo absolute inset-0 opacity-72" />
+        <img src="/images/clay-tunnel-hero.jpg" data-fallback={photos.hero} alt={`${fullName} - Main view in ${city}, ${country}`} class="photo absolute inset-0 opacity-72" />
         <div class="absolute inset-0 bg-gradient-to-t from-[#061c22] via-[#08262d]/35 to-[#061c22]/20"></div>
         <div class="contour absolute inset-0"></div>
         <div class="relative mx-auto flex min-h-[90svh] max-w-7xl items-end px-5 pb-14 pt-32 lg:px-8 lg:pb-20">
           <div class="grid w-full gap-10 lg:grid-cols-[1.25fr_.75fr] lg:items-end">
             <div>
-              <p class="kicker mb-5 text-[#b9d8d1]">A Coruña · Galicia · Atlántico</p>
-              <h1 class="display max-w-4xl text-6xl leading-[.9] sm:text-7xl lg:text-[7.5rem]">Monte de<br/><em class="font-normal text-[#d6d7bd]">San Pedro</em></h1>
-              <p class="mt-7 max-w-2xl text-lg leading-8 text-white/82">Donde una antigua batería costera se abrió a la ciudad. Hoy, el horizonte ocupa el lugar de la defensa: praderas, acantilados, cañones monumentales y una vista que une A Coruña con el Atlántico.</p>
+              <p class="kicker mb-5 text-[#b9d8d1]">{city} · {province} · {country}</p>
+              <h1 class="display max-w-4xl text-6xl leading-[.9] sm:text-7xl lg:text-[7.5rem]">{fullName}<span class="mt-3 block text-[#d6d7bd] text-3xl sm:text-4xl lg:text-5xl">Clay Tunnel · {city}</span></h1>
+              <p class="mt-7 max-w-2xl text-lg leading-8 text-white/82">A kilometer-long open-air clay sculpture park on the hills above {nearby1}. Clay models retell the story of {city} and the Central Highlands — a quiet, photogenic stop just south of the city.</p>
             </div>
             <div class="card shell border-white/20 bg-[#0a2931]/55 p-6 text-white">
               <div class="grid grid-cols-3 gap-4 text-center">
-                <div><div class="display text-3xl">90k+</div><div class="mt-1 text-xs text-white/65">m² de parque</div></div>
-                <div><div class="display text-3xl">2</div><div class="mt-1 text-xs text-white/65">piezas Vickers</div></div>
-                <div><div class="display text-3xl">360°</div><div class="mt-1 text-xs text-white/65">Cúpula Atlántica</div></div>
+                <div><div class="display text-3xl">1 km</div><div class="mt-1 text-xs text-white/65">sculpture path</div></div>
+                <div><div class="display text-3xl">12 km</div><div class="mt-1 text-xs text-white/65">from center</div></div>
+                <div><div class="display text-3xl">★ {rating}</div><div class="mt-1 text-xs text-white/65">{reviewCount.toLocaleString()} reviews</div></div>
               </div>
-              <a href={mapUrl} target="_blank" rel="noreferrer" class="mt-6 block rounded-full bg-[#e99a54] px-5 py-3 text-center text-sm font-black text-[#08232b]">Abrir en Google Maps ↗</a>
+              <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="mt-6 block rounded-full bg-[#e99a54] px-5 py-3 text-center text-sm font-black text-[#08232b]">View on Google Maps ↗</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="descubrir" class="atlantic-grid py-24">
+      <section id="about" class="atlantic-grid py-24">
         <div class="mx-auto max-w-7xl px-5 lg:px-8">
           <div class="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
             <div class="lg:sticky lg:top-8">
-              <p class="kicker text-[var(--sea)]">De fortaleza a mirador</p>
-              <h2 class="display mt-4 text-5xl leading-none sm:text-6xl">Una colina con dos vidas</h2>
-              <p class="mt-6 text-lg leading-8 text-slate-700">El Ayuntamiento de A Coruña reconvirtió este antiguo punto defensivo para uso ciudadano en 1999. El resultado conserva la escala militar del lugar, pero cambia por completo su propósito: pasear, mirar el mar y entender la geografía de la ciudad desde arriba.</p>
+              <p class="kicker text-[var(--sea)]">From clay to landmark</p>
+              <h2 class="display mt-4 text-5xl leading-none sm:text-6xl">About {fullName}</h2>
+              <p class="mt-6 text-lg leading-8 text-slate-700">Welcome to <strong>{fullName}</strong>, widely recognized as the central <strong>{shortName}</strong>. Located in the heart of <strong>{city}</strong>, <strong>{province}</strong>, <strong>{country}</strong>, this destination serves as a creative hub where {city}'s history, folklore and landscapes are modeled in clay.</p>
+              <p class="mt-4 text-sm leading-7 text-slate-500">Breadcrumb: {fullName} → {city} → {province} → {country}</p>
             </div>
             <div class="grid gap-6 sm:grid-cols-2">
               <article class="card shell overflow-hidden sm:col-span-2">
                 <div class="grid md:grid-cols-2">
-                  <div class="min-h-72"><img src="/images/monte-san-pedro-cannon.jpg" data-fallback={photos.cannon} alt="Cañón Vickers de la batería del Monte de San Pedro" class="photo" loading="lazy" /></div>
+                  <div class="min-h-72"><img src="/images/clay-tunnel-tunnel.jpg" data-fallback={photos.tunnel} alt={`Clay sculptures inside ${fullName} near ${shortName}`} class="photo" loading="lazy" /></div>
                   <div class="p-7 sm:p-9">
-                    <span class="kicker text-[var(--sun)]">Batería costera</span>
-                    <h3 class="display mt-3 text-4xl">Los Vickers de 381 mm</h3>
-                    <p class="mt-4 leading-7 text-slate-700">Las dos piezas fueron adquiridas en 1929 e instaladas en 1933. Sus tubos superan los 17 metros; la documentación municipal cifra los proyectiles en 885 kg y el alcance en unos 35 km.</p>
-                    <p class="photo-credit mt-6">Foto: Lmbuga / Wikimedia Commons · CC BY-SA 4.0.</p>
+                    <span class="kicker text-[var(--sun)]">The clay models</span>
+                    <h3 class="display mt-3 text-4xl">A story in clay</h3>
+                    <p class="mt-4 leading-7 text-slate-700">The park lines a winding path with large clay sculptures: miniature landmarks, ethnic-cultural scenes and scenes from {city}'s past. It is built and maintained by a local artisan family, making it as much a craft project as an attraction.</p>
+                    <p class="photo-credit mt-6">Photo: Wikimedia Commons (Panoramio) · CC BY-SA.</p>
                   </div>
                 </div>
               </article>
 
               <article class="card shell overflow-hidden">
-                <div class="aspect-[4/3]"><img src="/images/monte-san-pedro-dome.jpg" data-fallback={photos.dome} alt="Cúpula Atlántica en el Monte de San Pedro" class="photo" loading="lazy" /></div>
+                <div class="aspect-[4/3]"><img src="/images/clay-tunnel-lake.jpg" data-fallback={photos.lake} alt={`${nearby1} near ${shortName}`} class="photo" loading="lazy" /></div>
                 <div class="p-7">
-                  <span class="kicker text-[var(--sea)]">Mirador cubierto</span>
-                  <h3 class="display mt-2 text-3xl">Cúpula Atlántica</h3>
-                  <p class="mt-3 leading-7 text-slate-700">Un mirador interior de 360° pensado para leer la ciudad y el océano desde una cota elevada, incluso cuando el viento manda fuera.</p>
-                  <p class="photo-credit mt-5">Foto: Diego Delso / Wikimedia Commons · CC BY-SA 4.0.</p>
+                  <span class="kicker text-[var(--sea)]">By the lake</span>
+                  <h3 class="display mt-2 text-3xl">{nearby1}</h3>
+                  <p class="mt-3 leading-7 text-slate-700">The tunnel sits on the wooded hills around {nearby1}, a calm pine-and-water landscape just south of {city}. Many visitors pair the two stops in one half-day.</p>
+                  <p class="photo-credit mt-5">Photo: Wikimedia Commons (Panoramio) · CC BY-SA.</p>
                 </div>
               </article>
 
               <article class="card shell overflow-hidden">
-                <div class="aspect-[4/3]"><img src="/images/monte-san-pedro-panorama.jpg" data-fallback={photos.panorama} alt="Vista de A Coruña desde Monte de San Pedro" class="photo" loading="lazy" /></div>
+                <div class="aspect-[4/3]"><img src="/images/clay-tunnel-tunnel2.jpg" data-fallback={photos.tunnel2} alt={`Clay tunnel entrance at ${fullName}`} class="photo" loading="lazy" /></div>
                 <div class="p-7">
-                  <span class="kicker text-[var(--sea)]">Horizonte</span>
-                  <h3 class="display mt-2 text-3xl">La ciudad desde fuera</h3>
-                  <p class="mt-3 leading-7 text-slate-700">Hacia un lado, el Atlántico y la costa de Arteixo; hacia el otro, la ría de A Coruña, la Costa Ártabra y, con buena visibilidad, una sucesión de rías hacia el nordeste.</p>
-                  <p class="photo-credit mt-5">Foto: Ramon Piñeiro / Wikimedia Commons · licencia indicada en la ficha original.</p>
+                  <span class="kicker text-[var(--sea)]">The entrance</span>
+                  <h3 class="display mt-2 text-3xl">Walking the path</h3>
+                  <p class="mt-3 leading-7 text-slate-700">A single winding path carries you past dozens of clay tableaux. Allow 45–90 minutes to walk it, photograph, and read the story it tells.</p>
+                  <p class="photo-credit mt-5">Photo: Wikimedia Commons (Panoramio) · CC BY-SA.</p>
                 </div>
               </article>
             </div>
@@ -140,18 +214,18 @@ const photos = {
         </div>
       </section>
 
-      <section id="ruta" class="bg-[#0a2931] py-24 text-white">
+      <section id="route" class="bg-[#0a2931] py-24 text-white">
         <div class="mx-auto grid max-w-7xl gap-14 px-5 lg:grid-cols-[.9fr_1.1fr] lg:px-8">
           <div>
-            <p class="kicker text-[#9bc3bb]">Ruta recomendada · 60–90 min</p>
-            <h2 class="display mt-4 text-5xl leading-none sm:text-6xl">Sigue el borde del Atlántico</h2>
-            <p class="mt-6 max-w-xl leading-8 text-white/72">No hace falta “tachar” puntos. La mejor visita es circular: alternar historia, viento, horizonte y zonas de descanso.</p>
+            <p class="kicker text-[#9bc3bb]">Suggested route · 45–90 min</p>
+            <h2 class="display mt-4 text-5xl leading-none sm:text-6xl">Location &amp; How to Visit {shortName} in {city}</h2>
+            <p class="mt-6 max-w-xl leading-8 text-white/72">The site is compact: follow the single sculpture path, pause at the lake viewpoint, and loop back. Pair it with {nearby1} and {nearby2} on the same trip south.</p>
           </div>
           <div class="space-y-9">
-            <div class="route-line flex gap-5"><span class="dot mt-1"></span><div><div class="kicker text-[#d6d7bd]">01 · Entrada alta</div><h3 class="display mt-1 text-3xl">Primera lectura del parque</h3><p class="mt-2 text-white/68">Empieza por las praderas y ubica la ciudad, la Torre de Hércules y la boca de la ría antes de acercarte a la artillería.</p></div></div>
-            <div class="route-line flex gap-5"><span class="dot mt-1"></span><div><div class="kicker text-[#d6d7bd]">02 · Baterías</div><h3 class="display mt-1 text-3xl">Escala militar</h3><p class="mt-2 text-white/68">Rodea los Vickers para entender sus dimensiones, el campo de tiro y la relación estratégica con la costa.</p></div></div>
-            <div class="route-line flex gap-5"><span class="dot mt-1"></span><div><div class="kicker text-[#d6d7bd]">03 · Cúpula</div><h3 class="display mt-1 text-3xl">Geografía en 360°</h3><p class="mt-2 text-white/68">Usa la Cúpula Atlántica como pausa de interpretación. La apertura y los servicios interiores pueden variar.</p></div></div>
-            <div class="route-line flex gap-5"><span class="dot mt-1"></span><div><div class="kicker text-[#d6d7bd]">04 · Borde y puesta de sol</div><h3 class="display mt-1 text-3xl">Termina mirando al oeste</h3><p class="mt-2 text-white/68">Reserva los últimos minutos para el borde atlántico. Con luz baja, el relieve y los cañones ganan volumen y la ciudad cambia de tono.</p></div></div>
+            <div class="route-line flex gap-5"><span class="dot mt-1"></span><div><div class="kicker text-[#d6d7bd]">01 · Get there</div><h3 class="display mt-1 text-3xl">From {city} center</h3><p class="mt-2 text-white/68">About 12 km south via the road to {nearby1}. Taxi or motorbike is simplest; the route passes {nearby2}.</p></div></div>
+            <div class="route-line flex gap-5"><span class="dot mt-1"></span><div><div class="kicker text-[#d6d7bd]">02 · Enter</div><h3 class="display mt-1 text-3xl">Buy a ticket</h3><p class="mt-2 text-white/68">Entry is 90,000 VND (over 1.3 m) / 30,000 VND (under 1.3 m). Confirm the current price at the gate.</p></div></div>
+            <div class="route-line flex gap-5"><span class="dot mt-1"></span><div><div class="kicker text-[#d6d7bd]">03 · Walk</div><h3 class="display mt-1 text-3xl">Follow the clay path</h3><p class="mt-2 text-white/68">One winding path, dozens of clay tableaux. The morning light is gentler for photos.</p></div></div>
+            <div class="route-line flex gap-5"><span class="dot mt-1"></span><div><div class="kicker text-[#d6d7bd]">04 · Combine</div><h3 class="display mt-1 text-3xl">Add the landmarks</h3><p class="mt-2 text-white/68">When visiting {fullName}, explore surrounding points of interest including {nearby1} and {nearby2}.</p></div></div>
           </div>
         </div>
       </section>
@@ -162,48 +236,69 @@ const photos = {
             <div class="shell overflow-hidden bg-[#dbe7df]">
               <div class="grid min-h-[480px] md:grid-cols-2">
                 <div class="p-8 sm:p-10">
-                  <p class="kicker text-[var(--deep)]">Ascensor panorámico</p>
-                  <h2 class="display mt-3 text-5xl leading-none">La esfera sobre la roca</h2>
-                  <p class="mt-6 leading-7 text-slate-700">El elevador acristalado conecta el Paseo Marítimo con la cima a través de una fuerte pendiente. La web turística municipal lo marca actualmente como <strong>cerrado temporalmente</strong>; conviene confirmar el estado antes de organizar la visita alrededor de él.</p>
-                  <a href={officialUrl} target="_blank" rel="noreferrer" class="mt-7 inline-block rounded-full border border-[#0a2931]/25 px-5 py-3 text-sm font-black">Consultar fuente oficial ↗</a>
+                  <p class="kicker text-[var(--deep)]">Landmarks nearby</p>
+                  <h2 class="display mt-3 text-5xl leading-none">Around {shortName}</h2>
+                  <p class="mt-6 leading-7 text-slate-700">The sculpture tunnel sits within a cluster of {city}'s southern highlights. Landmarks &amp; Attractions Around {shortName} include <strong>{nearby1}</strong> — a peaceful lake ringed by pine forest — and <strong>{nearby2}</strong>, a hillside Zen monastery overlooking the water.</p>
+                  <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="mt-7 inline-block rounded-full border border-[#0a2931]/25 px-5 py-3 text-sm font-black">Open in Google Maps ↗</a>
                 </div>
-                <div class="min-h-80"><img src="/images/monte-san-pedro-elevator.jpg" data-fallback={photos.elevator} alt="Ascensor panorámico del Monte de San Pedro" class="photo" loading="lazy" /></div>
+                <div class="min-h-80"><img src="/images/clay-tunnel-lake2.jpg" data-fallback={photos.lake2} alt={`${nearby2} near ${shortName}`} class="photo" loading="lazy" /></div>
               </div>
             </div>
             <aside class="shell bg-[#e99a54] p-8 sm:p-10">
-              <p class="kicker">Qué llevar</p>
-              <h2 class="display mt-3 text-4xl">Viento, luz y tiempo</h2>
+              <p class="kicker">What to bring</p>
+              <h2 class="display mt-3 text-4xl">Light, water &amp; time</h2>
               <ul class="mt-7 space-y-5 text-[1.03rem] leading-7">
-                <li><strong>Una capa extra:</strong> la exposición al Atlántico puede cambiar la sensación térmica.</li>
-                <li><strong>Calzado cómodo:</strong> el parque combina senderos, césped y desniveles suaves.</li>
-                <li><strong>Margen horario:</strong> deja tiempo para detenerte; la vista es el verdadero atractivo.</li>
-                <li><strong>Teleobjetivo o prismáticos:</strong> útiles para leer la costa y la Torre de Hércules.</li>
+                <li><strong>Water &amp; a hat:</strong> the path is open and the midday sun is strong.</li>
+                <li><strong>Comfortable shoes:</strong> it is a gentle walk, but allow time to stop.</li>
+                <li><strong>A camera:</strong> the clay models and lake views are the main draw.</li>
+                <li><strong>Cash:</strong> small vendors and the gate may prefer it.</li>
               </ul>
             </aside>
           </div>
         </div>
       </section>
 
-      <section id="visita" class="border-y border-[#0a2931]/10 bg-white py-24">
+      <section id="visit" class="border-y border-[#0a2931]/10 bg-white py-24">
         <div class="mx-auto max-w-7xl px-5 lg:px-8">
           <div class="grid gap-10 lg:grid-cols-2">
             <div>
-              <p class="kicker text-[var(--sea)]">Planifica tu visita</p>
-              <h2 class="display mt-4 text-5xl">Datos esenciales</h2>
+              <p class="kicker text-[var(--sea)]">Plan your visit</p>
+              <h2 class="display mt-4 text-5xl">Essential info</h2>
               <dl class="mt-8 divide-y divide-[#0a2931]/12 border-y border-[#0a2931]/12">
-                <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Dirección</dt><dd>Estrada Os Fortes, 7, 15011 A Coruña, España</dd></div>
-                <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Acceso</dt><dd>Entrada al parque gratuita. Instalaciones concretas pueden tener horarios o condiciones propias.</dd></div>
-                <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Ascensor</dt><dd>Cerrado temporalmente según la web turística municipal consultada.</dd></div>
-                <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Ideal para</dt><dd>Atardecer, fotografía, paseo, historia militar y vistas urbanas.</dd></div>
+                <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Address</dt><dd>Ward 4, {city} City, {province} {postalCode}, {country}</dd></div>
+                <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Opening</dt><dd>Daily 07:00 – 17:00.</dd></div>
+                <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Ticket</dt><dd>90,000 VND (over 1.3 m) · 30,000 VND (under 1.3 m). Confirm at the gate.</dd></div>
+                <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Best for</dt><dd>Photography, a relaxed walk, local crafts and lake views.</dd></div>
               </dl>
               <div class="mt-8 flex flex-wrap gap-3">
-                <a href={mapUrl} target="_blank" rel="noreferrer" class="rounded-full bg-[#0a2931] px-6 py-3 text-sm font-black text-white">Cómo llegar ↗</a>
-                <a href={officialUrl} target="_blank" rel="noreferrer" class="rounded-full border border-[#0a2931]/25 px-6 py-3 text-sm font-black">Turismo A Coruña ↗</a>
+                <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-[#0a2931] px-6 py-3 text-sm font-black text-white">Get directions ↗</a>
+                <a href={officialUrl} target="_blank" rel="noopener noreferrer" class="rounded-full border border-[#0a2931]/25 px-6 py-3 text-sm font-black">Vietnam Tourism ↗</a>
               </div>
             </div>
             <div class="shell overflow-hidden border border-[#0a2931]/10 bg-[#dbe7df] p-2">
-              <iframe title="Mapa de Monte de San Pedro" class="h-[520px] w-full rounded-[1.8rem] border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=43.3774825,-8.4380656&hl=es&z=15&output=embed"></iframe>
+              <iframe title={`Map of ${fullName}`} class="h-[520px] w-full rounded-[1.8rem] border-0" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src={mapsEmbed}></iframe>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="reviews" class="bg-[#0a2931] py-24 text-white">
+        <div class="mx-auto max-w-7xl px-5 lg:px-8">
+          <div class="shell bg-white/5 p-8 sm:p-12">
+            <p class="kicker text-[#9bc3bb]">Visitor ratings &amp; reviews</p>
+            <h2 class="display mt-3 text-5xl">What visitors say</h2>
+            <div class="mt-8 flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+              <div class="flex items-end gap-5">
+                <div class="display text-7xl leading-none text-[#e99a54]">★ {rating}</div>
+                <div>
+                  <div class="text-lg font-black">{reviewCount.toLocaleString()} reviews</div>
+                  <div class="mt-1 text-sm text-white/65">Google Maps · {ratingMonthEn}</div>
+                </div>
+              </div>
+              <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-[#e99a54] px-6 py-3 text-sm font-black text-[#08232b]">在谷歌地图查看全部评价 ↗</a>
+            </div>
+            <p class="mt-8 text-sm leading-7 text-white/72">评分与评价数同步自谷歌地图（Google Maps）用户评价 · {ratingMonthVi} · 点击查看谷歌地图全部评价↗</p>
+            <p class="mt-2 text-xs leading-6 text-white/55">{reviewSourceNote}</p>
           </div>
         </div>
       </section>
@@ -212,12 +307,28 @@ const photos = {
         <div class="mx-auto max-w-7xl px-5 lg:px-8">
           <div class="shell bg-[#d6d7bd] p-8 sm:p-12">
             <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr]">
-              <div><p class="kicker">Fuentes verificadas</p><h2 class="display mt-3 text-4xl">Datos, no leyendas</h2></div>
-              <div class="grid gap-5 sm:grid-cols-2 text-sm leading-6 text-slate-700">
-                <p><strong>Turismo A Coruña:</strong> superficie del parque, reconversión desde 1999, piezas Vickers, panorámicas, Cúpula Atlántica y estado del ascensor.</p>
-                <p><strong>Ayuntamiento de A Coruña · “Las instalaciones P. San Pedro”:</strong> calibre 38,1 cm, proyectiles de 885 kg, alcance de 35 km y cronología técnica de la batería.</p>
+              <div><p class="kicker">Sources &amp; references</p><h2 class="display mt-3 text-4xl">Facts, not legends</h2></div>
+              <div class="grid gap-5 text-sm leading-6 text-slate-700">
+                <p><strong>评价 · 同步时间 {ratingMonthVi}</strong> — {reviewSourceNote} <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="font-black underline">在谷歌地图查看全部评价 ↗</a></p>
+                <p><strong>Vietnam National Administration of Tourism:</strong> official regional tourism portal and travel information for {country}.</p>
+                <p><strong>Google Maps:</strong> verified location, coordinates {latitude}, {longitude}, and the visitor rating shown above.</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="border-y border-[#0a2931]/10 bg-white py-24">
+        <div class="mx-auto max-w-4xl px-5 lg:px-8">
+          <p class="kicker text-[var(--sea)]">Before you go</p>
+          <h2 class="display mt-3 text-5xl">Frequently asked questions</h2>
+          <div class="mt-10 space-y-6">
+            {faqItems.map((item) => (
+              <details class="card shell p-6 [&_summary]:cursor-pointer [&_summary]:font-black">
+                <summary>{item.q}</summary>
+                <p class="mt-4 leading-7 text-slate-700">{item.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
@@ -225,15 +336,15 @@ const photos = {
 
     <footer class="bg-[#071f25] py-12 text-white/72">
       <div class="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:flex-row sm:items-end sm:justify-between lg:px-8">
-        <div><div class="display text-3xl text-white">Monte de San Pedro</div><p class="mt-2 max-w-xl text-sm">Guía independiente de visita. No es el sitio oficial del Ayuntamiento de A Coruña.</p></div>
-        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm"><a href="/privacidad/">Privacidad</a><a href="/terminos/">Términos</a><a href="/configuracion-de-cookies/">Cookies</a><a href="/creditos/">Créditos de fotos</a></div>
+        <div><div class="display text-3xl text-white">{shortName}</div><p class="mt-2 max-w-xl text-sm">{fullName} · Independent visitor guide for {city}, {province}, {country}. Not the official government site.</p></div>
+        <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm"><a href="/privacidad/">Privacy</a><a href="/terminos/">Terms</a><a href="/configuracion-de-cookies/">Cookies</a><a href="/creditos/">Photo credits</a></div>
       </div>
     </footer>
 
     <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 z-50 mx-auto hidden max-w-3xl rounded-3xl border border-white/20 bg-[#071f25]/96 p-5 text-white shadow-2xl backdrop-blur sm:p-6">
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p class="text-sm leading-6 text-white/78">Este sitio solo guarda una preferencia local para recordar si aceptas cookies opcionales. No se carga analítica por defecto.</p>
-        <div class="flex gap-2"><button id="cookie-reject" class="rounded-full border border-white/25 px-4 py-2 text-sm font-bold">Solo necesarias</button><button id="cookie-accept" class="rounded-full bg-[#e99a54] px-4 py-2 text-sm font-black text-[#08232b]">Aceptar</button></div>
+        <p class="text-sm leading-6 text-white/78">This site only stores a local preference to remember your cookie choice. No analytics are loaded by default.</p>
+        <div class="flex gap-2"><button id="cookie-reject" class="rounded-full border border-white/25 px-4 py-2 text-sm font-bold">Essentials only</button><button id="cookie-accept" class="rounded-full bg-[#e99a54] px-4 py-2 text-sm font-black text-[#08232b]">Accept</button></div>
       </div>
     </div>
 
@@ -245,12 +356,15 @@ const photos = {
         }, { once: true });
       });
       const banner = document.getElementById('cookie-banner');
-      const key = 'msp-cookie-choice';
+      const key = 'ctd-cookie-choice';
       const show = () => banner?.classList.remove('hidden');
       const hide = () => banner?.classList.add('hidden');
       if (!localStorage.getItem(key)) show();
       document.getElementById('cookie-accept')?.addEventListener('click', () => { localStorage.setItem(key, 'accepted'); hide(); });
       document.getElementById('cookie-reject')?.addEventListener('click', () => { localStorage.setItem(key, 'necessary'); hide(); });
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => { navigator.serviceWorker.register('/sw.js').catch(() => {}); });
+      }
     </script>
   </body>
 </html>

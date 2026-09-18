@@ -125,8 +125,8 @@ const faqLd = {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/icons/icon.svg" />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
-    <script type="application/ld+json" set:html={JSON.stringify(faqLd)}></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqLd)}></script>
   </head>
   <body>
     <header class="absolute inset-x-0 top-0 z-30 text-white">
@@ -258,6 +258,22 @@ const faqLd = {
         </div>
       </section>
 
+      <section class="py-24">
+        <div class="mx-auto max-w-7xl px-5 lg:px-8">
+          <div class="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
+            <div class="lg:sticky lg:top-8">
+              <p class="kicker text-[var(--sea)]">From a hobby to a landmark</p>
+              <h2 class="display mt-4 text-5xl leading-none sm:text-6xl">History &amp; Significance of {fullName}</h2>
+            </div>
+            <div class="space-y-6 text-lg leading-8 text-slate-700">
+              <p>{fullName} began in the early 2000s as the clay-sculpting project of a local artisan family. What started as a personal craft grew into a kilometer-long open-air gallery that retells the story of {city} and the Central Highlands — from the city's founding and its French colonial era to its ethnic cultures and natural landmarks — modeled entirely in clay.</p>
+              <p>It reflects the region's hands-on craft tradition and has become one of {city}'s distinctive, family-built attractions: a place where local history, folklore and landscape are read slowly, on foot, one tableau at a time.</p>
+              <p class="text-sm leading-7 text-slate-500">Figures and chronology are summarized from travel references; the attraction continues to be expanded by its founders.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="visit" class="border-y border-[#0a2931]/10 bg-white py-24">
         <div class="mx-auto max-w-7xl px-5 lg:px-8">
           <div class="grid gap-10 lg:grid-cols-2">
@@ -266,6 +282,7 @@ const faqLd = {
               <h2 class="display mt-4 text-5xl">Essential info</h2>
               <dl class="mt-8 divide-y divide-[#0a2931]/12 border-y border-[#0a2931]/12">
                 <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Address</dt><dd>Ward 4, {city} City, {province} {postalCode}, {country}</dd></div>
+                <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Phone</dt><dd>+84338985899</dd></div>
                 <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Opening</dt><dd>Daily 07:00 – 17:00.</dd></div>
                 <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Ticket</dt><dd>90,000 VND (over 1.3 m) · 30,000 VND (under 1.3 m). Confirm at the gate.</dd></div>
                 <div class="grid grid-cols-[8rem_1fr] gap-4 py-5"><dt class="font-black">Best for</dt><dd>Photography, a relaxed walk, local crafts and lake views.</dd></div>

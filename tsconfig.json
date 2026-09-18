@@ -3,5 +3,7 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true
-  }
+  },
+  "include": ["src", "*.astro", "env.d.ts"],
+  "exclude": ["node_modules", "dist", ".astro", "public", "scripts"]
 }

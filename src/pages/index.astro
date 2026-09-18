@@ -127,6 +127,22 @@ const faqLd = {
     <link rel="apple-touch-icon" href="/icons/icon.svg" />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(faqLd)}></script>
+    <script is:inline>
+      // Catch image load failures as they happen (capture phase, so it works for
+      // eager above-the-fold images too). Fallback chain: local jpg -> remote
+      // Wikimedia photo -> guaranteed local SVG, so an image is never broken.
+      document.addEventListener('error', function (e) {
+        /** @type {any} */
+        var t = e.target;
+        if (t && t.tagName === 'IMG' && t.getAttribute('data-fallback')) {
+          var s = t.getAttribute('src');
+          var f = t.getAttribute('data-fallback');
+          var g = t.getAttribute('data-fallback2');
+          if (f && s !== f) { t.setAttribute('src', f); }
+          else if (g && s !== g) { t.setAttribute('src', g); }
+        }
+      }, true);
+    </script>
   </head>
   <body>
     <header class="absolute inset-x-0 top-0 z-30 text-white">
@@ -366,19 +382,6 @@ const faqLd = {
     </div>
 
     <script is:inline>
-      document.querySelectorAll('img[data-fallback]').forEach((img) => {
-        const tryFallback = () => {
-          const cur = img.getAttribute('src');
-          const f1 = img.getAttribute('data-fallback');
-          const f2 = img.getAttribute('data-fallback2');
-          if (f1 && cur !== f1) { img.setAttribute('src', f1); return; }
-          if (f2 && cur !== f2) { img.setAttribute('src', f2); }
-        };
-        img.addEventListener('error', tryFallback);
-        // Race guard: an eager above-the-fold image (e.g. the hero) may have
-        // already failed before this listener attached, so apply the fallback now.
-        if (img.complete && img.naturalWidth === 0) tryFallback();
-      });
       const banner = document.getElementById('cookie-banner');
       const key = 'ctd-cookie-choice';
       const show = () => banner?.classList.remove('hidden');

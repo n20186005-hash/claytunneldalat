@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ATTRACTION as A, SITE_NAME, withSiteName } from '../data/site';
+
+const locale = 'en' as const;
+const title = withSiteName(locale, 'Privacy policy');
+const description = `How the independent ${A.nameVi} (${A.nameEn}) visitor guide handles data: no accounts, no database, no analytics loaded by default.`;
+---
+
+<BaseLayout locale={locale} routeKey="home" canonicalOverride="/privacy/" title={title} description={description} noIndex i18n={false}>
+  <section class="py-16">
+    <div class="mx-auto max-w-3xl px-5 lg:px-8">
+      <a href="/" class="text-sm font-black underline">← Back to the guide</a>
+      <h1 class="display mt-8 text-5xl">Privacy policy</h1>
+      <div class="mt-8 space-y-5 leading-8 text-slate-700">
+        <p>{SITE_NAME[locale]} is an independent, non-commercial visitor guide. It has no accounts, no login and no database, and it does not ask for personal information.</p>
+        <p>No analytics or advertising are loaded by default. The only value that may be stored in your browser is a local preference that remembers your choice in the cookie notice.</p>
+        <p>Links to third-party services — Google Maps, Wikimedia Commons and the national tourism portal — lead to providers with their own policies. Once you open them, those providers may process data under their own terms.</p>
+        <p>Opening hours, ticket prices and visitor ratings shown on this site are published for reference and should be confirmed at the attraction or on the official source before travelling.</p>
+        <p>If analytics or any additional service is ever added, this policy will be updated before it is enabled.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

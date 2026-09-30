@@ -1,0 +1,151 @@
+---
+import { ui, type Locale } from '../i18n';
+import { WMO, WEEKDAYS } from '../data/weather-i18n';
+import { WEATHER_URL, buildAdvice, getWeather, kmhToBeaufort, wmoLabel } from '../lib/weather';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = ui[locale].weather;
+const unit = ui[locale].unit;
+const weekdays = WEEKDAYS[locale];
+const localeWmo: Record<string, string> = {};
+for (const [code, labels] of Object.entries(WMO)) localeWmo[code] = labels[locale];
+
+const weather = await getWeather();
+const advice = weather ? buildAdvice(weather, locale) : null;
+const beaufort = weather ? kmhToBeaufort(weather.current.windKmh) : 0;
+const dayName = (iso: string) => weekdays[new Date(`${iso}T12:00:00`).getDay()];
+---
+
+<section id="weather" class="border-y border-[#0a2931]/10 bg-[#f7f6ef] py-24">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="kicker text-[var(--sea)]">{t.kicker}</p>
+        <h2 class="display mt-3 text-5xl leading-none">{t.title}</h2>
+      </div>
+      <p class="max-w-md text-sm leading-6 text-slate-500">{t.source}</p>
+    </div>
+
+    {!weather && <p class="card shell mt-8 p-6 leading-7 text-slate-700">{t.unavailable}</p>}
+
+    {weather && (
+      <div class="mt-10 grid gap-6 lg:grid-cols-[1fr_1fr]">
+        <div class="shell border border-[#0a2931]/12 bg-white p-7">
+          <div class="flex items-baseline justify-between">
+            <div class="display text-6xl"><span id="wx-temp">{weather.current.temp}</span>°C</div>
+            <div class="text-right text-sm font-black text-slate-600" id="wx-code">{wmoLabel(weather.current.code, locale)}</div>
+          </div>
+          <dl class="mt-7 grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
+            <div><dt class="text-slate-500">{t.feels}</dt><dd class="text-lg font-black"><span id="wx-feels">{weather.current.apparent}</span>°C</dd></div>
+            <div><dt class="text-slate-500">{t.humidity}</dt><dd class="text-lg font-black"><span id="wx-hum">{weather.current.humidity}</span>{unit.percent}</dd></div>
+            <div><dt class="text-slate-500">{t.wind}</dt><dd class="text-lg font-black"><span id="wx-wind">{weather.current.windKmh}</span> {unit.kmh} · <span id="wx-bf">{beaufort}</span> {t.beaufort}</dd></div>
+            <div><dt class="text-slate-500">{t.rain}</dt><dd class="text-lg font-black"><span id="wx-rain">{weather.todayRain}</span>{unit.percent}</dd></div>
+            <div><dt class="text-slate-500">{t.uv}</dt><dd class="text-lg font-black" id="wx-uv">{weather.todayUv}</dd></div>
+            <div><dt class="text-slate-500">{t.updated}</dt><dd class="text-sm font-black text-slate-500">{weather.updatedAt.slice(0, 16).replace('T', ' ')}</dd></div>
+          </dl>
+        </div>
+
+        <div class="shell border border-[#0a2931]/12 bg-white p-7">
+          <p class="kicker text-[var(--sun)]">{t.forecast}</p>
+          <ul class="mt-5 divide-y divide-[#0a2931]/10">
+            {weather.daily.map((day, i) => (
+              <li class="flex items-center justify-between gap-4 py-2.5 text-sm">
+                <span class="w-14 font-black">{dayName(day.date)}</span>
+                <span class="flex-1 text-slate-600" id={`wx-day-${i}-code`}>{wmoLabel(day.code, locale)}</span>
+                <span class="font-black" id={`wx-day-${i}-temp`}>{day.min}° / {day.max}°</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )}
+
+    {advice && advice.risk.length > 0 && (
+      <div class="mt-6 rounded-3xl border border-[#b3402f]/30 bg-[#fdeceb] p-6">
+        <p class="kicker text-[#b3402f]">{t.risk}</p>
+        <ul class="mt-3 space-y-2 text-[0.97rem] leading-7 text-[#7a2a1e]">
+          {advice.risk.map((line) => <li>{line}</li>)}
+        </ul>
+      </div>
+    )}
+
+    {advice && (
+      <div class="mt-6 grid gap-6 md:grid-cols-3">
+        <div class="shell border border-[#0a2931]/12 bg-white p-6">
+          <p class="kicker text-[var(--sea)]">{t.outfit}</p>
+          <ul class="mt-4 space-y-3 text-sm leading-7 text-slate-700">
+            {advice.outfit.map((line) => <li>{line}</li>)}
+          </ul>
+        </div>
+        <div class="shell border border-[#0a2931]/12 bg-white p-6">
+          <p class="kicker text-[var(--sea)]">{t.plan}</p>
+          <ul class="mt-4 space-y-3 text-sm leading-7 text-slate-700">
+            {advice.plan.map((line) => <li>{line}</li>)}
+          </ul>
+        </div>
+        <div class="shell border border-[#0a2931]/12 bg-white p-6">
+          <p class="kicker text-[var(--sea)]">{t.items}</p>
+          <ul class="mt-4 space-y-3 text-sm leading-7 text-slate-700">
+            {advice.items.map((line) => <li>{line}</li>)}
+          </ul>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<script type="application/json" id="wx-config" set:html={JSON.stringify({ url: WEATHER_URL, wmo: localeWmo })} is:inline />
+
+<script>
+  interface WxConfig {
+    url: string;
+    wmo: Record<string, string>;
+  }
+
+  interface WxPayload {
+    current: Record<string, number>;
+    daily: {
+      time?: string[];
+      weather_code?: number[];
+      temperature_2m_min?: number[];
+      temperature_2m_max?: number[];
+      precipitation_probability_max?: number[];
+      uv_index_max?: number[];
+    };
+  }
+
+  const config = JSON.parse(document.getElementById('wx-config')?.textContent ?? '{}') as WxConfig;
+
+  const set = (id: string, value: string | number | undefined | null) => {
+    const el = document.getElementById(id);
+    if (el && value !== undefined && value !== null) el.textContent = String(value);
+  };
+
+  fetch(config.url, { headers: { accept: 'application/json' } })
+    .then((res) => (res.ok ? res.json() : null))
+    .then((json: WxPayload | null) => {
+      if (!json || !json.current || !json.daily) return;
+      const c = json.current;
+      const round = (v: number | undefined) => Math.round(v ?? 0);
+      set('wx-temp', round(c.temperature_2m));
+      set('wx-feels', round(c.apparent_temperature));
+      set('wx-hum', round(c.relative_humidity_2m));
+      set('wx-wind', round(c.wind_speed_10m));
+      set('wx-code', config.wmo[String(c.weather_code)] ?? '');
+      set('wx-rain', round(json.daily.precipitation_probability_max?.[0]));
+      set('wx-uv', Math.round((json.daily.uv_index_max?.[0] ?? 0) * 10) / 10);
+      const times = json.daily.time ?? [];
+      for (let i = 0; i < times.length; i += 1) {
+        set(`wx-day-${i}-code`, config.wmo[String(json.daily.weather_code?.[i])] ?? '');
+        set(
+          `wx-day-${i}-temp`,
+          `${round(json.daily.temperature_2m_min?.[i])}° / ${round(json.daily.temperature_2m_max?.[i])}°`
+        );
+      }
+    })
+    .catch(() => {});
+</script>

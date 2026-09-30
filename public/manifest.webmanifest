@@ -1,7 +1,9 @@
 {
-  "name": "Clay Tunnel Da Lat · Đường Hầm Điêu Khắc",
+  "name": "Clay Tunnel Da Lat (Đường Hầm Điêu Khắc) — Travel Guide",
   "short_name": "Clay Tunnel",
-  "description": "Visitor guide to the Clay Tunnel (Đường Hầm Điêu Khắc) sculpture park in Da Lat, Vietnam — location, tickets, hours, and nearby landmarks.",
+  "description": "Entrance fee, opening hours, how to get there and what to see at the clay sculpture tunnel (Đường Hầm Điêu Khắc) in Da Lat, Lam Dong, Vietnam.",
+  "lang": "en",
+  "dir": "ltr",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

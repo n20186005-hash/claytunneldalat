@@ -1,0 +1,334 @@
+---
+import { localizedPath, ui, type Locale } from '../i18n';
+import { ATTRACTION as A, MAPS_EMBED } from '../data/site';
+import { guides } from '../content';
+import { topics } from '../content/topics';
+import Photo from './Photo.astro';
+import WeatherSection from './WeatherSection.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const g = guides[locale];
+const t = ui[locale];
+const cards = [
+  { href: localizedPath(locale, 'ticket'), title: topics[locale].ticket.h1, text: topics[locale].ticket.card },
+  { href: localizedPath(locale, 'transport'), title: topics[locale].transport.h1, text: topics[locale].transport.card },
+  { href: localizedPath(locale, 'highlights'), title: topics[locale].highlights.h1, text: topics[locale].highlights.card }
+];
+---
+
+<section class="relative min-h-[86svh] overflow-hidden bg-[var(--ink)] text-white">
+  <Photo photo="hero" alt={g.photoAlt.hero} class="photo absolute inset-0 opacity-70" loading="eager" />
+  <div class="absolute inset-0 bg-gradient-to-t from-[#061c22] via-[#08262d]/40 to-[#061c22]/25"></div>
+  <div class="contour absolute inset-0"></div>
+  <div class="relative mx-auto flex min-h-[86svh] max-w-7xl items-end px-5 pb-14 pt-24 lg:px-8 lg:pb-20">
+    <div class="grid w-full gap-10 lg:grid-cols-[1.25fr_.75fr] lg:items-end">
+      <div>
+        <p class="kicker mb-5 text-[#b9d8d1]">{g.heroKicker}</p>
+        <h1 class="display max-w-4xl text-5xl leading-[.92] sm:text-6xl lg:text-[5.5rem]">
+          {g.heroTitle}<span class="mt-3 block text-[#d6d7bd] text-2xl sm:text-3xl lg:text-4xl">{g.heroSub}</span>
+        </h1>
+        <p class="mt-7 max-w-2xl text-lg leading-8 text-white/85">{g.heroLead}</p>
+      </div>
+      <div class="card shell border-white/20 bg-[#0a2931]/55 p-6 text-white">
+        <div class="grid grid-cols-3 gap-4 text-center">
+          {g.heroStats.map((stat) => (
+            <div>
+              <div class="display text-2xl">{stat.value}</div>
+              <div class="mt-1 text-xs text-white/65">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+        <a href={A.mapUrl} target="_blank" rel="noopener noreferrer" class="mt-6 block rounded-full bg-[#e99a54] px-5 py-3 text-center text-sm font-black text-[#08232b]">{t.cta.maps}</a>
+        <a href={`tel:${A.phone}`} class="mt-3 block rounded-full border border-white/30 px-5 py-3 text-center text-sm font-black">{t.cta.call}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="atlantic-grid py-24">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
+      <div class="lg:sticky lg:top-24">
+        <p class="kicker text-[var(--sea)]">{g.about.kicker}</p>
+        <h2 class="display mt-4 text-5xl leading-none sm:text-6xl">{g.about.title}</h2>
+        {g.about.paragraphs.map((p) => <p class="mt-6 text-lg leading-8 text-slate-700">{p}</p>)}
+        <p class="mt-4 text-sm leading-7 text-slate-500">{g.about.breadcrumb}</p>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2">
+        <article class="card shell overflow-hidden sm:col-span-2">
+          <div class="grid md:grid-cols-2">
+            <div class="min-h-72"><Photo photo="tunnel" alt={g.photoAlt.tunnel} /></div>
+            <div class="p-7 sm:p-9">
+              <span class="kicker text-[var(--sun)]">{g.highlights.kicker}</span>
+              <h3 class="display mt-3 text-4xl">{g.highlights.items[0].title}</h3>
+              <p class="mt-4 leading-7 text-slate-700">{g.highlights.items[0].text}</p>
+              <p class="photo-credit mt-6">{g.photoCredit}</p>
+            </div>
+          </div>
+        </article>
+        <article class="card shell overflow-hidden">
+          <div class="aspect-[4/3]"><Photo photo="lake" alt={g.photoAlt.lake} /></div>
+          <div class="p-7">
+            <h3 class="display mt-2 text-3xl">{g.highlights.items[2].title}</h3>
+            <p class="mt-3 leading-7 text-slate-700">{g.highlights.items[2].text}</p>
+            <p class="photo-credit mt-5">{g.photoCredit}</p>
+          </div>
+        </article>
+        <article class="card shell overflow-hidden">
+          <div class="aspect-[4/3]"><Photo photo="tunnel2" alt={g.photoAlt.tunnel2} /></div>
+          <div class="p-7">
+            <h3 class="display mt-2 text-3xl">{g.highlights.items[1].title}</h3>
+            <p class="mt-3 leading-7 text-slate-700">{g.highlights.items[1].text}</p>
+            <p class="photo-credit mt-5">{g.photoCredit}</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <p class="kicker text-[var(--sea)]">{g.highlights.kicker}</p>
+    <h2 class="display mt-3 text-5xl leading-none">{g.highlights.title}</h2>
+    <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-700">{g.highlights.intro}</p>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {g.highlights.items.map((item) => (
+        <article class="card shell p-7">
+          <h3 class="display text-2xl">{item.title}</h3>
+          <p class="mt-3 leading-7 text-slate-700">{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="route" class="bg-[#0a2931] py-24 text-white">
+  <div class="mx-auto grid max-w-7xl gap-14 px-5 lg:grid-cols-[.9fr_1.1fr] lg:px-8">
+    <div>
+      <p class="kicker text-[#9bc3bb]">{g.route.kicker}</p>
+      <h2 class="display mt-4 text-5xl leading-none sm:text-6xl">{g.route.title}</h2>
+      <p class="mt-6 max-w-xl leading-8 text-white/72">{g.route.intro}</p>
+      <a href={localizedPath(locale, 'transport')} class="mt-8 inline-block rounded-full bg-[#e99a54] px-6 py-3 text-sm font-black text-[#08232b]">{topics[locale].transport.h1} ↗</a>
+    </div>
+    <div class="space-y-9">
+      {g.route.steps.map((step) => (
+        <div class="route-line flex gap-5">
+          <span class="dot mt-1"></span>
+          <div>
+            <div class="kicker text-[#d6d7bd]">{step.no} · {step.label}</div>
+            <h3 class="display mt-1 text-3xl">{step.title}</h3>
+            <p class="mt-2 text-white/68">{step.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<WeatherSection locale={locale} />
+
+<section id="visit" class="border-y border-[#0a2931]/10 bg-white py-24">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="grid gap-10 lg:grid-cols-2">
+      <div>
+        <p class="kicker text-[var(--sea)]">{g.visit.kicker}</p>
+        <h2 class="display mt-4 text-5xl">{g.visit.title}</h2>
+        <dl class="mt-8 divide-y divide-[#0a2931]/12 border-y border-[#0a2931]/12">
+          {g.visit.rows.map((row) => (
+            <div class="grid grid-cols-[8.5rem_1fr] gap-4 py-4">
+              <dt class="font-black">{row.label}</dt>
+              <dd class="text-slate-700">{row.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <p class="mt-6 text-sm leading-6 text-slate-500">{g.disclaimer}</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href={A.mapUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-[#0a2931] px-6 py-3 text-sm font-black text-white">{t.cta.directions}</a>
+          <a href={A.officialUrl} target="_blank" rel="noopener noreferrer" class="rounded-full border border-[#0a2931]/25 px-6 py-3 text-sm font-black">{t.cta.official}</a>
+        </div>
+      </div>
+      <div class="shell overflow-hidden border border-[#0a2931]/10 bg-[#dbe7df] p-2">
+        <iframe title={`Map of ${A.nameVi}`} class="h-[520px] w-full rounded-[1.8rem] border-0" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src={MAPS_EMBED}></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-24">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="grid gap-8 lg:grid-cols-[1.1fr_.9fr]">
+      <div class="shell overflow-hidden bg-[#dbe7df]">
+        <div class="grid min-h-[460px] md:grid-cols-2">
+          <div class="p-8 sm:p-10">
+            <p class="kicker text-[var(--deep)]">{g.nearby.kicker}</p>
+            <h2 class="display mt-3 text-5xl leading-none">{g.nearby.title}</h2>
+            <p class="mt-6 leading-7 text-slate-700">{g.nearby.text}</p>
+            <a href={A.mapUrl} target="_blank" rel="noopener noreferrer" class="mt-7 inline-block rounded-full border border-[#0a2931]/25 px-5 py-3 text-sm font-black">{t.cta.maps}</a>
+          </div>
+          <div class="min-h-80"><Photo photo="lake2" alt={g.photoAlt.lake2} /></div>
+        </div>
+      </div>
+      <aside class="shell bg-[#e99a54] p-8 sm:p-10">
+        <p class="kicker">{g.facilities.kicker}</p>
+        <h2 class="display mt-3 text-4xl">{g.facilities.title}</h2>
+        <ul class="mt-7 space-y-4 text-[0.98rem] leading-7">
+          {g.facilities.items.map((item) => (
+            <li><strong>{item.title}:</strong> {item.text}</li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="py-24">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
+      <div class="lg:sticky lg:top-24">
+        <p class="kicker text-[var(--sea)]">{g.history.kicker}</p>
+        <h2 class="display mt-4 text-5xl leading-none sm:text-6xl">{g.history.title}</h2>
+      </div>
+      <div class="space-y-6 text-lg leading-8 text-slate-700">
+        {g.history.paragraphs.map((p) => <p>{p}</p>)}
+        <p class="text-sm leading-7 text-slate-500">{g.history.note}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pb-24">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <p class="kicker text-[var(--sea)]">{g.seasonal.kicker}</p>
+    <h2 class="display mt-3 text-5xl leading-none">{g.seasonal.title}</h2>
+    <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-700">{g.seasonal.intro}</p>
+    <div class="mt-8 overflow-x-auto">
+      <table class="w-full min-w-[46rem] border-collapse text-left">
+        <thead>
+          <tr class="border-b border-[#0a2931]/20 text-sm uppercase tracking-wider text-slate-500">
+            <th class="py-3 pr-4">{g.seasonal.columns.season}</th>
+            <th class="py-3 pr-4">{g.seasonal.columns.weather}</th>
+            <th class="py-3">{g.seasonal.columns.tip}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {g.seasonal.rows.map((row) => (
+            <tr class="border-b border-[#0a2931]/10 align-top">
+              <td class="py-4 pr-4 font-black">{row.season}</td>
+              <td class="py-4 pr-4 leading-7 text-slate-700">{row.weather}</td>
+              <td class="py-4 leading-7 text-slate-700">{row.tip}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-6 text-sm leading-6 text-slate-500">{g.seasonal.note}</p>
+  </div>
+</section>
+
+<section class="pb-24">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="grid gap-8 lg:grid-cols-2">
+      <div class="shell border border-[#0a2931]/12 bg-white p-8 sm:p-10">
+        <p class="kicker text-[var(--sea)]">{g.itineraries.kicker}</p>
+        <h2 class="display mt-3 text-4xl">{g.itineraries.title}</h2>
+        <p class="mt-5 leading-7 text-slate-700">{g.itineraries.intro}</p>
+        <div class="mt-7 space-y-5">
+          {g.itineraries.items.map((item) => (
+            <div>
+              <h3 class="font-black">{item.title}</h3>
+              <p class="mt-1 leading-7 text-slate-700">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="shell bg-[#0a2931] p-8 text-white sm:p-10">
+        <p class="kicker text-[#9bc3bb]">{g.responsibility.kicker}</p>
+        <h2 class="display mt-3 text-4xl">{g.responsibility.title}</h2>
+        <p class="mt-5 leading-7 text-white/72">{g.responsibility.intro}</p>
+        <ul class="mt-7 space-y-4 text-[0.98rem] leading-7 text-white/80">
+          {g.responsibility.items.map((item) => (
+            <li><strong class="text-white">{item.title}.</strong> {item.text}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="bg-[#0a2931] py-24 text-white">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="shell bg-white/5 p-8 sm:p-12">
+      <p class="kicker text-[#9bc3bb]">{g.reviews.kicker}</p>
+      <h2 class="display mt-3 text-5xl">{g.reviews.title}</h2>
+      <div class="mt-8 flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-end gap-5">
+          <div class="display text-7xl leading-none text-[#e99a54]">★ {A.rating}</div>
+          <div>
+            <div class="text-lg font-black">{A.reviewCount.toLocaleString('en-US')} reviews</div>
+            <div class="mt-1 text-sm text-white/65">Google Maps · {A.ratingMonth}</div>
+          </div>
+        </div>
+        <a href={A.mapUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-[#e99a54] px-6 py-3 text-sm font-black text-[#08232b]">{g.reviews.cta}</a>
+      </div>
+      <p class="mt-8 text-sm leading-7 text-white/72">{g.reviews.note}</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="border-y border-[#0a2931]/10 bg-white py-24">
+  <div class="mx-auto max-w-4xl px-5 lg:px-8">
+    <p class="kicker text-[var(--sea)]">{g.faq.kicker}</p>
+    <h2 class="display mt-3 text-5xl">{g.faq.title}</h2>
+    <div class="mt-10 space-y-5">
+      {g.faq.items.map((item) => (
+        <details class="card shell p-6 [&_summary]:cursor-pointer [&_summary]:text-lg [&_summary]:font-black">
+          <summary>{item.q}</summary>
+          <p class="mt-4 leading-7 text-slate-700">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="py-24">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div class="shell bg-[#d6d7bd] p-8 sm:p-12">
+      <div class="grid gap-8 lg:grid-cols-[.7fr_1.3fr]">
+        <div>
+          <p class="kicker">{g.sources.kicker}</p>
+          <h2 class="display mt-3 text-4xl">{g.sources.title}</h2>
+        </div>
+        <div class="grid gap-5 text-sm leading-6 text-slate-700">
+          {g.sources.items.map((item) => (
+            <p><strong>{item.label}:</strong> {item.text}</p>
+          ))}
+          <p>
+            <a href={A.mapUrl} target="_blank" rel="noopener noreferrer" class="font-black underline">{g.reviews.cta}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pb-24">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <p class="kicker text-[var(--sea)]">{g.explore.kicker}</p>
+    <h2 class="display mt-3 text-5xl">{g.explore.title}</h2>
+    <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-700">{g.explore.intro}</p>
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      {cards.map((card) => (
+        <a href={card.href} class="card shell block p-7 hover:bg-white">
+          <h3 class="display text-2xl">{card.title}</h3>
+          <p class="mt-3 leading-7 text-slate-700">{card.text}</p>
+          <span class="mt-5 inline-block text-sm font-black underline">{g.explore.kicker} ↗</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

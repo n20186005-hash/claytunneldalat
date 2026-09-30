@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopicPage from '../components/TopicPage.astro';
+import { SITE_URL } from '../config';
+import { localizedPath, type Locale } from '../i18n';
+import { topics, type TopicKey } from '../content/topics';
+import { breadcrumbSchema, faqSchema } from '../lib/schema';
+
+const locale: Locale = 'en';
+const topic: TopicKey = 'ticket';
+const page = topics[locale][topic];
+const url = new URL(localizedPath(locale, topic), SITE_URL).href;
+const jsonLd = [breadcrumbSchema(locale, url, page.h1), faqSchema(page.faq)];
+---
+
+<BaseLayout locale={locale} routeKey={topic} title={page.metaTitle} description={page.metaDescription} jsonLd={jsonLd}>
+  <TopicPage locale={locale} topic={topic} />
+</BaseLayout>

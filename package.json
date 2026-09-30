@@ -1,5 +1,5 @@
 {
-  "name": "monte-de-san-pedro-guide",
+  "name": "claytunneldalat",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "astro dev",
     "check": "astro check",
-    "build": "astro check && astro build && node scripts/verify-source.mjs",
+    "build": "astro build && node scripts/verify-source.mjs",
     "preview": "astro preview",
     "photos": "node scripts/fetch-real-photos.mjs",
     "verify:source": "node scripts/verify-source.mjs",

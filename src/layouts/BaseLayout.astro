@@ -1,0 +1,204 @@
+---
+import '../styles/global.css';
+import { SITE_URL } from '../config';
+import { hreflangAlternates, locales, localeMeta, localizedPath, ui, type Locale, type RouteKey } from '../i18n';
+import { ATTRACTION as A, OG_IMAGE, SITE_NAME } from '../data/site';
+import { topics } from '../content/topics';
+
+interface Props {
+  locale: Locale;
+  routeKey: RouteKey;
+  title: string;
+  description: string;
+  jsonLd?: object | object[];
+  noIndex?: boolean;
+  i18n?: boolean;
+  canonicalOverride?: string;
+}
+
+const {
+  locale,
+  routeKey,
+  title,
+  description,
+  jsonLd,
+  noIndex = false,
+  i18n = true,
+  canonicalOverride
+} = Astro.props;
+
+const meta = localeMeta[locale];
+const t = ui[locale];
+const canonicalPath = canonicalOverride ?? localizedPath(locale, routeKey);
+const canonical = new URL(canonicalPath, SITE_URL).href;
+const alternates = i18n ? hreflangAlternates(routeKey) : [];
+const home = localizedPath(locale, 'home');
+const graphs = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const topicCards = [
+  { key: 'ticket' as const, href: localizedPath(locale, 'ticket'), text: topics[locale].ticket.card },
+  { key: 'transport' as const, href: localizedPath(locale, 'transport'), text: topics[locale].transport.card },
+  { key: 'highlights' as const, href: localizedPath(locale, 'highlights'), text: topics[locale].highlights.card }
+];
+const topicTitles: Record<'ticket' | 'transport' | 'highlights', string> = {
+  ticket: topics[locale].ticket.h1,
+  transport: topics[locale].transport.h1,
+  highlights: topics[locale].highlights.h1
+};
+---
+
+<!doctype html>
+<html lang={meta.htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a2931" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {(noIndex || !i18n) && <meta name="robots" content="noindex,follow" />}
+    {alternates.map((alt) => <link rel="alternate" hreflang={alt.lang} href={alt.href} />)}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME[locale]} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={meta.ogLocale} />
+    <meta property="og:image" content={OG_IMAGE} />
+    <meta property="og:image:alt" content={`${A.nameVi} — ${A.city}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={OG_IMAGE} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/icon.svg" />
+    {graphs.map((graph) => <script type="application/ld+json" set:html={JSON.stringify(graph)} is:inline />)}
+    <script is:inline>
+      // Fallback chain for the Wikimedia photographs: local jpg -> remote original -> local SVG.
+      document.addEventListener(
+        'error',
+        function (e) {
+          var el = /** @type {any} */ (e.target);
+          if (el && el.tagName === 'IMG' && el.getAttribute('data-fallback')) {
+            var src = el.getAttribute('src');
+            var f1 = el.getAttribute('data-fallback');
+            var f2 = el.getAttribute('data-fallback2');
+            if (f1 && src !== f1) el.setAttribute('src', f1);
+            else if (f2 && src !== f2) el.setAttribute('src', f2);
+          }
+        },
+        true
+      );
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-[#0a2931] focus:px-4 focus:py-2 focus:text-white">{t.skip}</a>
+
+    <header class="sticky top-0 z-30 border-b border-[#0a2931]/10 bg-[var(--paper)]/92 backdrop-blur">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 lg:px-8">
+        <a href={home} class="flex items-center gap-3 font-semibold">
+          <span class="grid size-9 place-items-center rounded-full border border-[#0a2931]/20 bg-[#0a2931] text-sm font-black text-white">CT</span>
+          <span class="hidden text-sm font-black sm:inline">{A.nameEn}</span>
+        </a>
+        <nav class="hidden items-center gap-5 text-sm font-semibold md:flex">
+          <a href={`${home}#about`} class="hover:opacity-70">{t.nav.about}</a>
+          <a href={`${home}#visit`} class="hover:opacity-70">{t.nav.visit}</a>
+          <a href={`${home}#weather`} class="hover:opacity-70">{t.nav.weather}</a>
+          <a href={`${home}#faq`} class="hover:opacity-70">{t.nav.faq}</a>
+          <a href={localizedPath(locale, 'ticket')} class="hover:opacity-70">{topicTitles.ticket}</a>
+        </nav>
+        <details class="relative">
+          <summary class="cursor-pointer list-none rounded-full border border-[#0a2931]/20 px-3 py-1.5 text-xs font-black" aria-label={t.langLabel}>
+            {meta.short} ▾
+          </summary>
+          <ul class="absolute right-0 z-40 mt-2 w-40 overflow-hidden rounded-2xl border border-[#0a2931]/12 bg-white shadow-xl">
+            {locales.map((l) => (
+              <li>
+                <a
+                  href={localizedPath(l, routeKey)}
+                  hreflang={localeMeta[l].hreflang}
+                  class={`block px-4 py-2 text-sm hover:bg-[#dbe7df] ${l === locale ? 'font-black' : ''}`}
+                >
+                  {localeMeta[l].label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="bg-[#071f25] pb-28 pt-14 text-white/72 md:pb-14">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-10 md:grid-cols-[1.2fr_.8fr_.8fr]">
+          <div>
+            <div class="display text-3xl text-white">{A.nameVi}</div>
+            <p class="mt-3 max-w-xl text-sm leading-6">{SITE_NAME[locale]}</p>
+            <p class="mt-3 max-w-xl text-xs leading-6 text-white/55">{A.nameVi} · {A.city} · {A.province} · {A.country} · {A.plusCode}</p>
+          </div>
+          <div>
+            <div class="kicker text-[#9bc3bb]">{t.footer.explore}</div>
+            <ul class="mt-4 space-y-2 text-sm">
+              {topicCards.map((card) => (
+                <li><a href={card.href} class="hover:text-white">{topicTitles[card.key]}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div class="kicker text-[#9bc3bb]">{t.footer.legal}</div>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li><a href="/privacy/" class="hover:text-white">{t.footer.privacy}</a></li>
+              <li><a href="/terms/" class="hover:text-white">{t.footer.terms}</a></li>
+              <li><a href="/cookies/" class="hover:text-white">{t.footer.cookies}</a></li>
+              <li><a href="/photo-credits/" class="hover:text-white">{t.footer.credits}</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="mt-10 border-t border-white/10 pt-6 text-xs leading-6 text-white/50">
+          © {new Date().getFullYear()} {SITE_NAME[locale]} · {A.phoneDisplay} · <a class="underline" href={A.mapUrl} target="_blank" rel="noopener noreferrer">{A.mapUrl.replace('https://', '')}</a>
+        </p>
+      </div>
+    </footer>
+
+    <div class="fixed inset-x-0 bottom-0 z-40 border-t border-white/15 bg-[#071f25]/95 px-4 py-2 backdrop-blur md:hidden">
+      <div class="flex gap-2">
+        <a href={A.mapUrl} target="_blank" rel="noopener noreferrer" class="flex-1 rounded-full bg-[#e99a54] px-4 py-3 text-center text-sm font-black text-[#08232b]">{t.cta.directions}</a>
+        <a href={`tel:${A.phone}`} class="flex-1 rounded-full border border-white/25 px-4 py-3 text-center text-sm font-black text-white">{t.cta.call}</a>
+      </div>
+    </div>
+
+    <div id="cookie-banner" class="fixed bottom-20 left-4 right-4 z-50 mx-auto hidden max-w-3xl rounded-3xl border border-white/20 bg-[#071f25]/96 p-5 text-white shadow-2xl backdrop-blur md:bottom-4 sm:p-6">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-sm leading-6 text-white/78">{t.cookie.text}</p>
+        <div class="flex gap-2">
+          <button id="cookie-reject" class="rounded-full border border-white/25 px-4 py-2 text-sm font-bold">{t.cookie.reject}</button>
+          <button id="cookie-accept" class="rounded-full bg-[#e99a54] px-4 py-2 text-sm font-black text-[#08232b]">{t.cookie.accept}</button>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      const banner = document.getElementById('cookie-banner');
+      const key = 'ctd-cookie-choice';
+      if (!localStorage.getItem(key)) banner?.classList.remove('hidden');
+      const hide = () => banner?.classList.add('hidden');
+      document.getElementById('cookie-accept')?.addEventListener('click', () => {
+        localStorage.setItem(key, 'accepted');
+        hide();
+      });
+      document.getElementById('cookie-reject')?.addEventListener('click', () => {
+        localStorage.setItem(key, 'necessary');
+        hide();
+      });
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>

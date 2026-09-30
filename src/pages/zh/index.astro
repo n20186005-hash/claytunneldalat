@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import GuideSections from '../components/GuideSections.astro';
-import { SITE_URL } from '../config';
-import { localizedPath, type Locale } from '../i18n';
-import { guides } from '../content';
-import { attractionSchema, faqSchema, websiteSchema } from '../lib/schema';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideSections from '../../components/GuideSections.astro';
+import { SITE_URL } from '../../config';
+import { localizedPath, type Locale } from '../../i18n';
+import { guides } from '../../content';
+import { attractionSchema, faqSchema, websiteSchema } from '../../lib/schema';
 
-const locale: Locale = 'en';
+const locale: Locale = 'zh';
 const g = guides[locale];
 const url = new URL(localizedPath(locale, 'home'), SITE_URL).href;
 const jsonLd = [websiteSchema(locale), attractionSchema(locale, url, g.metaDescription), faqSchema(g.faq.items)];

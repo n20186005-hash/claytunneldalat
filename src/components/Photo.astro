@@ -1,0 +1,26 @@
+---
+import { photoChain, type PhotoKey } from '../data/site';
+
+interface Props {
+  photo: PhotoKey;
+  alt: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  widths?: [number, number];
+}
+
+const { photo, alt, class: klass, loading = 'lazy' } = Astro.props;
+const chain = photoChain(photo);
+---
+
+<img
+  src={chain.src}
+  data-fallback={chain.fallback}
+  data-fallback2={chain.fallback2}
+  alt={alt}
+  class={klass ?? 'photo'}
+  loading={loading}
+  decoding="async"
+  width="1200"
+  height="800"
+/>

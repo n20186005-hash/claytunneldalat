@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ATTRACTION as A, withSiteName } from '../data/site';
+
+const locale = 'en' as const;
+const title = withSiteName(locale, 'Terms of use');
+const description = `Terms of use for the independent ${A.nameVi} (${A.nameEn}) visitor guide: editorial independence, indicative data and third-party content.`;
+---
+
+<BaseLayout locale={locale} routeKey="home" canonicalOverride="/terms/" title={title} description={description} noIndex i18n={false}>
+  <section class="py-16">
+    <div class="mx-auto max-w-3xl px-5 lg:px-8">
+      <a href="/" class="text-sm font-black underline">← Back to the guide</a>
+      <h1 class="display mt-8 text-5xl">Terms of use</h1>
+      <div class="mt-8 space-y-5 leading-8 text-slate-700">
+        <p>This is an independent editorial guide. It is not the official website of {A.nameVi} ({A.nameEn}) and is not affiliated with its operators or with any public authority.</p>
+        <p>Operational information — opening hours, ticket prices, access and seasonal conditions — can change. Check the official source or the ticket office before travelling, especially if your visit depends on a specific installation or on the weather.</p>
+        <p>Visitor ratings are synchronised from Google Maps user reviews and are shown for reference only; they belong to their authors and to Google Maps.</p>
+        <p>Third-party photographs keep their respective licences and attributions. See the photo credits page for details.</p>
+        <p>Content is provided as-is, for planning purposes, without any guarantee of completeness or availability.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,4 +1,18 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ATTRACTION as A, withSiteName } from '../data/site';
+
+const locale = 'en' as const;
+const title = withSiteName(locale, 'Page not found');
 ---
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>404 · Monte de San Pedro</title></head><body class="grid min-h-screen place-items-center bg-[#0a2931] text-white"><main class="px-5 text-center"><div class="display text-8xl">404</div><h1 class="mt-4 text-2xl font-black">Este sendero no lleva al mirador.</h1><a href="/" class="mt-8 inline-block rounded-full bg-[#e99a54] px-6 py-3 font-black text-[#08232b]">Volver al Monte</a></main></body></html>
+
+<BaseLayout locale={locale} routeKey="home" canonicalOverride="/404.html" title={title} description="The page you were looking for does not exist on this guide." noIndex i18n={false}>
+  <section class="grid min-h-[60svh] place-items-center bg-[#0a2931] text-white">
+    <div class="px-5 py-24 text-center">
+      <div class="display text-8xl">404</div>
+      <h1 class="mt-4 text-2xl font-black">This path does not lead to the sculpture tunnel.</h1>
+      <p class="mt-4 text-white/70">The page you requested does not exist. Start again from the {A.nameEn} guide.</p>
+      <a href="/" class="mt-8 inline-block rounded-full bg-[#e99a54] px-6 py-3 font-black text-[#08232b]">Back to the guide</a>
+    </div>
+  </section>
+</BaseLayout>

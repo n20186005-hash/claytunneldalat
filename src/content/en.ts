@@ -1,271 +1,313 @@
-import { ATTRACTION as A } from '../data/site';
-import type { GuideContent } from './types';
-
-const dong = (v: number) => `${v.toLocaleString('en-US')} VND`;
-
+import type { GuideContent } from "./types";
 export const en: GuideContent = {
-  metaTitle: `Clay Tunnel Da Lat (Đường Hầm Điêu Khắc): Entrance Fee ${dong(A.ticketAdult)}, Opening Hours & How to Get There`,
-  metaDescription: `Plan a visit to the Clay Tunnel (${A.nameVi}) in ${A.city}, ${A.province}: ${dong(A.ticketAdult)} entrance fee, 07:00–17:00 daily, how to get there from Da Lat centre, what to see and nearby Tuyen Lam Lake. Rated ${A.rating}/5.`,
-  heroKicker: `${A.city} · ${A.province} · ${A.country}`,
-  heroTitle: A.nameVi,
-  heroSub: `Clay Tunnel · ${A.city}`,
-  heroLead: `A kilometre-long open-air clay sculpture park on the wooded hills above ${A.nearby1}. Clay tableaux retell the story of ${A.city} and the Central Highlands — a quiet, photogenic stop about ${A.distanceFromCentreKm} km south of the city centre.`,
+  metaTitle: "Clay Tunnel Da Lat | Ticket Price, Hours & Visitor Guide",
+  metaDescription:
+    "Plan Đường Hầm Điêu Khắc in Da Lat: what is verified about tickets and hours, provincial tourism sources, transport checks, sculpture themes and weather.",
+  heroKicker: "Da Lat · Lam Dong · Vietnam",
+  heroTitle: "Đường Hầm Điêu Khắc",
+  heroSub: "Clay Tunnel · Da Lat",
+  heroLead:
+    "A sculpture attraction in the Tuyen Lam tourism area. The provincial directory describes architectural and landscape reproductions made with unbaked clay; check admission and access before travelling.",
   heroStats: [
-    { value: `${A.lengthKm} km`, label: 'sculpture path' },
-    { value: `${A.distanceFromCentreKm} km`, label: 'from the centre' },
-    { value: `★ ${A.rating}`, label: `${A.reviewCount.toLocaleString('en-US')} reviews` }
+    {
+      value: "2026-10-30",
+      label: "Check date",
+    },
+    {
+      value: "Đà Lạt",
+      label: "Da Lat",
+    },
+    {
+      value: "★ 4.2",
+      label: "Maps snapshot",
+    },
   ],
   about: {
-    kicker: 'From clay to landmark',
-    title: `About ${A.nameVi}`,
+    kicker: "Verified context",
+    title: "About Đường Hầm Điêu Khắc",
     paragraphs: [
-      `${A.nameVi} — listed on maps as ${A.legalName} and known in English as the ${A.nameEn} or Sculpture Tunnel — is an open-air clay sculpture park in ${A.ward}, ${A.city}, ${A.province}, ${A.country}. A single winding path of roughly ${A.lengthKm} km leads past large clay tableaux that recount the history, culture and landscapes of ${A.city} and the Central Highlands.`,
-      `The site sits in the pine hills above ${A.nearby1}, about ${A.distanceFromCentreKm} km south of the city centre. Most visitors combine it with ${A.nearby1} and ${A.nearby2} in one half-day loop, which is why it appears on many ${A.city} day itineraries.`,
-      `It is a family-built attraction rather than a municipal park: the clay works are modelled and maintained by a local artisan family, so the place reads as much like a craft workshop as a sightseeing stop.`
+      "The provincial tourism directory identifies Đường Hầm Điêu Khắc, also known as Làng đất sét, with Công ty cổ phần Sao Đà Lạt. This is an independent visitor guide, not the operator or a ticket seller.",
+      "The directory gives Đường Hoa Hồng, Khu du lịch Hồ Tuyền Lâm, Phường Xuân Hương–Đà Lạt, Lâm Đồng. Confirm the actual entrance with your driver or host; older references may still use Ward 4.",
     ],
-    breadcrumb: `${A.nameVi} → ${A.city} → ${A.province} → ${A.country}`
+    breadcrumb: "Đường Hầm Điêu Khắc → Da Lat → Lam Dong → Vietnam",
   },
   highlights: {
-    kicker: 'What you see',
-    title: 'Highlights of the sculpture path',
-    intro: 'The route is linear and easy to follow. These are the stops visitors remember most.',
+    kicker: "Sculpture themes",
+    title: "Highlights of the sculpture path",
+    intro:
+      "A sculpture attraction in the Tuyen Lam tourism area. The provincial directory describes architectural and landscape reproductions made with unbaked clay; check admission and access before travelling.",
     items: [
       {
-        title: 'The clay tableaux',
-        text: `Dozens of large clay reliefs and free-standing figures line the path: scenes of highland village life, ethnic-cultural motifs, and miniature versions of ${A.city} landmarks. The modelling style is deliberately rustic and handmade.`
+        title: "Clay architectural scenes",
+        text: "The provincial directory describes reproductions of Da Lat and Vietnamese landmarks and landscapes. Treat them as artistic representations, not original historic buildings.",
       },
       {
-        title: 'The tunnel sections',
-        text: `Parts of the path pass through covered, tunnel-like stretches cut into the hillside, which is where the name ${A.nameVi} ("sculpture tunnel") comes from. They are the coolest, most photographed stretches on a sunny day.`
+        title: "A sculptural attraction",
+        text: "The name does not establish a covered cave, a sheltered route or an accessible tunnel. Ask about the current visitor path and restrictions.",
       },
       {
-        title: 'The lake viewpoint',
-        text: `Towards the lower end of the route the trees open towards ${A.nearby1}. It is the best spot for a wide landscape photo and a natural break before you loop back.`
+        title: "Tuyen Lam area",
+        text: "The attraction is associated with the Tuyen Lam tourism area. A nearby lake or viewpoint is not evidence of a public route, boat access or a view from every part of the site.",
       },
       {
-        title: 'Photo spots',
-        text: `Because almost every tableau is built at human scale, the park is one of ${A.city}'s most photographed attractions: visitors pose beside the figures, and the soft morning light suits the clay colours best.`
-      }
-    ]
+        title: "Photography checks",
+        text: "Ask about photography, tripods, commercial work and restricted areas before using equipment. Do not assume a ticket authorises every kind of photography.",
+      },
+    ],
   },
   route: {
-    kicker: 'Suggested route · 45–90 min',
-    title: `How to visit the ${A.nameEn}`,
-    intro: 'The site is compact: buy a ticket, follow the single sculpture path, pause at the lake viewpoint, and loop back.',
+    kicker: "Plan with confirmed arrangements",
+    title: "How to visit the Clay Tunnel Da Lat",
+    intro:
+      "Confirm access, ticket terms and your return transport before setting out.",
     steps: [
       {
-        no: '01',
-        label: 'Get there',
-        title: `From ${A.city} centre`,
-        text: `Roughly ${A.distanceFromCentreKm} km south, along the road that continues to ${A.nearby1}. A taxi or motorbike takes about 25–35 minutes; the road passes ${A.nearby2}.`
+        no: "01",
+        label: "Confirm",
+        title: "Check admission",
+        text: "Ask for the current ticket price, eligibility categories, last entry and what is included. No current operator tariff is verified here.",
       },
       {
-        no: '02',
-        label: 'Enter',
-        title: 'Buy a ticket at the gate',
-        text: `Entrance is ${dong(A.ticketAdult)} for visitors over 1.3 m and ${dong(A.ticketChild)} for children under 1.3 m. Prices are indicative — confirm the current figure at the gate on the day.`
+        no: "02",
+        label: "Arrive",
+        title: "Confirm the entrance",
+        text: "Use the named attraction and provincial-directory address; agree on a legal drop-off and return arrangement. No fixed travel time or distance is promised.",
       },
       {
-        no: '03',
-        label: 'Walk',
-        title: 'Follow the clay path',
-        text: `One winding path, dozens of tableaux, and a few covered tunnel stretches. Allow 45–90 minutes depending on how often you stop to photograph.`
+        no: "03",
+        label: "Explore",
+        title: "Follow current instructions",
+        text: "Use only the visitor areas open that day. Ask staff about steps, slopes, toilets, rest areas and any assistance you need.",
       },
       {
-        no: '04',
-        label: 'Combine',
-        title: 'Add the landmarks nearby',
-        text: `Pair the visit with ${A.nearby1} and ${A.nearby2}, both a few minutes further down the same road.`
-      }
-    ]
+        no: "04",
+        label: "Combine",
+        title: "Check other destinations separately",
+        text: "Tuyen Lam Lake, Truc Lam Monastery and the cable car are separate destinations or services. Confirm their own access, hours and transport rather than assuming a single walking loop.",
+      },
+    ],
   },
   nearby: {
-    kicker: 'Landmarks nearby',
-    title: `Around the ${A.nameEn}`,
-    text: `The sculpture tunnel sits inside the cluster of ${A.city}'s southern highlights. Within a few minutes' drive are ${A.nearby1} — a calm lake ringed by pine forest — and ${A.nearby2}, a hillside Zen monastery above the water, reached by the ${A.city} cable car. Many half-day itineraries combine all three.`
+    kicker: "Landmarks nearby",
+    title: "Around the Clay Tunnel Da Lat",
+    text: "Tuyen Lam Lake and Truc Lam Monastery are distinct destinations in the wider area. No same-road connection, quick transfer, cable-car access or admission is guaranteed by a visit to the sculpture attraction.",
   },
   history: {
-    kicker: 'From a hobby to a landmark',
-    title: `History of ${A.nameVi}`,
+    kicker: "History and sources",
+    title: "History and sources",
     paragraphs: [
-      `${A.nameVi} began in the early 2000s as the clay-sculpting project of a local artisan family near ${A.nearby1}. What started as a personal craft grew into a kilometre-long open-air gallery that retells the story of ${A.city} and the Central Highlands — from the city's founding and its French colonial villas to highland ethnic cultures and natural landmarks — modelled entirely in clay.`,
-      `The attraction reflects the region's hands-on craft tradition and has become one of ${A.city}'s distinctive family-built sights: a place where local history, folklore and landscape are read slowly, on foot, one tableau at a time. New works are still added, so repeat visitors often find something different from their last trip.`
+      "The provincial directory describes an artistic account of Da Lat’s development through architectural and sculptural representations. It identifies Sao Da Lat company.",
     ],
-    note: 'Dates and chronology are summarised from travel references; the founders continue to expand the site.'
+    note: "Checked 30 October 2026. Current operator prices, hours and access are not established by an undated directory or a third-party snapshot.",
   },
   visit: {
-    kicker: 'Plan your visit',
-    title: 'Essential information',
+    kicker: "Plan your visit",
+    title: "Essential information",
     rows: [
-      { label: 'Address', value: `${A.ward}, ${A.city}, ${A.province} ${A.postalCode}, ${A.country}` },
-      { label: 'Plus Code', value: A.plusCode },
-      { label: 'Phone', value: A.phoneDisplay },
-      { label: 'Opening hours', value: 'Daily 07:00 – 17:00 (indicative — check before travelling).' },
-      { label: 'Entrance fee', value: `${dong(A.ticketAdult)} per adult (over 1.3 m) · ${dong(A.ticketChild)} per child (under 1.3 m). Confirm at the gate.` },
-      { label: 'Time needed', value: '45–90 minutes for the full path.' },
-      { label: 'Best for', value: 'Photography, a relaxed walk, local crafts and lake views.' }
-    ]
+      {
+        label: "Location",
+        value:
+          "Đường Hoa Hồng, Khu du lịch Hồ Tuyền Lâm, Phường Xuân Hương–Đà Lạt, Lâm Đồng; provincial directory address.",
+      },
+      {
+        label: "Opening information",
+        value:
+          "Provincial directory: 06:00–18:00, no effective date. Maps snapshot on 30 October 2026: closes 17:00. Current operator hours and last entry are unconfirmed.",
+      },
+      {
+        label: "Tickets",
+        value:
+          "Current tariff and child/height rules are unconfirmed. The undated provincial listing shows 30,000–60,000 VND without ticket categories; this is not a current quote.",
+      },
+      {
+        label: "Listed contact",
+        value:
+          "0947 289 269, as published in the provincial tourism directory; current availability has not been verified.",
+      },
+      {
+        label: "Visit length",
+        value:
+          "Plan around your chosen activities, access needs and confirmed return journey; no uniform visit duration is established.",
+      },
+    ],
   },
   facilities: {
-    kicker: 'On site',
-    title: 'Visitor facilities',
-    intro: 'Facilities are simple and change with the season. These are the types of services visitors usually find at the entrance area and along the route.',
+    kicker: "On site",
+    title: "Visitor facilities",
+    intro:
+      "Checked 30 October 2026. Current operator prices, hours and access are not established by an undated directory or a third-party snapshot.",
     items: [
-      { title: 'Parking', text: 'Space for motorbikes and cars at the entrance area; tour buses usually drop off at the gate.' },
-      { title: 'Restrooms', text: 'Available near the ticket area; carry your own tissues and hand sanitiser.' },
-      { title: 'Drinks & snacks', text: 'Small stalls and refreshment points around the entrance; bring water for the walk itself.' },
-      { title: 'Shade & rest stops', text: 'Covered tunnel stretches and benches along the path offer breaks from the highland sun.' },
-      { title: 'Clay workshops & souvenirs', text: 'Clay craft is the theme of the site, so small clay items and local souvenirs are typically on display near the entrance.' },
-      { title: 'Accessibility', text: 'Most of the route is a gentle walk, but there are steps and unpaved sections; sturdy shoes help after rain.' }
-    ]
+      {
+        title: "Parking and drop-off",
+        text: "Confirm a legal drop-off and any parking charge, capacity or vehicle restriction with the venue or driver.",
+      },
+      {
+        title: "Toilets and refreshments",
+        text: "Ask whether these facilities will be available during your visit; no on-site service is guaranteed here.",
+      },
+      {
+        title: "Accessibility",
+        text: "Maps marks an accessible entrance. The full route, gradients, surfaces, toilets and assistance have not been independently audited.",
+      },
+      {
+        title: "Rest and shelter",
+        text: "Ask staff where you may rest or shelter. Do not assume covered sculpture sections are safe storm shelters.",
+      },
+      {
+        title: "Children and older visitors",
+        text: "Check the actual route and assistance needs before buying tickets. No pram-friendly, step-free or easy-route claim is made.",
+      },
+    ],
   },
   seasonal: {
-    kicker: 'Dry season vs rainy season',
-    title: 'When to visit',
-    intro: `${A.city} has a marked dry season and rainy season. Both are visit-able; they simply call for different timing.`,
-    note: 'Climate description based on the general Da Lat / Central Highlands seasonal pattern; always check a same-day forecast before you set out.',
-    columns: { season: 'Season', weather: 'Typical weather', tip: 'How to plan' },
+    kicker: "Weather and access",
+    title: "Use the forecast and site notices",
+    intro:
+      "A regional forecast is not a statement that the attraction or a route is open.",
+    note: "Checked 30 October 2026. Current operator prices, hours and access are not established by an undated directory or a third-party snapshot.",
+    columns: {
+      season: "Season",
+      weather: "Typical weather",
+      tip: "How to plan",
+    },
     rows: [
       {
-        season: 'Nov – Apr (dry season)',
-        weather: 'Cool mornings, sunny middays, little rain; peak tourist season.',
-        tip: 'Arrive around 08:00–10:00 for soft light and thinner crowds; carry a light jacket for early mornings.'
+        season: "Rain",
+        weather: "Check the latest forecast",
+        tip: "Follow staff instructions and avoid routes that are closed or unsafe.",
       },
       {
-        season: 'May – Oct (rainy season)',
-        weather: 'Frequent afternoon showers, misty mornings, greener hills.',
-        tip: 'Visit in the morning before the usual afternoon rain; the covered tunnel stretches keep part of the route usable.'
+        season: "Thunder or strong wind",
+        weather: "Conditions can change",
+        tip: "Postpone exposed activity and use a substantial safe shelter; decorative tunnels are not confirmed shelters.",
       },
       {
-        season: 'Dec – Jan (holiday peak)',
-        weather: 'Coolest months of the year; nights can drop near 10 °C.',
-        tip: 'Combine an early-morning visit with a warm layer; expect the busiest gates of the year.'
+        season: "Sun or cooler conditions",
+        weather: "Dress for the reported conditions",
+        tip: "Bring suitable layers, water and sun protection as needed; no fixed seasonal month or temperature claim is made.",
       },
-      {
-        season: 'Year round',
-        weather: 'Highland climate around 1,500 m: mild days, cool evenings.',
-        tip: 'A compact rain jacket is more useful than an umbrella on the exposed hillside sections.'
-      }
-    ]
+    ],
   },
   itineraries: {
-    kicker: 'Ready-made plans',
-    title: 'Suggested itineraries',
-    intro: 'Three ways to fit the sculpture tunnel into a day in Da Lat.',
+    kicker: "Ideas to confirm",
+    title: "Suggested itineraries",
+    intro:
+      "Confirm access, ticket terms and your return transport before setting out.",
     items: [
       {
-        title: 'Half day: tunnel + lake (3–4 h)',
-        text: `Morning drive south to ${A.nameVi} (45–90 min inside), then continue to ${A.nearby1} for lunch, and finish at ${A.nearby2} or the cable car in the afternoon.`
+        title: "Visit only",
+        text: "Confirm the opening arrangement, ticket terms and return transport; choose your pace on the day.",
       },
       {
-        title: 'Full day: southern Da Lat loop (7–8 h)',
-        text: `Clay Tunnel → ${A.nearby1} → ${A.nearby2} and the cable car → a flower garden or coffee stop on the way back into town.`
+        title: "Add another destination",
+        text: "Treat lake, monastery, cable car and dining stops as separate bookings or access checks.",
       },
       {
-        title: 'For families & photographers',
-        text: `Come early for the light and cooler temperatures, plan 90 minutes so children can stop at every tableau, and take the pram-friendly entrance stretches first.`
-      }
-    ]
+        title: "Family or photography visit",
+        text: "Ask about access needs and permitted equipment before relying on the trip; no fixed itinerary duration is promised.",
+      },
+    ],
   },
   responsibility: {
-    kicker: 'Visit well',
-    title: 'Responsible visiting',
-    intro: 'The sculptures are handmade and continuously maintained, and the hillside around them is working pine forest.',
+    kicker: "Visit well",
+    title: "Responsible visiting",
+    intro:
+      "Checked 30 October 2026. Current operator prices, hours and access are not established by an undated directory or a third-party snapshot.",
     items: [
-      { title: 'Do not touch or climb the clay', text: 'The works are fragile; climbing them for photos causes visible damage that has to be repaired by hand.' },
-      { title: 'Stay on the path', text: 'The hillside is erodible pine woodland; cutting switchbacks widens erosion channels after rain.' },
-      { title: 'Carry out your litter', text: 'Bins are limited along the route; pack out what you bring, especially bottles and tissues.' },
-      { title: 'Keep noise down', text: 'The site borders a monastery area and residential hillside — quiet visiting is appreciated.' },
-      { title: 'Ask before photographing people', text: 'Staff, artisans and other visitors are not props; a quick ask is enough.' }
-    ]
+      {
+        title: "Respect the works",
+        text: "Do not climb or touch displays unless expressly permitted.",
+      },
+      {
+        title: "Use open visitor areas",
+        text: "Follow current boundaries and staff instructions; do not enter woodland or water for a photograph.",
+      },
+      {
+        title: "Respect people",
+        text: "Ask before photographing identifiable people; follow any restrictions.",
+      },
+      {
+        title: "Leave no litter",
+        text: "Use permitted disposal facilities or take your litter away.",
+      },
+    ],
   },
   reviews: {
-    kicker: 'Visitor ratings & reviews',
-    title: 'What visitors say',
-    cta: 'See all reviews on Google Maps ↗',
-    note: `Rating and review count are synchronised from Google Maps user reviews (${A.ratingMonth}) and are shown for reference only.`
+    kicker: "Visitor ratings & reviews",
+    title: "What visitors say",
+    cta: "See all reviews on Google Maps ↗",
+    note: "Google Maps manual snapshot checked 30 October 2026: 4.2/5 from 16,640 reviews. Not a live feed, automatic sync or this guide’s own survey. We do not reproduce review text.",
   },
   sources: {
-    kicker: 'Sources & references',
-    title: 'Facts, not legends',
+    kicker: "Sources & references",
+    title: "Facts, not legends",
     items: [
       {
-        label: 'Google Maps',
-        text: `Location, Plus Code ${A.plusCode}, coordinates ${A.latitude}, ${A.longitude} and the visitor rating shown above.`
+        label: "Provincial tourism directory",
+        text: "Sao Da Lat company, address and sculpture themes. Its hours, price range and contact are undated directory information, not a verified current operator announcement.",
+        url: "https://visitlamdong.vn/vi/duonghamdieukhacdl",
       },
       {
-        label: 'Vietnam National Administration of Tourism',
-        text: 'Official national tourism portal used for regional travel context: vietnam.travel.'
+        label: "Maps snapshot",
+        text: "The supplied listing was checked 30 October 2026. Its 17:00 closing display differs from the directory’s 18:00; accessibility applies only to a marked entrance.",
+        url: "https://maps.app.goo.gl/Sb8LguKYD3Kt2PHM9",
       },
       {
-        label: 'Travel references',
-        text: 'Opening hours and ticket prices are given as typically published and should be confirmed at the gate on the day of your visit.'
-      }
-    ]
+        label: "Information limits",
+        text: "Current tariff, ticket categories, last entry, facilities, route measurements and photography rules still need direct confirmation.",
+        url: "https://visitlamdong.vn/vi/duonghamdieukhacdl",
+      },
+    ],
   },
   faq: {
-    kicker: 'Before you go',
-    title: 'Frequently asked questions',
+    kicker: "Before you go",
+    title: "Frequently asked questions",
     items: [
       {
-        q: 'How much is the entrance fee for the Clay Tunnel in Da Lat?',
-        a: `The ticket is ${dong(A.ticketAdult)} per person for visitors over 1.3 m tall and ${dong(A.ticketChild)} for children under 1.3 m. Prices are indicative and can change seasonally, so confirm the current figure at the gate on the day.`
+        q: "What is the current entrance fee?",
+        a: "A current operator tariff is unconfirmed. The provincial directory gives an undated 30,000–60,000 VND range without categories. Confirm the exact current offer, eligibility and included services before purchase.",
       },
       {
-        q: 'What are the opening hours?',
-        a: 'The site is open daily, typically from 07:00 to 17:00. Last entry is usually in the mid-afternoon; arriving before 10:00 gives you the softest light and the fewest crowds.'
+        q: "What time does it close?",
+        a: "The provincial directory lists 06:00–18:00 without an effective date, while the 30 October 2026 Maps snapshot showed 17:00 closing. Current hours and last admission need confirmation; neither is a live opening guarantee.",
       },
       {
-        q: 'Where is the Clay Tunnel (Đường Hầm Điêu Khắc) located?',
-        a: `${A.ward}, ${A.city} City, ${A.province} ${A.postalCode}, ${A.country}, on the hills above ${A.nearby1}, about ${A.distanceFromCentreKm} km south of the city centre. Plus Code: ${A.plusCode}.`
+        q: "Who operates the attraction?",
+        a: "The provincial tourism directory associates it with Công ty cổ phần Sao Đà Lạt. This guide is independent and is not a verified booking or operator website.",
       },
       {
-        q: 'How do I get there from Da Lat centre?',
-        a: `By taxi or ride-hailing car it takes about 25–35 minutes heading south on the road to ${A.nearby1}, passing ${A.nearby2}. A rented motorbike is the most flexible option; many day tours include the stop.`
+        q: "How do I get there?",
+        a: "Use the attraction name and Đường Hoa Hồng address in the Tuyen Lam tourism area. Confirm the actual entrance, lawful stopping point and return ride; no bus route, fixed fare or journey time is verified.",
       },
       {
-        q: 'What exactly is the Clay Tunnel?',
-        a: `It is a roughly ${A.lengthKm} km open-air clay sculpture park: a winding path lined with large clay tableaux about the history, culture and landscapes of ${A.city} and the Central Highlands, including covered tunnel-like stretches cut into the hillside.`
+        q: "Is the entire route accessible?",
+        a: "Maps marks an accessible entrance only. Ask about the complete visitor route, surfaces, gradients, toilets and assistance; the guide has not audited them.",
       },
       {
-        q: 'How long does a visit take?',
-        a: 'Most visitors spend 45–90 minutes. Photographers and families who stop at every tableau often stay closer to two hours.'
+        q: "Can I take photographs?",
+        a: "Confirm the venue’s current rules for personal photography, tripods and commercial work. Avoid restricted areas, do not climb displays, and ask before photographing people.",
       },
-      {
-        q: 'Is it worth visiting in the rainy season?',
-        a: `Yes, with timing: showers in ${A.city} usually arrive in the afternoon, so a morning visit often stays dry, and the covered tunnel stretches shelter part of the route. Wear shoes with grip because the path gets slick.`
-      },
-      {
-        q: 'Is photography allowed?',
-        a: 'Yes. Photography is the main reason many people come. Tripods are fine in quiet hours; please do not climb the sculptures for a shot.'
-      },
-      {
-        q: 'Is it suitable for children and older visitors?',
-        a: 'The route is mostly a gentle walk with some steps and unpaved sections. Families with small children usually manage fine at an unhurried pace; a carrier is easier than a pram on the narrower stretches.'
-      },
-      {
-        q: 'Is there parking and are there toilets?',
-        a: 'Parking for motorbikes and cars is available at the entrance area and restrooms are near the ticket office. Bring a little cash for tickets, drinks and small purchases.'
-      },
-      {
-        q: 'What can I visit nearby?',
-        a: `${A.nearby1} and ${A.nearby2} are both a few minutes further along the same road, and the ${A.city} cable car connects the monastery area to Robin Hill.`
-      }
-    ]
+    ],
   },
   explore: {
-    kicker: 'Go deeper',
-    title: 'Plan the details',
-    intro: 'Three focused guides for the questions visitors ask most.'
+    kicker: "Go deeper",
+    title: "Plan the details",
+    intro: "Three focused guides for the questions visitors ask most.",
   },
-  footerTagline: `Independent visitor guide for ${A.nameVi} (${A.nameEn}) in ${A.city}, ${A.province}, ${A.country}. Not the official site of the attraction.`,
+  footerTagline:
+    "Independent visitor guide for Đường Hầm Điêu Khắc (Clay Tunnel Da Lat) in Da Lat, Lam Dong, Vietnam. Not the official site of the attraction.",
   photoAlt: {
-    hero: `${A.nameVi} — entrance path of the clay sculpture tunnel in ${A.city}`,
-    tunnel: `Clay sculptures inside ${A.nameVi} (${A.nameEn})`,
-    lake: `${A.nearby1} seen from the hills near ${A.nameVi}`,
-    tunnel2: `Covered tunnel section of ${A.nameVi} in ${A.city}`,
-    lake2: `Pine hills and water around ${A.nearby1}, ${A.city}`
+    hero: "Symbolic illustration of clay-coloured landforms and trees; not a photograph or actual route",
+    tunnel:
+      "Symbolic illustration of clay-coloured landforms and trees; not a photograph or actual route",
+    lake: "Symbolic illustration of clay-coloured landforms and trees; not a photograph or actual route",
+    tunnel2:
+      "Symbolic illustration of clay-coloured landforms and trees; not a photograph or actual route",
+    lake2:
+      "Symbolic illustration of clay-coloured landforms and trees; not a photograph or actual route",
   },
-  photoCredit: 'Photo: Wikimedia Commons (Panoramio) · CC BY-SA.',
-  disclaimer: 'Opening hours and ticket prices are indicative and may change; please confirm at the gate before travelling.'
+  photoCredit:
+    "Original geometric illustration · CC0 · not a photograph, site plan or current view.",
+  disclaimer:
+    "Checked 30 October 2026. Current operator prices, hours and access are not established by an undated directory or a third-party snapshot.",
 };

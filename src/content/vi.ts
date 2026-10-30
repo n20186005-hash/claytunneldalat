@@ -1,271 +1,313 @@
-import { ATTRACTION as A } from '../data/site';
-import type { GuideContent } from './types';
-
-const dong = (v: number) => `${v.toLocaleString('vi-VN')} VNĐ`;
-
+import type { GuideContent } from "./types";
 export const vi: GuideContent = {
-  metaTitle: `Đường Hầm Điêu Khắc Đà Lạt: Giá vé ${dong(A.ticketAdult)}, giờ mở cửa và cách đi`,
-  metaDescription: `Hướng dẫn tham quan ${A.nameVi} (Clay Tunnel) ở ${A.cityVi}, ${A.provinceVi}: giá vé ${dong(A.ticketAdult)}, mở cửa 07:00–17:00 hằng ngày, cách đi từ trung tâm Đà Lạt, xem gì và kết hợp Hồ Tuyền Lâm. Đánh giá ${A.rating}/5.`,
-  heroKicker: `${A.cityVi} · ${A.provinceVi} · ${A.countryVi}`,
-  heroTitle: A.nameVi,
-  heroSub: `Clay Tunnel · ${A.cityVi}`,
-  heroLead: `Công viên tượng đất sét ngoài trời dài khoảng ${A.lengthKm} km nằm trên đồi thông phía trên ${A.nearby1Vi}. Những phù điêu bằng đất kể lại lịch sử, văn hóa và cảnh quan của ${A.cityVi} và Tây Nguyên — một điểm dừng yên tĩnh, rất hợp chụp ảnh, cách trung tâm khoảng ${A.distanceFromCentreKm} km về phía nam.`,
+  metaTitle: "Đường Hầm Điêu Khắc Đà Lạt | Giá vé, giờ và hướng dẫn",
+  metaDescription:
+    "Thông tin tham quan Đường Hầm Điêu Khắc: giới hạn xác minh giá vé, giờ mở cửa, nguồn du lịch tỉnh, di chuyển, chủ đề điêu khắc và thời tiết.",
+  heroKicker: "Đà Lạt · Lâm Đồng · Việt Nam",
+  heroTitle: "Đường Hầm Điêu Khắc",
+  heroSub: "Clay Tunnel · Đà Lạt",
+  heroLead:
+    "Điểm điêu khắc trong khu du lịch hồ Tuyền Lâm. Danh bạ du lịch tỉnh mô tả các mô hình kiến trúc và cảnh quan bằng đất sét không nung; hãy xác nhận vé và lối vào trước khi đi.",
   heroStats: [
-    { value: `${A.lengthKm} km`, label: 'đường tượng' },
-    { value: `${A.distanceFromCentreKm} km`, label: 'từ trung tâm' },
-    { value: `★ ${A.rating}`, label: `${A.reviewCount.toLocaleString('vi-VN')} đánh giá` }
+    {
+      value: "2026-10-30",
+      label: "Ngày kiểm tra",
+    },
+    {
+      value: "Đà Lạt",
+      label: "Đà Lạt",
+    },
+    {
+      value: "★ 4.2",
+      label: "Ảnh chụp Maps",
+    },
   ],
   about: {
-    kicker: 'Từ đất sét thành địa danh',
-    title: `Giới thiệu ${A.nameVi}`,
+    kicker: "Bối cảnh đã kiểm tra",
+    title: "Giới thiệu Đường Hầm Điêu Khắc",
     paragraphs: [
-      `${A.nameVi} — trên bản đồ thường ghi là ${A.legalName}, tiếng Anh gọi là ${A.nameEn} hay Sculpture Tunnel — là công viên tượng đất sét ngoài trời tại ${A.ward}, thành phố ${A.cityVi}, tỉnh ${A.provinceVi}, ${A.countryVi}. Một con đường uốn lượn dài khoảng ${A.lengthKm} km dẫn qua nhiều phù điêu đất sét lớn kể lại lịch sử, văn hóa và cảnh quan của ${A.cityVi} cùng Tây Nguyên.`,
-      `Khu này nằm trên đồi thông phía trên ${A.nearby1Vi}, cách trung tâm khoảng ${A.distanceFromCentreKm} km về phía nam. Đa số du khách kết hợp trong cùng một buổi với ${A.nearby1Vi} và ${A.nearby2Vi}, nên nơi này xuất hiện trong nhiều lịch trình trong ngày ở ${A.cityVi}.`,
-      `Đây là điểm đến do một gia đình nghệ nhân địa phương tự xây dựng, không phải công viên do nhà nước quản lý: các tác phẩm được nặn và tu bổ thủ công, vì vậy nơi này vừa là một công trình thủ công vừa là điểm tham quan.`
+      "Danh bạ du lịch tỉnh giới thiệu Đường Hầm Điêu Khắc, còn gọi là Làng đất sét, gắn với Công ty cổ phần Sao Đà Lạt. Đây là hướng dẫn độc lập, không phải đơn vị vận hành hay bán vé.",
+      "Danh bạ ghi Đường Hoa Hồng, Khu du lịch Hồ Tuyền Lâm, Phường Xuân Hương–Đà Lạt, Lâm Đồng. Hãy xác nhận đúng cổng với tài xế hoặc nơi lưu trú; tài liệu cũ có thể vẫn ghi Phường 4.",
     ],
-    breadcrumb: `${A.nameVi} → ${A.cityVi} → ${A.provinceVi} → ${A.countryVi}`
+    breadcrumb: "Đường Hầm Điêu Khắc → Đà Lạt → Lâm Đồng → Việt Nam",
   },
   highlights: {
-    kicker: 'Có gì để xem',
-    title: 'Những điểm nổi bật trên đường tượng',
-    intro: 'Tuyến đi là một đường duy nhất, rất dễ theo. Đây là những chỗ du khách nhớ nhất.',
+    kicker: "Chủ đề điêu khắc",
+    title: "Những điểm nổi bật trên đường tượng",
+    intro:
+      "Điểm điêu khắc trong khu du lịch hồ Tuyền Lâm. Danh bạ du lịch tỉnh mô tả các mô hình kiến trúc và cảnh quan bằng đất sét không nung; hãy xác nhận vé và lối vào trước khi đi.",
     items: [
       {
-        title: 'Các phù điêu đất sét',
-        text: `Hàng chục phù điêu lớn và tượng khối dọc theo đường đi: cảnh sinh hoạt bản làng Tây Nguyên, họa tiết văn hóa các dân tộc, và các mô hình thu nhỏ của những địa danh ${A.cityVi}. Phong cách nặn mộc mạc, hoàn toàn thủ công.`
+        title: "Mô hình kiến trúc đất sét",
+        text: "Danh bạ tỉnh mô tả các mô hình địa danh và cảnh quan Đà Lạt, Việt Nam. Đây là cách thể hiện nghệ thuật, không phải các công trình lịch sử nguyên gốc.",
       },
       {
-        title: 'Những đoạn hầm',
-        text: `Một số đoạn đường đi qua các hầm che, khoét vào sườn đồi — chính vì thế có tên gọi ${A.nameVi}. Đây là những đoạn mát nhất và được chụp ảnh nhiều nhất vào ngày nắng.`
+        title: "Điểm tham quan điêu khắc",
+        text: "Tên gọi không chứng minh đây là hang có mái che, tuyến trú mưa hay đường tiếp cận không bậc. Hỏi về tuyến tham quan và hạn chế hiện tại.",
       },
       {
-        title: 'Điểm nhìn ra hồ',
-        text: `Ở phía cuối tuyến, tán thông mở ra hướng ${A.nearby1Vi}. Đây là chỗ đẹp nhất để chụp ảnh toàn cảnh và nghỉ chân trước khi quay lại.`
+        title: "Khu vực Tuyền Lâm",
+        text: "Điểm đến gắn với khu du lịch hồ Tuyền Lâm. Vị trí gần hồ không đồng nghĩa có lối công cộng, dịch vụ thuyền hay tầm nhìn hồ ở mọi nơi.",
       },
       {
-        title: 'Góc chụp ảnh',
-        text: `Vì hầu hết tượng được nặn ở kích thước gần bằng người, nơi này là một trong những điểm check-in được chụp nhiều nhất ở ${A.cityVi}: ánh sáng buổi sáng làm màu đất lên đẹp nhất.`
-      }
-    ]
+        title: "Chụp ảnh",
+        text: "Hỏi quy định hiện tại về chụp ảnh, chân máy, hoạt động thương mại và khu vực hạn chế. Không mặc định vé vào cửa cho phép mọi hình thức chụp ảnh.",
+      },
+    ],
   },
   route: {
-    kicker: 'Lộ trình gợi ý · 45–90 phút',
-    title: `Cách tham quan ${A.nameVi}`,
-    intro: 'Khu này nhỏ gọn: mua vé, đi theo một đường tượng duy nhất, nghỉ ở điểm nhìn ra hồ rồi quay lại.',
+    kicker: "Lập kế hoạch sau khi xác nhận",
+    title: "Cách tham quan Đường Hầm Điêu Khắc",
+    intro:
+      "Kiểm tra lối vào, điều kiện vé và phương tiện về trước khi xuất phát.",
     steps: [
       {
-        no: '01',
-        label: 'Di chuyển',
-        title: 'Từ trung tâm Đà Lạt',
-        text: `Khoảng ${A.distanceFromCentreKm} km về phía nam, đi theo đường xuống ${A.nearby1Vi}. Taxi hoặc xe máy mất khoảng 25–35 phút; đường đi qua ${A.nearby2Vi}.`
+        no: "01",
+        label: "Xác nhận",
+        title: "Hỏi điều kiện vào cửa",
+        text: "Hỏi giá hiện tại, nhóm vé, giờ nhận khách cuối và nội dung bao gồm. Chưa xác minh được bảng giá hiện hành của đơn vị vận hành.",
       },
       {
-        no: '02',
-        label: 'Vào cổng',
-        title: 'Mua vé tại cổng',
-        text: `Vé vào cửa ${dong(A.ticketAdult)} cho khách cao trên 1,3 m và ${dong(A.ticketChild)} cho trẻ em dưới 1,3 m. Giá chỉ mang tính tham khảo — hãy xác nhận lại tại cổng trong ngày đi.`
+        no: "02",
+        label: "Đến nơi",
+        title: "Xác nhận đúng cổng",
+        text: "Dùng tên điểm đến và địa chỉ trong danh bạ tỉnh; thống nhất chỗ dừng xe hợp pháp và chuyến về. Không cam kết khoảng cách hay thời gian cố định.",
       },
       {
-        no: '03',
-        label: 'Đi bộ',
-        title: 'Theo đường tượng đất',
-        text: `Một đường uốn lượn, hàng chục phù điêu và vài đoạn hầm che. Dành 45–90 phút tùy vào số lần bạn dừng chụp ảnh.`
+        no: "03",
+        label: "Tham quan",
+        title: "Theo hướng dẫn tại chỗ",
+        text: "Chỉ đi khu vực đang cho khách vào. Hỏi về bậc thang, độ dốc, nhà vệ sinh, chỗ nghỉ và hỗ trợ cần thiết.",
       },
       {
-        no: '04',
-        label: 'Kết hợp',
-        title: 'Thêm các điểm lân cận',
-        text: `Kết hợp với ${A.nearby1Vi} và ${A.nearby2Vi}, cùng nằm trên trục đường này chỉ cách vài phút.`
-      }
-    ]
+        no: "04",
+        label: "Kết hợp",
+        title: "Kiểm tra từng điểm riêng",
+        text: "Hồ Tuyền Lâm, Thiền Viện Trúc Lâm và cáp treo là các điểm hoặc dịch vụ riêng. Xác nhận giờ, lối vào và phương tiện; không mặc định một vòng đi bộ nối liền.",
+      },
+    ],
   },
   nearby: {
-    kicker: 'Địa danh lân cận',
-    title: `Quanh ${A.nameVi}`,
-    text: `Đường hầm nằm trong cụm điểm đến phía nam ${A.cityVi}. Chỉ vài phút lái xe là tới ${A.nearby1Vi} — mặt hồ yên tĩnh bao quanh bởi rừng thông — và ${A.nearby2Vi}, thiền viện trên sườn đồi nhìn xuống hồ, có thể đi bằng cáp treo. Nhiều lịch trình nửa ngày kết hợp cả ba.`
+    kicker: "Địa danh lân cận",
+    title: "Quanh Đường Hầm Điêu Khắc",
+    text: "Hồ Tuyền Lâm và Thiền Viện Trúc Lâm là các điểm riêng trong khu vực rộng hơn. Vé tham quan điêu khắc không bảo đảm đường nối cùng tuyến, chuyển xe nhanh, cáp treo hay quyền vào các điểm đó.",
   },
   history: {
-    kicker: 'Từ thú vui thành địa danh',
-    title: `Lịch sử ${A.nameVi}`,
+    kicker: "Lịch sử và nguồn",
+    title: "Lịch sử và nguồn",
     paragraphs: [
-      `${A.nameVi} bắt đầu từ đầu thập niên 2000 như dự án nặn đất sét của một gia đình nghệ nhân địa phương gần ${A.nearby1Vi}. Từ một thú vui cá nhân, nơi này lớn lên thành một phòng trưng bày ngoài trời dài một cây số kể lại câu chuyện của ${A.cityVi} và Tây Nguyên — từ buổi đầu hình thành đô thị, những biệt thự thời Pháp, văn hóa các dân tộc trên cao nguyên cho tới các địa danh thiên nhiên — tất cả bằng đất sét.`,
-      `Điểm đến này phản chiếu truyền thống thủ công của vùng và đã trở thành một trong những địa danh do gia đình tự xây dựng đặc biệt của ${A.cityVi}: nơi lịch sử, truyền thống và cảnh quan được đọc chậm rãi, bằng đôi chân, qua từng phù điêu. Tác phẩm mới vẫn được bổ sung, nên khách quay lại thường thấy điều khác trước.`
+      "Danh bạ tỉnh mô tả quá trình phát triển Đà Lạt qua ngôn ngữ kiến trúc và điêu khắc, đồng thời nêu Công ty cổ phần Sao Đà Lạt.",
     ],
-    note: 'Niên đại và trình tự được tóm lược từ các tài liệu du lịch; chủ khu vẫn tiếp tục mở rộng.'
+    note: "Kiểm tra 30/10/2026. Danh bạ không ghi ngày hiệu lực hay ảnh chụp bên thứ ba không xác lập giá, giờ và lối vào hiện tại.",
   },
   visit: {
-    kicker: 'Chuẩn bị cho chuyến đi',
-    title: 'Thông tin cần thiết',
+    kicker: "Chuẩn bị cho chuyến đi",
+    title: "Thông tin cần thiết",
     rows: [
-      { label: 'Địa chỉ', value: `${A.ward}, thành phố ${A.cityVi}, ${A.provinceVi} ${A.postalCode}, ${A.countryVi}` },
-      { label: 'Plus Code', value: A.plusCode },
-      { label: 'Điện thoại', value: A.phoneDisplay },
-      { label: 'Giờ mở cửa', value: 'Hằng ngày 07:00 – 17:00 (tham khảo — nên kiểm tra trước khi đi).' },
-      { label: 'Giá vé', value: `${dong(A.ticketAdult)} mỗi người lớn (trên 1,3 m) · ${dong(A.ticketChild)} mỗi trẻ em (dưới 1,3 m). Xác nhận tại cổng.` },
-      { label: 'Thời gian tham quan', value: '45–90 phút cho toàn bộ đường đi.' },
-      { label: 'Phù hợp nhất cho', value: 'Chụp ảnh, đi bộ thong thả, tìm hiểu thủ công địa phương và ngắm hồ.' }
-    ]
+      {
+        label: "Địa chỉ",
+        value:
+          "Đường Hoa Hồng, Khu du lịch Hồ Tuyền Lâm, Phường Xuân Hương–Đà Lạt, Lâm Đồng; theo danh bạ tỉnh.",
+      },
+      {
+        label: "Giờ tham khảo",
+        value:
+          "Danh bạ tỉnh: 06:00–18:00, không ghi ngày hiệu lực. Maps kiểm tra 30/10/2026: đóng 17:00. Chưa xác nhận giờ hiện tại và giờ nhận khách cuối.",
+      },
+      {
+        label: "Giá vé",
+        value:
+          "Chưa xác nhận giá và quy tắc vé trẻ em/chiều cao. Danh bạ không ghi ngày hiệu lực có khoảng 30.000–60.000 VNĐ nhưng không nêu nhóm vé; không phải báo giá hiện tại.",
+      },
+      {
+        label: "Liên hệ được niêm yết",
+        value:
+          "0947 289 269 trong danh bạ du lịch tỉnh; chưa xác minh khả năng liên lạc hiện tại.",
+      },
+      {
+        label: "Thời lượng",
+        value:
+          "Sắp xếp theo hoạt động, nhu cầu tiếp cận và chuyến về đã xác nhận; không có thời lượng chung được kiểm chứng.",
+      },
+    ],
   },
   facilities: {
-    kicker: 'Tại chỗ',
-    title: 'Tiện ích cho du khách',
-    intro: 'Tiện ích ở đây khá đơn giản và thay đổi theo mùa. Đây là những dịch vụ du khách thường thấy ở khu cổng và dọc tuyến đi.',
+    kicker: "Tại chỗ",
+    title: "Tiện ích cho du khách",
+    intro:
+      "Kiểm tra 30/10/2026. Danh bạ không ghi ngày hiệu lực hay ảnh chụp bên thứ ba không xác lập giá, giờ và lối vào hiện tại.",
     items: [
-      { title: 'Chỗ đỗ xe', text: 'Có chỗ đỗ xe máy và ô tô ở khu vực cổng; xe du lịch thường trả khách ngay cổng.' },
-      { title: 'Nhà vệ sinh', text: 'Có gần khu bán vé; nên tự mang giấy và nước rửa tay.' },
-      { title: 'Nước uống & đồ ăn nhẹ', text: 'Một vài quầy nhỏ quanh cổng; hãy mang nước cho chặng đi bộ.' },
-      { title: 'Chỗ nghỉ & tránh nắng', text: 'Các đoạn hầm che và ghế dọc đường giúp nghỉ chân giữa nắng cao nguyên.' },
-      { title: 'Xưởng đất & quà lưu niệm', text: 'Đất sét là chủ đề của khu này, nên thường có đồ gốm nhỏ và quà lưu niệm địa phương trưng bày gần cổng.' },
-      { title: 'Khả năng tiếp cận', text: 'Đa phần đường đi nhẹ, nhưng có bậc thang và đoạn đất; nên mang giày chắc, nhất là sau mưa.' }
-    ]
+      {
+        title: "Đỗ và trả khách",
+        text: "Xác nhận chỗ dừng hợp pháp, phí, sức chứa và hạn chế phương tiện với điểm đến hoặc tài xế.",
+      },
+      {
+        title: "Nhà vệ sinh và đồ uống",
+        text: "Hỏi dịch vụ có hoạt động vào ngày bạn đến hay không; không bảo đảm tiện ích tại chỗ.",
+      },
+      {
+        title: "Khả năng tiếp cận",
+        text: "Maps chỉ đánh dấu một lối vào tiếp cận được. Toàn tuyến, độ dốc, bề mặt, nhà vệ sinh và hỗ trợ chưa được khảo sát độc lập.",
+      },
+      {
+        title: "Nghỉ và trú",
+        text: "Hỏi nhân viên nơi được nghỉ hoặc trú an toàn. Không coi các đoạn điêu khắc có mái là nơi trú giông an toàn.",
+      },
+      {
+        title: "Trẻ em và người lớn tuổi",
+        text: "Kiểm tra tuyến đi và nhu cầu hỗ trợ trước khi mua vé. Không khẳng định đường phù hợp xe đẩy, không bậc hay dễ đi.",
+      },
+    ],
   },
   seasonal: {
-    kicker: 'Mùa khô và mùa mưa',
-    title: 'Nên đi khi nào',
-    intro: `${A.cityVi} có mùa khô và mùa mưa rất rõ. Cả hai đều đi được, chỉ khác ở cách chọn giờ.`,
-    note: 'Mô tả khí hậu dựa trên quy luật mùa chung của Đà Lạt / Tây Nguyên; hãy xem dự báo trong ngày trước khi xuất phát.',
-    columns: { season: 'Mùa', weather: 'Thời tiết thường gặp', tip: 'Cách sắp xếp' },
+    kicker: "Thời tiết và tiếp cận",
+    title: "Dùng dự báo và thông báo tại chỗ",
+    intro:
+      "Dự báo khu vực không xác nhận điểm đến hay tuyến tham quan đang mở.",
+    note: "Kiểm tra 30/10/2026. Danh bạ không ghi ngày hiệu lực hay ảnh chụp bên thứ ba không xác lập giá, giờ và lối vào hiện tại.",
+    columns: {
+      season: "Mùa",
+      weather: "Thời tiết thường gặp",
+      tip: "Cách sắp xếp",
+    },
     rows: [
       {
-        season: 'Tháng 11 – 4 (mùa khô)',
-        weather: 'Sáng mát, trưa nắng, ít mưa; mùa cao điểm du lịch.',
-        tip: 'Đến khoảng 08:00–10:00 để có ánh sáng đẹp và vắng người; mang áo khoác mỏng cho buổi sáng.'
+        season: "Mưa",
+        weather: "Xem dự báo mới nhất",
+        tip: "Theo hướng dẫn nhân viên; không vào tuyến đóng hoặc không an toàn.",
       },
       {
-        season: 'Tháng 5 – 10 (mùa mưa)',
-        weather: 'Mưa rào thường vào buổi chiều, sáng có sương, đồi xanh hơn.',
-        tip: 'Đi buổi sáng trước cơn mưa chiều; các đoạn hầm che giúp một phần lộ trình vẫn đi được.'
+        season: "Giông hoặc gió mạnh",
+        weather: "Điều kiện có thể thay đổi",
+        tip: "Hoãn hoạt động ngoài trời trống trải; tìm nơi trú kiên cố an toàn, không mặc định hầm trang trí là chỗ trú.",
       },
       {
-        season: 'Tháng 12 – 1 (cao điểm lễ)',
-        weather: 'Những tháng lạnh nhất trong năm; ban đêm có thể xuống gần 10 °C.',
-        tip: 'Đi sáng sớm và mặc thêm áo ấm; đây là thời điểm cổng đông nhất năm.'
+        season: "Nắng hoặc lạnh hơn",
+        weather: "Chọn trang phục theo dự báo",
+        tip: "Mang áo phù hợp, nước và đồ chống nắng khi cần; không nêu tháng mùa hay mức nhiệt cố định.",
       },
-      {
-        season: 'Quanh năm',
-        weather: 'Khí hậu cao nguyên khoảng 1.500 m: ngày ôn hòa, chiều tối mát.',
-        tip: 'Áo mưa gọn hữu dụng hơn ô trên những đoạn sườn đồi hở.'
-      }
-    ]
+    ],
   },
   itineraries: {
-    kicker: 'Lịch trình gợi ý',
-    title: 'Gợi ý lộ trình',
-    intro: 'Ba cách đưa đường hầm điêu khắc vào một ngày ở Đà Lạt.',
+    kicker: "Ý tưởng cần xác nhận",
+    title: "Gợi ý lộ trình",
+    intro:
+      "Kiểm tra lối vào, điều kiện vé và phương tiện về trước khi xuất phát.",
     items: [
       {
-        title: 'Nửa ngày: đường hầm + hồ (3–4 giờ)',
-        text: `Sáng đi xuống phía nam tới ${A.nameVi} (45–90 phút bên trong), sau đó ra ${A.nearby1Vi} ăn trưa, và kết thúc ở ${A.nearby2Vi} hoặc cáp treo buổi chiều.`
+        title: "Chỉ tham quan điểm này",
+        text: "Xác nhận giờ, điều kiện vé và phương tiện về; chọn tốc độ phù hợp tại chỗ.",
       },
       {
-        title: 'Cả ngày: vòng phía nam Đà Lạt (7–8 giờ)',
-        text: `Đường Hầm Điêu Khắc → ${A.nearby1Vi} → ${A.nearby2Vi} và cáp treo → vườn hoa hoặc quán cà phê trên đường về thị xã.`
+        title: "Thêm điểm khác",
+        text: "Kiểm tra riêng hồ, thiền viện, cáp treo và nơi ăn uống về đặt chỗ hoặc quyền tiếp cận.",
       },
       {
-        title: 'Cho gia đình & người thích chụp ảnh',
-        text: `Đi sớm để có ánh sáng và nhiệt độ dễ chịu, dành 90 phút để trẻ em được dừng ở mỗi phù điêu, và đi các đoạn gần cổng trước vì bằng phẳng hơn.`
-      }
-    ]
+        title: "Gia đình hoặc chụp ảnh",
+        text: "Hỏi nhu cầu hỗ trợ và thiết bị được phép trước khi lên kế hoạch; không hứa thời lượng cố định.",
+      },
+    ],
   },
   responsibility: {
-    kicker: 'Tham quan có trách nhiệm',
-    title: 'Ứng xử khi tham quan',
-    intro: 'Các tác phẩm được nặn thủ công và tu bổ liên tục, xung quanh là rừng thông đang khai thác.',
+    kicker: "Tham quan có trách nhiệm",
+    title: "Ứng xử khi tham quan",
+    intro:
+      "Kiểm tra 30/10/2026. Danh bạ không ghi ngày hiệu lực hay ảnh chụp bên thứ ba không xác lập giá, giờ và lối vào hiện tại.",
     items: [
-      { title: 'Không chạm hay trèo lên tượng', text: 'Tác phẩm rất dễ vỡ; việc trèo lên chụp ảnh gây hư hại nhìn thấy được và phải sửa bằng tay.' },
-      { title: 'Đi đúng đường', text: 'Sườn đồi là rừng thông dễ xói mòn; đi tắt sẽ làm rộng rãnh xói sau mưa.' },
-      { title: 'Mang rác ra ngoài', text: 'Thùng rác dọc đường có hạn; hãy mang theo những gì mình đem vào, nhất là chai nước và giấy.' },
-      { title: 'Giữ yên tĩnh', text: 'Khu này sát thiền viện và khu dân cư trên đồi — du khách được khuyến khích giữ trật tự.' },
-      { title: 'Hỏi trước khi chụp ảnh người khác', text: 'Nhân viên, nghệ nhân và khách khác không phải đạo cụ; một câu hỏi nhanh là đủ.' }
-    ]
+      {
+        title: "Tôn trọng tác phẩm",
+        text: "Không leo hay chạm hiện vật nếu không được cho phép rõ ràng.",
+      },
+      {
+        title: "Đi khu vực được mở",
+        text: "Theo ranh giới và hướng dẫn hiện tại; không vào rừng hoặc nước để chụp ảnh.",
+      },
+      {
+        title: "Tôn trọng mọi người",
+        text: "Xin phép trước khi chụp người có thể nhận diện; tuân thủ hạn chế.",
+      },
+      {
+        title: "Không xả rác",
+        text: "Dùng nơi bỏ rác được phép hoặc mang rác về.",
+      },
+    ],
   },
   reviews: {
-    kicker: 'Đánh giá của du khách',
-    title: 'Du khách nói gì',
-    cta: 'Xem tất cả đánh giá trên Google Maps ↗',
-    note: `Điểm và số lượt đánh giá được đồng bộ từ đánh giá người dùng Google Maps (tháng 9 năm 2026), chỉ mang tính tham khảo.`
+    kicker: "Đánh giá của du khách",
+    title: "Du khách nói gì",
+    cta: "Xem tất cả đánh giá trên Google Maps ↗",
+    note: "Ảnh chụp thủ công Google Maps ngày 30/10/2026: 4,2/5 với 16.640 đánh giá. Không phải dữ liệu trực tiếp, đồng bộ tự động hay khảo sát của hướng dẫn này. Không sao chép nội dung đánh giá.",
   },
   sources: {
-    kicker: 'Nguồn & tài liệu tham khảo',
-    title: 'Sự kiện, không phải truyền thuyết',
+    kicker: "Nguồn & tài liệu tham khảo",
+    title: "Sự kiện, không phải truyền thuyết",
     items: [
       {
-        label: 'Google Maps',
-        text: `Vị trí, Plus Code ${A.plusCode}, tọa độ ${A.latitude}, ${A.longitude} và điểm đánh giá nêu trên.`
+        label: "Danh bạ du lịch tỉnh",
+        text: "Công ty Sao Đà Lạt, địa chỉ và chủ đề điêu khắc. Giờ, khoảng giá và số liên hệ là thông tin danh bạ không ghi ngày hiệu lực, không phải thông báo hiện hành đã xác minh của đơn vị vận hành.",
+        url: "https://visitlamdong.vn/vi/duonghamdieukhacdl",
       },
       {
-        label: 'Tổng cục Du lịch Việt Nam',
-        text: 'Cổng du lịch quốc gia chính thức, dùng cho bối cảnh du lịch vùng: vietnam.travel.'
+        label: "Ảnh chụp Maps",
+        text: "Kiểm tra danh sách được cung cấp ngày 30/10/2026. Giờ đóng 17:00 khác với 18:00 trong danh bạ; khả năng tiếp cận chỉ áp dụng lối vào được đánh dấu.",
+        url: "https://maps.app.goo.gl/Sb8LguKYD3Kt2PHM9",
       },
       {
-        label: 'Tài liệu du lịch',
-        text: 'Giờ mở cửa và giá vé được nêu theo các nguồn thường công bố; nên xác nhận lại tại cổng trong ngày tham quan.'
-      }
-    ]
+        label: "Giới hạn thông tin",
+        text: "Cần xác nhận trực tiếp giá, nhóm vé, giờ vào cuối, tiện ích, thông số tuyến và quy định chụp ảnh.",
+        url: "https://visitlamdong.vn/vi/duonghamdieukhacdl",
+      },
+    ],
   },
   faq: {
-    kicker: 'Trước khi đi',
-    title: 'Câu hỏi thường gặp',
+    kicker: "Trước khi đi",
+    title: "Câu hỏi thường gặp",
     items: [
       {
-        q: 'Giá vé vào Đường Hầm Điêu Khắc Đà Lạt là bao nhiêu?',
-        a: `Vé vào cửa ${dong(A.ticketAdult)} mỗi người cao trên 1,3 m và ${dong(A.ticketChild)} cho trẻ em dưới 1,3 m. Giá mang tính tham khảo và có thể thay đổi theo mùa, nên hãy xác nhận tại cổng trong ngày đi.`
+        q: "Giá vé hiện tại là bao nhiêu?",
+        a: "Chưa xác nhận bảng giá hiện hành của đơn vị vận hành. Danh bạ tỉnh có khoảng 30.000–60.000 VNĐ không ghi ngày và nhóm vé. Xác nhận giá hiện tại, điều kiện và dịch vụ bao gồm trước khi mua.",
       },
       {
-        q: 'Giờ mở cửa như thế nào?',
-        a: 'Khu này mở cửa hằng ngày, thường từ 07:00 đến 17:00. Lượt vào muộn nhất thường vào giữa buổi chiều; đến trước 10:00 sẽ có ánh sáng đẹp và vắng người hơn.'
+        q: "Mấy giờ đóng cửa?",
+        a: "Danh bạ tỉnh ghi 06:00–18:00 không có ngày hiệu lực, còn Maps ngày 30/10/2026 hiển thị đóng 17:00. Cần xác nhận giờ hiện tại và giờ nhận khách cuối; không phải bảo đảm đang mở.",
       },
       {
-        q: 'Đường Hầm Điêu Khắc nằm ở đâu?',
-        a: `${A.ward}, thành phố ${A.cityVi}, tỉnh ${A.provinceVi} ${A.postalCode}, ${A.countryVi}, trên đồi phía trên ${A.nearby1Vi}, cách trung tâm khoảng ${A.distanceFromCentreKm} km về phía nam. Plus Code: ${A.plusCode}.`
+        q: "Ai vận hành điểm đến?",
+        a: "Danh bạ du lịch tỉnh gắn điểm đến với Công ty cổ phần Sao Đà Lạt. Hướng dẫn này độc lập, không phải trang vận hành hay đặt vé đã được xác nhận.",
       },
       {
-        q: 'Từ trung tâm Đà Lạt đi thế nào?',
-        a: `Đi taxi hoặc xe công nghệ mất khoảng 25–35 phút theo hướng nam trên đường xuống ${A.nearby1Vi}, đi qua ${A.nearby2Vi}. Thuê xe máy là lựa chọn linh hoạt nhất; nhiều tour trong ngày cũng ghé điểm này.`
+        q: "Đi đến bằng cách nào?",
+        a: "Dùng tên điểm đến và địa chỉ Đường Hoa Hồng trong khu du lịch hồ Tuyền Lâm. Xác nhận cổng, chỗ dừng hợp pháp và chuyến về; chưa xác minh tuyến xe buýt, giá cước hay thời gian đi.",
       },
       {
-        q: 'Đường Hầm Điêu Khắc là gì?',
-        a: `Đó là công viên tượng đất sét ngoài trời dài khoảng ${A.lengthKm} km: một đường uốn lượn với các phù điêu đất lớn về lịch sử, văn hóa và cảnh quan ${A.cityVi} cùng Tây Nguyên, gồm cả những đoạn hầm che khoét vào sườn đồi.`
+        q: "Toàn tuyến có tiếp cận được không?",
+        a: "Maps chỉ đánh dấu lối vào. Hỏi về toàn tuyến, bề mặt, độ dốc, nhà vệ sinh và hỗ trợ; hướng dẫn này chưa khảo sát.",
       },
       {
-        q: 'Tham quan mất bao lâu?',
-        a: 'Đa số du khách dành 45–90 phút. Người thích chụp ảnh và gia đình dừng lại ở mỗi phù điêu thường ở gần hai tiếng.'
+        q: "Có được chụp ảnh không?",
+        a: "Hỏi quy định hiện tại về ảnh cá nhân, chân máy và hoạt động thương mại. Tránh khu hạn chế, không leo hiện vật và xin phép khi chụp người.",
       },
-      {
-        q: 'Mùa mưa có đáng đi không?',
-        a: `Có, nếu chọn giờ: mưa ở ${A.cityVi} thường đến vào buổi chiều, nên đi buổi sáng thường vẫn khô, và các đoạn hầm che che được một phần lộ trình. Mang giày có độ bám vì đường trơn sau mưa.`
-      },
-      {
-        q: 'Có được chụp ảnh không?',
-        a: 'Được. Chụp ảnh chính là lý do nhiều người đến. Tripod dùng được vào giờ vắng; xin đừng trèo lên tượng để chụp.'
-      },
-      {
-        q: 'Có phù hợp cho trẻ em và người lớn tuổi không?',
-        a: 'Lộ trình chủ yếu là đi bộ nhẹ, có vài bậc thang và đoạn đường đất. Gia đình có trẻ nhỏ thường đi được nếu không vội; địu sẽ tiện hơn xe đẩy ở các đoạn hẹp.'
-      },
-      {
-        q: 'Có chỗ đỗ xe và nhà vệ sinh không?',
-        a: 'Có chỗ đỗ xe máy và ô tô ở khu vực cổng, nhà vệ sinh gần quầy vé. Nên mang một ít tiền mặt để mua vé, nước và các khoản nhỏ.'
-      },
-      {
-        q: 'Gần đó có gì để đi tiếp?',
-        a: `${A.nearby1Vi} và ${A.nearby2Vi} chỉ cách vài phút trên cùng trục đường, và cáp treo nối khu thiền viện với đồi Robin.`
-      }
-    ]
+    ],
   },
   explore: {
-    kicker: 'Đọc thêm',
-    title: 'Chuẩn bị chi tiết',
-    intro: 'Ba bài hướng dẫn cho những câu hỏi du khách hỏi nhiều nhất.'
+    kicker: "Đọc thêm",
+    title: "Chuẩn bị chi tiết",
+    intro: "Ba bài hướng dẫn cho những câu hỏi du khách hỏi nhiều nhất.",
   },
-  footerTagline: `Hướng dẫn tham quan độc lập cho ${A.nameVi} (${A.nameEn}) tại ${A.cityVi}, ${A.provinceVi}, ${A.countryVi}. Không phải trang web chính thức của khu du lịch.`,
+  footerTagline:
+    "Hướng dẫn tham quan độc lập cho Đường Hầm Điêu Khắc (Clay Tunnel Da Lat) tại Đà Lạt, Lâm Đồng, Việt Nam. Không phải trang web chính thức của khu du lịch.",
   photoAlt: {
-    hero: `${A.nameVi} — lối vào đường hầm điêu khắc đất sét ở ${A.cityVi}`,
-    tunnel: `Các tác phẩm đất sét bên trong ${A.nameVi} (${A.nameEn})`,
-    lake: `${A.nearby1Vi} nhìn từ đồi gần ${A.nameVi}`,
-    tunnel2: `Đoạn hầm che của ${A.nameVi} ở ${A.cityVi}`,
-    lake2: `Đồi thông và mặt nước quanh ${A.nearby1Vi}, ${A.cityVi}`
+    hero: "Minh họa tượng trưng địa hình màu đất sét và cây; không phải ảnh hay tuyến thực tế",
+    tunnel:
+      "Minh họa tượng trưng địa hình màu đất sét và cây; không phải ảnh hay tuyến thực tế",
+    lake: "Minh họa tượng trưng địa hình màu đất sét và cây; không phải ảnh hay tuyến thực tế",
+    tunnel2:
+      "Minh họa tượng trưng địa hình màu đất sét và cây; không phải ảnh hay tuyến thực tế",
+    lake2:
+      "Minh họa tượng trưng địa hình màu đất sét và cây; không phải ảnh hay tuyến thực tế",
   },
-  photoCredit: 'Ảnh: Wikimedia Commons (Panoramio) · CC BY-SA.',
-  disclaimer: 'Giờ mở cửa và giá vé chỉ mang tính tham khảo và có thể thay đổi; vui lòng xác nhận tại cổng trước khi đi.'
+  photoCredit:
+    "Minh họa hình học gốc · CC0 · không phải ảnh, sơ đồ hay hiện trạng.",
+  disclaimer:
+    "Kiểm tra 30/10/2026. Danh bạ không ghi ngày hiệu lực hay ảnh chụp bên thứ ba không xác lập giá, giờ và lối vào hiện tại.",
 };

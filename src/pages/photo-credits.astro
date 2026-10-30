@@ -1,37 +1,48 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { ATTRACTION as A, PHOTO_SOURCES, withSiteName } from '../data/site';
-
-const locale = 'en' as const;
-const title = withSiteName(locale, 'Photo credits');
-const description = `Sources and licences of the photographs used on the ${A.nameVi} (${A.nameEn}) visitor guide.`;
-const credits = [
-  { file: 'clay-tunnel-hero.jpg', label: 'Đường vào đường hầm điêu khắc đất sét - panoramio.jpg' },
-  { file: 'clay-tunnel-tunnel.jpg', label: 'Đường vào đường hầm điêu khắc đất sét - panoramio (1).jpg' },
-  { file: 'clay-tunnel-lake.jpg', label: 'Đường vào đường hầm điêu khắc đất sét quanh hồ tuyền lâm - panoramio.jpg' },
-  { file: 'clay-tunnel-tunnel2.jpg', label: 'Đường vào đường hầm điêu khắc đất sét - panoramio (2).jpg' },
-  { file: 'clay-tunnel-lake2.jpg', label: 'Đường vào đường hầm điêu khắc đất sét quanh hồ tuyền lâm - panoramio (1).jpg' }
-];
+import BaseLayout from "../layouts/BaseLayout.astro";
+const sections = {
+  en: [
+    "Illustration credits",
+    "All five scenic SVG images and the PNG cover are original geometric illustrations created for this guide and dedicated under CC0 1.0. They are not photographs, maps, copies of specific sculptures or records of current access. No remote photographic fallback is used.",
+  ],
+  vi: [
+    "Nguồn minh họa",
+    "Năm ảnh SVG phong cảnh và bìa PNG là minh họa hình học gốc tạo cho hướng dẫn, công bố theo CC0 1.0. Không phải ảnh chụp, bản đồ, bản sao tác phẩm cụ thể hay bằng chứng lối vào hiện tại. Không dùng ảnh chụp từ xa dự phòng.",
+  ],
+  zh: [
+    "插畫來源",
+    "五張景觀SVG與PNG封面是為本站創作的原創幾何插畫，採CC0 1.0。不代表照片、地圖、特定雕塑的複製或現行通行紀錄，也不使用遠端照片備援。",
+  ],
+  ko: [
+    "삽화 출처",
+    "다섯 SVG 경관과 PNG 표지는 이 안내를 위해 만든 독창적 기하학 삽화이며 CC0 1.0으로 공개합니다. 사진, 지도, 특정 조각의 복제나 현재 출입 기록이 아니며 원격 사진 대체 경로를 사용하지 않습니다.",
+  ],
+};
 ---
 
-<BaseLayout locale={locale} routeKey="home" canonicalOverride="/photo-credits/" title={title} description={description} noIndex i18n={false}>
-  <section class="py-16">
-    <div class="mx-auto max-w-3xl px-5 lg:px-8">
-      <a href="/" class="text-sm font-black underline">← Back to the guide</a>
-      <h1 class="display mt-8 text-5xl">Photo credits</h1>
-      <p class="mt-5 leading-8 text-slate-700">
-        The photographs are real images of {A.nameVi} ({A.nameEn}) from Wikimedia Commons, migrated from Panoramio. The repository
-        includes a script that stores them locally under the names the site uses.
-      </p>
-      <div class="mt-10 space-y-6 text-sm leading-6 text-slate-700">
-        {credits.map((credit) => (
-          <p>
-            <strong>{credit.file}</strong> — {credit.label}
-            <br />
-            <a href={PHOTO_SOURCES.hero} target="_blank" rel="noopener noreferrer" class="underline">Wikimedia Commons</a> (Panoramio) · CC BY-SA.
-          </p>
-        ))}
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+<BaseLayout
+  locale="en"
+  routeKey="home"
+  canonicalOverride="/photo-credits/"
+  title="Illustration credits | Clay Tunnel Da Lat Guide"
+  description="Credits and licence for the clearly labelled local illustrations."
+  noIndex
+  i18n={false}
+  ><section class="mx-auto max-w-4xl px-5 py-16">
+    <h1 class="display text-4xl">Illustration credits</h1>{
+      Object.entries(sections).map(([lang, s]) => (
+        <section lang={lang === "zh" ? "zh-Hant" : lang} class="mt-10">
+          <>
+            <h2 class="text-2xl font-bold">{s[0]}</h2>
+            <p class="mt-5 leading-8">{s[1]}</p>
+          </>
+        </section>
+      ))
+    }<p class="mt-8">
+      <a
+        class="underline"
+        href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a
+      > · <a class="underline" href="/ILLUSTRATION-CREDITS.txt">Credits file</a>
+    </p>
+  </section></BaseLayout
+>

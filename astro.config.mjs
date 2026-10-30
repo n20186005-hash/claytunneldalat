@@ -10,6 +10,7 @@ const NO_INDEX = ['/privacy/', '/terms/', '/cookies/', '/photo-credits/', '/404.
 export default defineConfig({
   site: SITE_URL || undefined,
   output: 'static',
+  trailingSlash: 'always',
   integrations: SITE_URL
     ? [
         sitemap({

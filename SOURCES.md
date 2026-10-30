@@ -1,29 +1,11 @@
-# Editorial sources
+# Editorial sources and scope
 
-## Attraction facts (single source: `src/data/site.ts`)
+Checked 30 October 2026.
 
-- Name: Đường Hầm Điêu Khắc — listed as **KDL Đường Hầm Điêu Khắc**; English **Clay Tunnel Da Lat** / **Sculpture Tunnel**.
-- Category: tourist attraction.
-- Address: Thành phố Đà Lạt, Lam Dong 66000, Vietnam (Ward 4 / Phường 4).
-- Plus Code: `VCM6+2J Xuan Huong - Da Lat, Lam Dong, Vietnam`.
-- Coordinates: 11.8825052, 108.4115694.
-- Phone: +84 333 898 599.
-- Google Maps share link: https://maps.app.goo.gl/Sb8LguKYD3Kt2PHM9
-- Rating: 4.2 from 16 570 Google Maps user reviews, synchronised September 2026.
-- Opening hours: daily 07:00–17:00 (indicative).
-- Entrance fee: 90 000 VND per visitor over 1.3 m; 30 000 VND for children under 1.3 m (indicative).
-
-## References
-
-- **Google Maps** — verified location, Plus Code, coordinates and the visitor rating shown on the page.
-- **Vietnam National Administration of Tourism** (https://vietnam.travel/) — official national tourism portal, used for regional travel context.
-- **Travel references** — opening hours and ticket prices are given as typically published. Every page states that they are indicative and must be confirmed at the gate.
-- **Wikimedia Commons (Panoramio), CC BY-SA** — the five photographs; see `PHOTO-SOURCES.md`.
-
-## Ratings policy
-
-The rating and review count are a synchronised Google Maps snapshot, displayed on the page and in the JSON-LD `aggregateRating`, always labelled as such. The site is not the official website of the attraction and does not collect its own reviews.
-
-## Weather
-
-The forecast is read from the Open-Meteo service for the attraction's coordinates at build time and refreshed in the browser. WMO codes and the derived advice (what to wear / how to plan / what to bring / weather to watch) live in `src/data/weather-i18n.ts` for all four languages. Advice is derived from the forecast only and is never presented or labelled as an official meteorological warning.
+- Provincial tourism directory: https://visitlamdong.vn/vi/duonghamdieukhacdl . Footer identifies the Lam Dong culture/sports/tourism department and tourism promotion centre. It associates the attraction with Công ty cổ phần Sao Đà Lạt and gives Đường Hoa Hồng, Khu du lịch Hồ Tuyền Lâm, Phường Xuân Hương–Đà Lạt, Lâm Đồng. It describes artistic architectural/landscape reproductions, not a surveyed covered or accessible route.
+- The same directory lists 06:00–18:00, a 30,000–60,000 VND range and 0947289269, without an effective date or ticket categories. These are attributed directory references, not a verified current operator tariff or opening guarantee. No child-height rule, last entry or uniform visit duration is established.
+- Google Maps: https://maps.app.goo.gl/Sb8LguKYD3Kt2PHM9 . Manual snapshot on 30 October 2026: 4.2/5, 16,640 reviews, closing display 17:00, accessible entrance marked. The closing display differs from the directory; no rating or disputed opening-hours schema is emitted. Full-route accessibility was not audited. Review text is not copied.
+- Current booking/operator domain, exact tickets, route length, journey times, facility availability and photography permissions remain unverified. Former numeric/physical promises are omitted.
+- Weather: https://open-meteo.com/en/docs . Browser-requested regional Da Lat model, not on-site observation. Complete fields, timestamps, date arrays and ranges are validated; no missing value becomes zero. Page-memory expiry is 15 minutes, model timestamps are shown in Vietnam time, and failure removes numeric output. WMO condition/intensity is distinct from precipitation probability. Source/terms: https://open-meteo.com/en/terms .
+- Scenic visuals are clearly labelled original geometric illustrations, not photographs or replicas of a specific sculpture. See PHOTO-SOURCES.md and /ILLUSTRATION-CREDITS.txt.
+- Privacy separates automatically loaded Google Maps/browser weather, possible hosting-injected Cloudflare Web Analytics and independent edge processing. Current production injection/execution/transmission was not verified. Official documentation: https://developers.cloudflare.com/web-analytics/ . No optional-cookie switch is claimed.

@@ -1,24 +1,88 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { ATTRACTION as A, SITE_NAME, withSiteName } from '../data/site';
-
-const locale = 'en' as const;
-const title = withSiteName(locale, 'Privacy policy');
-const description = `How the independent ${A.nameVi} (${A.nameEn}) visitor guide handles data: no accounts, no database, no analytics loaded by default.`;
+import BaseLayout from "../layouts/BaseLayout.astro";
+const sections = {
+  en: {
+    heading: "Privacy and third-party services",
+    text: [
+      "Updated 30 October 2026. This independent guide has no account or ticket-purchase form. This source does not configure Google Analytics or advertising; that is not a claim about every production response or future hosting configuration.",
+      "Google Maps iframes on guide pages can load automatically as you approach them. The regional weather widget contacts Open-Meteo from your browser automatically and on refresh. These providers can receive your IP address, browser details and request information under their own policies. Lazy loading is not an opt-in control. Forecasts are kept only in page memory and expire after 15 minutes; they are not site-access notices.",
+      "Cloudflare handles hosting and security at the edge, which can involve IP addresses, request URLs, timestamps, user-agent information and operational logs. Separately, hosting settings may inject a Cloudflare Web Analytics browser beacon for visits, page views and performance, with dimensions such as path, referrer, country, device, browser and operating system. This is distinct from Google Analytics and from edge processing. Current production injection, execution and transmission have not been verified. The source CSP does not allow the beacon or its collection origins and is expected to block those browser requests while enforced; production settings may differ.",
+      "There is no on-site tracking switch. Browser content/cookie controls can affect third-party features but do not turn off hosting-edge processing or erase previously transmitted data. The old optional-cookie choice did not control a service and is no longer used; a legacy ctd-cookie-choice value may remain in your browser. The former offline worker is retired, clearing only this guide’s ctd- caches.",
+      "Scenic illustrations and fonts are local or system resources. External operator and source links use those providers’ own terms.",
+    ],
+  },
+  vi: {
+    heading: "Quyền riêng tư và dịch vụ bên thứ ba",
+    text: [
+      "Cập nhật 30/10/2026. Hướng dẫn độc lập này không có tài khoản hay biểu mẫu mua vé. Mã nguồn không cấu hình Google Analytics hoặc quảng cáo; điều đó không xác nhận mọi phản hồi sản xuất hay cấu hình lưu trữ tương lai.",
+      "Bản đồ Google nhúng có thể tự tải khi bạn cuộn đến gần. Tiện ích thời tiết khu vực tự liên hệ Open-Meteo từ trình duyệt và khi tải lại. Các nhà cung cấp có thể nhận IP, thông tin trình duyệt và yêu cầu theo chính sách riêng. Tải chậm không phải lựa chọn đồng ý. Dự báo chỉ giữ trong bộ nhớ trang, hết hạn sau 15 phút và không thông báo quyền vào điểm đến.",
+      "Cloudflare xử lý lưu trữ và bảo mật tại biên, có thể gồm IP, URL yêu cầu, thời gian, user-agent và nhật ký vận hành. Riêng cấu hình lưu trữ có thể chèn beacon trình duyệt Cloudflare Web Analytics để đo lượt truy cập, lượt xem và hiệu năng, với chiều dữ liệu như đường dẫn, nguồn giới thiệu, quốc gia, thiết bị, trình duyệt và hệ điều hành. Đây là phần riêng với Google Analytics và xử lý tại biên. Chưa xác minh việc chèn, thực thi hay truyền dữ liệu trên bản sản xuất. CSP nguồn không cho phép beacon hoặc máy chủ thu thập và dự kiến chặn yêu cầu trình duyệt khi được áp dụng; cấu hình sản xuất có thể khác.",
+      "Không có công tắc theo dõi trong trang. Công cụ trình duyệt có thể ảnh hưởng tính năng bên thứ ba nhưng không tắt xử lý tại biên hay xóa dữ liệu đã gửi. Lựa chọn cookie tùy chọn cũ không điều khiển dịch vụ và không còn được dùng; giá trị ctd-cookie-choice cũ có thể vẫn còn trong trình duyệt. Worker ngoại tuyến cũ được nghỉ hưu và chỉ xóa bộ đệm ctd- của hướng dẫn này.",
+      "Minh họa và phông chữ là tài nguyên nội bộ hoặc hệ thống. Liên kết nguồn và đơn vị vận hành áp dụng điều khoản riêng.",
+    ],
+  },
+  zh: {
+    heading: "隱私與第三方服務",
+    text: [
+      "更新於2026-10-30。本獨立指南沒有帳號或購票表單。此份原始碼未設定Google Analytics或廣告，但不能據此斷言所有正式回應或未來託管設定。",
+      "指南中的Google地圖可能在捲動接近時自動載入；區域天氣會由瀏覽器自動及在重新整理時聯絡Open-Meteo。提供者可能依各自政策接收IP、瀏覽器與請求資訊。延遲載入不是同意控制。預報僅保留在本頁記憶體，15分鐘後失效，不是景點通行公告。",
+      "Cloudflare在邊緣提供託管與安全處理，可能涉及IP、請求網址、時間、user-agent與運作紀錄。託管設定也可能另行注入Cloudflare Web Analytics瀏覽器beacon，量測造訪、頁面瀏覽與效能，維度可含路徑、來源、國家、裝置、瀏覽器及作業系統。這與Google Analytics和邊緣處理分開。目前未核實正式環境是否注入、執行或傳送。原始碼CSP未允許該beacon及收集來源，預期在政策生效時阻擋相關瀏覽器請求；正式設定可能不同。",
+      "本站沒有追蹤開關。瀏覽器內容或Cookie控制可能影響第三方功能，但不能關閉託管邊緣處理，也不會刪除已傳送資料。舊的可選Cookie選擇並未控制服務，現已停用；瀏覽器可能仍留有ctd-cookie-choice舊值。舊離線Worker退休時僅清除本站ctd-前綴快取。",
+      "插畫及字型由本站或系統提供。外部經營方與來源連結適用各自條款。",
+    ],
+  },
+  ko: {
+    heading: "개인정보와 제3자 서비스",
+    text: [
+      "2026-10-30 갱신. 이 독립 안내에는 계정이나 티켓 구매 양식이 없습니다. 이 소스는 Google Analytics나 광고를 설정하지 않지만 모든 운영 응답이나 향후 호스팅 설정을 확인한 것은 아닙니다.",
+      "안내 페이지의 Google 지도는 가까이 스크롤하면 자동으로 로드될 수 있습니다. 지역 날씨 위젯은 브라우저에서 Open-Meteo에 자동으로, 그리고 새로고침 시 연결합니다. 제공자는 자체 정책에 따라 IP, 브라우저와 요청 정보를 받을 수 있습니다. 지연 로딩은 동의 제어가 아닙니다. 예보는 페이지 메모리에만 보관되고 15분 후 만료되며 출입 공지가 아닙니다.",
+      "Cloudflare의 호스팅·보안 엣지 처리에는 IP, 요청 URL, 시간, user-agent와 운영 로그가 포함될 수 있습니다. 별도로 호스팅 설정은 Cloudflare Web Analytics 브라우저 beacon을 삽입해 방문, 페이지 조회와 성능을 측정할 수 있으며 경로, 유입 출처, 국가, 기기, 브라우저와 운영체제 같은 차원을 사용할 수 있습니다. 이는 Google Analytics 및 엣지 처리와 구분됩니다. 현 운영 환경의 삽입·실행·전송은 확인되지 않았습니다. 소스 CSP는 해당 beacon과 수집 출처를 허용하지 않아 적용 시 브라우저 요청을 막을 것으로 예상되지만 운영 설정은 다를 수 있습니다.",
+      "사이트 내 추적 스위치는 없습니다. 브라우저 콘텐츠·쿠키 제어는 제3자 기능에 영향을 줄 수 있지만 호스팅 엣지 처리를 끄거나 이미 전송된 데이터를 지우지는 않습니다. 이전 선택 쿠키 UI는 서비스를 제어하지 않았으며 더 이상 사용하지 않습니다. 브라우저에 예전 ctd-cookie-choice 값이 남을 수 있습니다. 이전 오프라인 Worker는 이 안내의 ctd- 캐시만 지우고 종료됩니다.",
+      "삽화와 글꼴은 로컬 또는 시스템 리소스입니다. 외부 운영사와 출처 링크에는 해당 제공자의 약관이 적용됩니다.",
+    ],
+  },
+};
 ---
 
-<BaseLayout locale={locale} routeKey="home" canonicalOverride="/privacy/" title={title} description={description} noIndex i18n={false}>
-  <section class="py-16">
-    <div class="mx-auto max-w-3xl px-5 lg:px-8">
-      <a href="/" class="text-sm font-black underline">← Back to the guide</a>
-      <h1 class="display mt-8 text-5xl">Privacy policy</h1>
-      <div class="mt-8 space-y-5 leading-8 text-slate-700">
-        <p>{SITE_NAME[locale]} is an independent, non-commercial visitor guide. It has no accounts, no login and no database, and it does not ask for personal information.</p>
-        <p>No analytics or advertising are loaded by default. The only value that may be stored in your browser is a local preference that remembers your choice in the cookie notice.</p>
-        <p>Links to third-party services — Google Maps, Wikimedia Commons and the national tourism portal — lead to providers with their own policies. Once you open them, those providers may process data under their own terms.</p>
-        <p>Opening hours, ticket prices and visitor ratings shown on this site are published for reference and should be confirmed at the attraction or on the official source before travelling.</p>
-        <p>If analytics or any additional service is ever added, this policy will be updated before it is enabled.</p>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+<BaseLayout
+  locale="en"
+  routeKey="home"
+  canonicalOverride="/privacy/"
+  title="Privacy and third-party services | Clay Tunnel Da Lat Guide"
+  description="Google Maps, Open-Meteo weather and Cloudflare hosting or browser measurement: actual source behavior and verification limits."
+  noIndex
+  i18n={false}
+  ><section class="mx-auto max-w-4xl px-5 py-16">
+    <h1 class="display text-4xl">
+      Privacy · Quyền riêng tư · 隱私 · 개인정보
+    </h1>{
+      Object.entries(sections).map(([lang, s]) => (
+        <section lang={lang === "zh" ? "zh-Hant" : lang} class="mt-12">
+          <>
+            <h2 class="text-2xl font-bold">{s.heading}</h2>
+            <div class="mt-5 space-y-5 leading-8">
+              {s.text.map((p) => (
+                <p>{p}</p>
+              ))}
+            </div>
+          </>
+        </section>
+      ))
+    }<p class="mt-8 flex flex-wrap gap-4 text-sm">
+      <a class="underline" href="https://policies.google.com/privacy"
+        >Google privacy</a
+      ><a class="underline" href="https://open-meteo.com/en/terms"
+        >Open-Meteo terms and privacy</a
+      ><a
+        class="underline"
+        href="https://developers.cloudflare.com/web-analytics/"
+        >Cloudflare Web Analytics</a
+      ><a
+        class="underline"
+        href="https://developers.cloudflare.com/web-analytics/data-metrics/"
+        >Data and metrics</a
+      ><a class="underline" href="https://www.cloudflare.com/privacypolicy/"
+        >Cloudflare privacy</a>
+    </p>
+  </section></BaseLayout
+>

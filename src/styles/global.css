@@ -3,7 +3,7 @@
 :root {
   --ink: #0a2931;
   --deep: #0d3a43;
-  --sea: #4b9b91;
+  --sea: #24685f;
   --foam: #dbe7df;
   --sand: #d6d7bd;
   --sun: #e99a54;
@@ -25,11 +25,18 @@ body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, B
 }
 .display { font-family: Georgia, "Times New Roman", serif; letter-spacing: -0.03em; }
 .kicker { letter-spacing: .19em; text-transform: uppercase; font-weight: 800; font-size: .72rem; }
-.card { border: 1px solid rgba(10,41,49,.14); background: rgba(255,255,255,.64); backdrop-filter: blur(12px); }
+@layer components {
+  .card { border: 1px solid rgba(10,41,49,.14); background: #fff; color: #0a2931; }
+  .hero-facts { background: #0a2931; color: #fff; }
+}
 .shell { border-radius: 2.25rem 2.25rem .7rem .7rem; }
 .photo { width: 100%; height: 100%; object-fit: cover; background: #c9d7d2; }
-.photo-credit { font-size: .68rem; line-height: 1.35; opacity: .72; }
+.photo-credit { font-size: .875rem; line-height: 1.6; opacity: 1; }
 .route-line { position: relative; }
 .route-line::before { content:""; position:absolute; left:.63rem; top:2.2rem; bottom:-1.5rem; width:1px; background:rgba(10,41,49,.2); }
 .route-line:last-child::before { display:none; }
 .dot { width:1.28rem; height:1.28rem; border-radius:999px; background:var(--sun); box-shadow:0 0 0 6px rgba(233,154,84,.14); flex:0 0 auto; }
+
+*{box-sizing:border-box}img,iframe{max-width:100%}main,main>*{min-width:0}h1{overflow-wrap:anywhere}header nav a,header summary{min-height:44px;display:inline-flex;align-items:center}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #ad4c16;outline-offset:4px}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+[hidden]{display:none!important}

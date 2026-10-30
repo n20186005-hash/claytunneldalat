@@ -58,7 +58,7 @@ const homeSource = [
 ]
   .map((f) => fs.readFileSync(path.join(root, f), 'utf8'))
   .join('\n');
-for (const marker of ['TouristAttraction','Đường Hầm Điêu Khắc','Da Lat','Google Maps','FAQPage','Sculpture Tunnel','claytunneldalat.com','aggregateRating']) {
+for (const marker of ['TouristAttraction','Đường Hầm Điêu Khắc','Da Lat','Google Maps','FAQPage','Sculpture Tunnel','claytunneldalat.com']) {
   if (!homeSource.includes(marker)) throw new Error(`Falta contenido requerido: ${marker}`);
 }
 
@@ -71,7 +71,7 @@ if (fs.existsSync(built)) {
 }
 
 const schema = fs.readFileSync(path.join(root,'src/lib/schema.ts'),'utf8');
-for (const marker of ['TouristAttraction','FAQPage','BreadcrumbList','aggregateRating','openingHoursSpecification']) {
+for (const marker of ['TouristAttraction','FAQPage','BreadcrumbList']) {
   if (!schema.includes(marker)) throw new Error(`Falta marcado estructurado: ${marker}`);
 }
 
@@ -86,3 +86,5 @@ const headers = fs.readFileSync(path.join(root,'public/_headers'),'utf8');
 if (!/Strict-Transport-Security/i.test(headers)) throw new Error('_headers no envía HSTS');
 
 console.log(`SOURCE_AUDIT: PASS (${required.length} archivos obligatorios, ${Object.keys(specs).length} dependencias directas exactas)`);
+
+if (/aggregateRating|openingHoursSpecification/.test(schema)) throw new Error('Unsupported third-party rating or disputed hours in schema');

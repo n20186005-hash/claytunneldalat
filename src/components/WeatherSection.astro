@@ -1,151 +1,214 @@
 ---
-import { ui, type Locale } from '../i18n';
-import { WMO, WEEKDAYS } from '../data/weather-i18n';
-import { WEATHER_URL, buildAdvice, getWeather, kmhToBeaufort, wmoLabel } from '../lib/weather';
-
+import { ui, type Locale } from "../i18n";
 interface Props {
   locale: Locale;
 }
-
 const { locale } = Astro.props;
 const t = ui[locale].weather;
-const unit = ui[locale].unit;
-const weekdays = WEEKDAYS[locale];
-const localeWmo: Record<string, string> = {};
-for (const [code, labels] of Object.entries(WMO)) localeWmo[code] = labels[locale];
-
-const weather = await getWeather();
-const advice = weather ? buildAdvice(weather, locale) : null;
-const beaufort = weather ? kmhToBeaufort(weather.current.windKmh) : 0;
-const dayName = (iso: string) => weekdays[new Date(`${iso}T12:00:00`).getDay()];
+const copy = {
+  en: {
+    title: "Regional weather for Da Lat",
+    loading: "Loading a regional model forecast in your browser…",
+    refresh: "Refresh forecast",
+    note: "Open-Meteo regional model, not an on-site observation, official warning or access notice. Values expire after 15 minutes in this page; Vietnam time (UTC+7).",
+  },
+  vi: {
+    title: "Thời tiết khu vực Đà Lạt",
+    loading: "Đang tải dự báo mô hình khu vực trong trình duyệt…",
+    refresh: "Tải lại dự báo",
+    note: "Mô hình khu vực Open-Meteo, không phải quan trắc tại điểm đến, cảnh báo chính thức hay thông báo mở cửa. Dữ liệu trên trang hết hạn sau 15 phút; giờ Việt Nam (UTC+7).",
+  },
+  zh: {
+    title: "大叻區域天氣",
+    loading: "正在瀏覽器載入區域模式預報…",
+    refresh: "重新載入預報",
+    note: "Open-Meteo區域模式，非景點現場觀測、官方警報或通行公告。本頁數值15分鐘後失效；越南時間UTC+7。",
+  },
+  ko: {
+    title: "달랏 지역 날씨",
+    loading: "브라우저에서 지역 모델 예보를 불러오는 중…",
+    refresh: "예보 새로고침",
+    note: "Open-Meteo 지역 모델이며 현장 관측, 공식 경보나 출입 공지가 아닙니다. 이 페이지의 값은 15분 뒤 만료됩니다. 베트남 시간 UTC+7.",
+  },
+}[locale];
 ---
 
-<section id="weather" class="border-y border-[#0a2931]/10 bg-[#f7f6ef] py-24">
+<section
+  id="weather"
+  data-weather
+  data-locale={locale}
+  data-loading={copy.loading}
+  class="border-y border-[#0a2931]/10 bg-[#f7f6ef] py-20"
+>
   <div class="mx-auto max-w-7xl px-5 lg:px-8">
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-      <div>
-        <p class="kicker text-[var(--sea)]">{t.kicker}</p>
-        <h2 class="display mt-3 text-5xl leading-none">{t.title}</h2>
-      </div>
-      <p class="max-w-md text-sm leading-6 text-slate-500">{t.source}</p>
-    </div>
-
-    {!weather && <p class="card shell mt-8 p-6 leading-7 text-slate-700">{t.unavailable}</p>}
-
-    {weather && (
-      <div class="mt-10 grid gap-6 lg:grid-cols-[1fr_1fr]">
-        <div class="shell border border-[#0a2931]/12 bg-white p-7">
-          <div class="flex items-baseline justify-between">
-            <div class="display text-6xl"><span id="wx-temp">{weather.current.temp}</span>°C</div>
-            <div class="text-right text-sm font-black text-slate-600" id="wx-code">{wmoLabel(weather.current.code, locale)}</div>
-          </div>
-          <dl class="mt-7 grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
-            <div><dt class="text-slate-500">{t.feels}</dt><dd class="text-lg font-black"><span id="wx-feels">{weather.current.apparent}</span>°C</dd></div>
-            <div><dt class="text-slate-500">{t.humidity}</dt><dd class="text-lg font-black"><span id="wx-hum">{weather.current.humidity}</span>{unit.percent}</dd></div>
-            <div><dt class="text-slate-500">{t.wind}</dt><dd class="text-lg font-black"><span id="wx-wind">{weather.current.windKmh}</span> {unit.kmh} · <span id="wx-bf">{beaufort}</span> {t.beaufort}</dd></div>
-            <div><dt class="text-slate-500">{t.rain}</dt><dd class="text-lg font-black"><span id="wx-rain">{weather.todayRain}</span>{unit.percent}</dd></div>
-            <div><dt class="text-slate-500">{t.uv}</dt><dd class="text-lg font-black" id="wx-uv">{weather.todayUv}</dd></div>
-            <div><dt class="text-slate-500">{t.updated}</dt><dd class="text-sm font-black text-slate-500">{weather.updatedAt.slice(0, 16).replace('T', ' ')}</dd></div>
-          </dl>
-        </div>
-
-        <div class="shell border border-[#0a2931]/12 bg-white p-7">
-          <p class="kicker text-[var(--sun)]">{t.forecast}</p>
-          <ul class="mt-5 divide-y divide-[#0a2931]/10">
-            {weather.daily.map((day, i) => (
-              <li class="flex items-center justify-between gap-4 py-2.5 text-sm">
-                <span class="w-14 font-black">{dayName(day.date)}</span>
-                <span class="flex-1 text-slate-600" id={`wx-day-${i}-code`}>{wmoLabel(day.code, locale)}</span>
-                <span class="font-black" id={`wx-day-${i}-temp`}>{day.min}° / {day.max}°</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    )}
-
-    {advice && advice.risk.length > 0 && (
-      <div class="mt-6 rounded-3xl border border-[#b3402f]/30 bg-[#fdeceb] p-6">
-        <p class="kicker text-[#b3402f]">{t.risk}</p>
-        <ul class="mt-3 space-y-2 text-[0.97rem] leading-7 text-[#7a2a1e]">
-          {advice.risk.map((line) => <li>{line}</li>)}
-        </ul>
-      </div>
-    )}
-
-    {advice && (
-      <div class="mt-6 grid gap-6 md:grid-cols-3">
-        <div class="shell border border-[#0a2931]/12 bg-white p-6">
-          <p class="kicker text-[var(--sea)]">{t.outfit}</p>
-          <ul class="mt-4 space-y-3 text-sm leading-7 text-slate-700">
-            {advice.outfit.map((line) => <li>{line}</li>)}
-          </ul>
-        </div>
-        <div class="shell border border-[#0a2931]/12 bg-white p-6">
-          <p class="kicker text-[var(--sea)]">{t.plan}</p>
-          <ul class="mt-4 space-y-3 text-sm leading-7 text-slate-700">
-            {advice.plan.map((line) => <li>{line}</li>)}
-          </ul>
-        </div>
-        <div class="shell border border-[#0a2931]/12 bg-white p-6">
-          <p class="kicker text-[var(--sea)]">{t.items}</p>
-          <ul class="mt-4 space-y-3 text-sm leading-7 text-slate-700">
-            {advice.items.map((line) => <li>{line}</li>)}
-          </ul>
-        </div>
-      </div>
-    )}
+    <p class="kicker text-[var(--sea)]">{t.kicker}</p><h2
+      class="display mt-3 text-4xl"
+    >
+      {copy.title}
+    </h2><p class="mt-5 max-w-3xl text-sm leading-7">
+      {copy.note}
+      <a href="https://open-meteo.com/" class="font-bold underline"
+        >Open-Meteo</a
+      > · <a href="https://open-meteo.com/en/docs" class="underline">API</a> · <a
+        href="https://creativecommons.org/licenses/by/4.0/"
+        class="underline">CC BY 4.0</a
+      > · {
+        {
+          en: "Values rounded for display.",
+          vi: "Giá trị được làm tròn khi hiển thị.",
+          zh: "數值經四捨五入顯示。",
+          ko: "표시 값은 반올림됩니다.",
+        }[locale]
+      }
+    </p><p data-wx-status class="mt-6 leading-7" role="status">
+      {t.unavailable}
+    </p><div data-wx-results hidden class="mt-7"></div><button
+      data-wx-refresh
+      class="mt-6 min-h-11 rounded-full bg-[#0a2931] px-6 py-3 font-bold text-white"
+      >{copy.refresh}</button
+    ><noscript><p class="mt-4">{t.unavailable}</p></noscript>
   </div>
 </section>
-
-<script type="application/json" id="wx-config" set:html={JSON.stringify({ url: WEATHER_URL, wmo: localeWmo })} is:inline />
-
 <script>
-  interface WxConfig {
-    url: string;
-    wmo: Record<string, string>;
-  }
-
-  interface WxPayload {
-    current: Record<string, number>;
-    daily: {
-      time?: string[];
-      weather_code?: number[];
-      temperature_2m_min?: number[];
-      temperature_2m_max?: number[];
-      precipitation_probability_max?: number[];
-      uv_index_max?: number[];
+  import { ui, type Locale } from "../i18n";
+  import { WEEKDAYS } from "../data/weather-i18n";
+  import {
+    getWeather,
+    buildAdvice,
+    kmhToBeaufort,
+    wmoLabel,
+    MAX_CLIENT_AGE,
+    type WeatherData,
+  } from "../lib/weather";
+  const root = document.querySelector<HTMLElement>("[data-weather]");
+  if (root) {
+    const locale = root.dataset.locale as Locale,
+      t = ui[locale].weather;
+    const status = root.querySelector<HTMLElement>("[data-wx-status]")!,
+      results = root.querySelector<HTMLElement>("[data-wx-results]")!,
+      button = root.querySelector<HTMLButtonElement>("[data-wx-refresh]")!;
+    let current: WeatherData | null = null,
+      busy = false,
+      nextRefresh = 0;
+    const element = (tag: string, text: string, className = "") => {
+      const e = document.createElement(tag);
+      e.textContent = text;
+      e.className = className;
+      return e;
     };
-  }
-
-  const config = JSON.parse(document.getElementById('wx-config')?.textContent ?? '{}') as WxConfig;
-
-  const set = (id: string, value: string | number | undefined | null) => {
-    const el = document.getElementById(id);
-    if (el && value !== undefined && value !== null) el.textContent = String(value);
-  };
-
-  fetch(config.url, { headers: { accept: 'application/json' } })
-    .then((res) => (res.ok ? res.json() : null))
-    .then((json: WxPayload | null) => {
-      if (!json || !json.current || !json.daily) return;
-      const c = json.current;
-      const round = (v: number | undefined) => Math.round(v ?? 0);
-      set('wx-temp', round(c.temperature_2m));
-      set('wx-feels', round(c.apparent_temperature));
-      set('wx-hum', round(c.relative_humidity_2m));
-      set('wx-wind', round(c.wind_speed_10m));
-      set('wx-code', config.wmo[String(c.weather_code)] ?? '');
-      set('wx-rain', round(json.daily.precipitation_probability_max?.[0]));
-      set('wx-uv', Math.round((json.daily.uv_index_max?.[0] ?? 0) * 10) / 10);
-      const times = json.daily.time ?? [];
-      for (let i = 0; i < times.length; i += 1) {
-        set(`wx-day-${i}-code`, config.wmo[String(json.daily.weather_code?.[i])] ?? '');
-        set(
-          `wx-day-${i}-temp`,
-          `${round(json.daily.temperature_2m_min?.[i])}° / ${round(json.daily.temperature_2m_max?.[i])}°`
+    const unavailable = () => {
+      current = null;
+      results.replaceChildren();
+      results.hidden = true;
+      status.textContent = t.unavailable;
+    };
+    const render = (w: WeatherData) => {
+      results.replaceChildren();
+      const columns = element("div", "", "grid gap-6 md:grid-cols-2");
+      const conditions = element(
+        "div",
+        "",
+        "shell border border-[#0a2931]/15 bg-white p-6",
+      );
+      conditions.append(
+        element(
+          "h3",
+          `${w.current.temp}°C · ${wmoLabel(w.current.code, locale)}`,
+          "text-2xl font-bold",
+        ),
+      );
+      const dl = element("dl", "", "mt-5 grid grid-cols-2 gap-4");
+      const rows = [
+        [t.feels, `${w.current.apparent}°C`],
+        [t.humidity, `${w.current.humidity}%`],
+        [
+          t.wind,
+          `${w.current.windKmh} km/h · ${kmhToBeaufort(w.current.windKmh)} ${t.beaufort}`,
+        ],
+        [t.rain, `${w.todayRain}%`],
+        [t.uv, String(w.todayUv)],
+        [
+          t.updated,
+          new Date(w.updatedAt).toLocaleString(
+            { en: "en-GB", vi: "vi-VN", zh: "zh-TW", ko: "ko-KR" }[locale],
+            { timeZone: "Asia/Ho_Chi_Minh", hour12: false },
+          ) + " UTC+7",
+        ],
+      ];
+      for (const [name, value] of rows) {
+        const group = element("div", "");
+        group.append(
+          element("dt", name, "text-sm"),
+          element("dd", value, "mt-1 font-bold"),
+        );
+        dl.append(group);
+      }
+      conditions.append(dl);
+      const forecast = element(
+        "div",
+        "",
+        "shell border border-[#0a2931]/15 bg-white p-6",
+      );
+      forecast.append(element("h3", t.forecast, "text-xl font-bold"));
+      const list = element("ul", "", "mt-4 space-y-3");
+      for (const day of w.daily) {
+        const weekday =
+          WEEKDAYS[locale][new Date(day.date + "T12:00:00Z").getUTCDay()];
+        list.append(
+          element(
+            "li",
+            `${day.date} · ${weekday}: ${wmoLabel(day.code, locale)} · ${day.min}° / ${day.max}°`,
+            "text-sm leading-7",
+          ),
         );
       }
-    })
-    .catch(() => {});
+      forecast.append(list);
+      columns.append(conditions, forecast);
+      results.append(columns);
+      const advice = buildAdvice(w, locale),
+        groups = element("div", "", "mt-6 grid gap-5 md:grid-cols-2");
+      for (const key of ["risk", "outfit", "plan", "items"] as const) {
+        if (!advice[key].length) continue;
+        const group = element(
+          "div",
+          "",
+          "shell border border-[#0a2931]/15 bg-white p-6",
+        );
+        group.append(element("h3", t[key], "font-bold"));
+        const ul = element("ul", "", "mt-3 space-y-2 text-sm leading-7");
+        for (const line of advice[key]) ul.append(element("li", line));
+        group.append(ul);
+        groups.append(group);
+      }
+      results.append(groups);
+      results.hidden = false;
+      status.textContent = "";
+    };
+    const refresh = async () => {
+      if (busy) return;
+      busy = true;
+      button.disabled = true;
+      nextRefresh = Date.now() + MAX_CLIENT_AGE;
+      if (!current) status.textContent = root.dataset.loading ?? t.unavailable;
+      try {
+        const data = await getWeather();
+        if (data) {
+          current = data;
+          render(data);
+        } else unavailable();
+      } finally {
+        busy = false;
+        button.disabled = false;
+      }
+    };
+    const check = () => {
+      if (current && Date.now() - current.fetchedAt >= MAX_CLIENT_AGE)
+        unavailable();
+      if (!document.hidden && Date.now() >= nextRefresh) void refresh();
+    };
+    button.addEventListener("click", () => void refresh());
+    document.addEventListener("visibilitychange", check);
+    setInterval(check, 60000);
+    void refresh();
+  }
 </script>

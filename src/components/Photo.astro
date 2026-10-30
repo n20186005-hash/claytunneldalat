@@ -1,24 +1,18 @@
 ---
-import { photoChain, type PhotoKey } from '../data/site';
-
+import { PHOTO_SOURCES, type PhotoKey } from "../data/site";
 interface Props {
   photo: PhotoKey;
   alt: string;
   class?: string;
-  loading?: 'lazy' | 'eager';
-  widths?: [number, number];
+  loading?: "lazy" | "eager";
 }
-
-const { photo, alt, class: klass, loading = 'lazy' } = Astro.props;
-const chain = photoChain(photo);
+const { photo, alt, class: klass, loading = "lazy" } = Astro.props;
 ---
 
 <img
-  src={chain.src}
-  data-fallback={chain.fallback}
-  data-fallback2={chain.fallback2}
+  src={PHOTO_SOURCES[photo]}
   alt={alt}
-  class={klass ?? 'photo'}
+  class={klass ?? "photo"}
   loading={loading}
   decoding="async"
   width="1200"

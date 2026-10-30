@@ -1,18 +1,39 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { ATTRACTION as A, withSiteName } from '../data/site';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { ATTRACTION as A, withSiteName } from "../data/site";
 
-const locale = 'en' as const;
-const title = withSiteName(locale, 'Page not found');
+const locale = "en" as const;
+const title = withSiteName(locale, "Page not found");
 ---
 
-<BaseLayout locale={locale} routeKey="home" canonicalOverride="/404.html" title={title} description="The page you were looking for does not exist on this guide." noIndex i18n={false}>
-  <section class="grid min-h-[60svh] place-items-center bg-[#0a2931] text-white">
+<BaseLayout
+  locale={locale}
+  routeKey="home"
+  canonicalOverride="/404.html"
+  title={title}
+  description="The page you were looking for does not exist on this guide."
+  noIndex
+  i18n={false}
+>
+  <section
+    class="grid min-h-[60svh] place-items-center bg-[#0a2931] text-white"
+  >
     <div class="px-5 py-24 text-center">
       <div class="display text-8xl">404</div>
-      <h1 class="mt-4 text-2xl font-black">This path does not lead to the sculpture tunnel.</h1>
-      <p class="mt-4 text-white/70">The page you requested does not exist. Start again from the {A.nameEn} guide.</p>
-      <a href="/" class="mt-8 inline-block rounded-full bg-[#e99a54] px-6 py-3 font-black text-[#08232b]">Back to the guide</a>
+      <h1 class="mt-4 text-2xl font-black">
+        This path does not lead to the sculpture tunnel.
+      </h1>
+      <p class="mt-4 text-white/85">
+        The page you requested does not exist. Start again from the {A.nameEn} guide.
+      </p>
+      <p class="mt-4">
+        Không tìm thấy trang · 找不到頁面 · 페이지를 찾을 수 없습니다
+      </p>
+      <a
+        href="/"
+        class="mt-8 inline-block rounded-full bg-[#e99a54] px-6 py-3 font-black text-[#08232b]"
+        >Back to the guide</a
+      >
     </div>
   </section>
 </BaseLayout>

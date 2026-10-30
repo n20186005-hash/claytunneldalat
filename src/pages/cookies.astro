@@ -1,53 +1,46 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { ATTRACTION as A, withSiteName } from '../data/site';
-
-const locale = 'en' as const;
-const title = withSiteName(locale, 'Cookie settings');
-const description = `Cookie and local-storage settings for the independent ${A.nameVi} (${A.nameEn}) visitor guide.`;
+import BaseLayout from "../layouts/BaseLayout.astro";
+const sections = {
+  en: [
+    "Cookies and browser choices",
+    "This source sets no optional analytics or advertising cookies and no longer writes the former cookie-choice preference. Embedded Google Maps and browser weather requests still contact their providers as explained in the privacy information. No on-page cookie button controls these services or Cloudflare edge processing. Use your browser settings to manage stored site data or block third-party content; this may affect features and does not erase previously transmitted data.",
+  ],
+  vi: [
+    "Cookie và lựa chọn trình duyệt",
+    "Mã nguồn không đặt cookie phân tích hay quảng cáo tùy chọn và không còn ghi lựa chọn cookie cũ. Google Maps nhúng và yêu cầu thời tiết vẫn liên hệ nhà cung cấp như thông tin quyền riêng tư. Không có nút cookie trong trang điều khiển các dịch vụ này hay xử lý Cloudflare tại biên. Dùng cài đặt trình duyệt để quản lý dữ liệu lưu hoặc chặn nội dung bên thứ ba; có thể ảnh hưởng tính năng và không xóa dữ liệu đã gửi.",
+  ],
+  zh: [
+    "Cookie與瀏覽器選擇",
+    "此份原始碼不設定可選分析或廣告Cookie，也不再寫入舊的Cookie選擇。Google地圖與天氣請求仍依隱私說明聯絡提供者；沒有頁面Cookie按鈕控制這些服務或Cloudflare邊緣處理。請用瀏覽器設定管理儲存資料或阻擋第三方內容，可能影響功能，且不會刪除已傳送資料。",
+  ],
+  ko: [
+    "쿠키와 브라우저 선택",
+    "이 소스는 선택적 분석·광고 쿠키를 설정하지 않고 이전 쿠키 선택 값도 더 이상 쓰지 않습니다. 삽입 지도와 브라우저 날씨 요청은 개인정보 안내에 따라 제공자에 연결합니다. 페이지 쿠키 버튼이 이 서비스나 Cloudflare 엣지 처리를 제어하지 않습니다. 브라우저 설정으로 저장 데이터나 제3자 콘텐츠를 관리하세요. 기능에 영향이 있을 수 있으며 이미 전송된 데이터는 지워지지 않습니다.",
+  ],
+};
 ---
 
-<BaseLayout locale={locale} routeKey="home" canonicalOverride="/cookies/" title={title} description={description} noIndex i18n={false}>
-  <section class="py-16">
-    <div class="mx-auto max-w-3xl px-5 lg:px-8">
-      <a href="/" class="text-sm font-black underline">← Back to the guide</a>
-      <h1 class="display mt-8 text-5xl">Cookie settings</h1>
-      <div class="mt-8 space-y-5 leading-8 text-slate-700">
-        <p>This guide loads no analytics and no advertising by default. The only value it can store in your browser is a local preference that remembers your choice in the cookie notice.</p>
-        <p>Third-party content you choose to open — for example Google Maps or Wikimedia Commons — is governed by the policies of those providers.</p>
-      </div>
-      <div class="mt-10 flex flex-wrap gap-3">
-        <button id="necessary" class="rounded-full border border-slate-300 px-5 py-3 font-black">Essentials only</button>
-        <button id="optional" class="rounded-full bg-[#e99a54] px-5 py-3 font-black text-[#08232b]">Accept optional</button>
-        <button id="clear" class="rounded-full border border-slate-300 px-5 py-3 font-black">Clear preference</button>
-      </div>
-      <p id="status" class="mt-5 text-sm text-slate-600" aria-live="polite"></p>
-    </div>
-  </section>
-
-  <script>
-    const key = 'ctd-cookie-choice';
-    const status = document.getElementById('status');
-    const paint = () => {
-      const value = localStorage.getItem(key);
-      if (status) {
-        status.textContent = value
-          ? `Current preference: ${value === 'accepted' ? 'optional accepted' : 'essentials only'}.`
-          : 'No preference is stored yet.';
-      }
-    };
-    document.getElementById('necessary')?.addEventListener('click', () => {
-      localStorage.setItem(key, 'necessary');
-      paint();
-    });
-    document.getElementById('optional')?.addEventListener('click', () => {
-      localStorage.setItem(key, 'accepted');
-      paint();
-    });
-    document.getElementById('clear')?.addEventListener('click', () => {
-      localStorage.removeItem(key);
-      paint();
-    });
-    paint();
-  </script>
-</BaseLayout>
+<BaseLayout
+  locale="en"
+  routeKey="home"
+  canonicalOverride="/cookies/"
+  title="Cookie information | Clay Tunnel Da Lat Guide"
+  description="Actual browser cookie and third-party service information."
+  noIndex
+  i18n={false}
+  ><section class="mx-auto max-w-4xl px-5 py-16">
+    <h1 class="display text-4xl">Cookie information</h1>{
+      Object.entries(sections).map(([lang, s]) => (
+        <section lang={lang === "zh" ? "zh-Hant" : lang} class="mt-10">
+          <>
+            <h2 class="text-2xl font-bold">{s[0]}</h2>
+            <p class="mt-5 leading-8">{s[1]}</p>
+          </>
+        </section>
+      ))
+    }<p class="mt-8">
+      <a class="underline" href="/privacy/"
+        >Privacy · Quyền riêng tư · 隱私 · 개인정보</a>
+    </p>
+  </section></BaseLayout
+>

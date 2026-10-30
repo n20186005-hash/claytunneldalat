@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-// Wikimedia Commons file titles (clay sculpture tunnel / Đường Hầm Điêu Khắc, Da Lat).
+// Historical unverified approach-road file references, not approved current display assets.
 const titles = [
   'Đường vào đường hầm điêu khắc đất sét - panoramio.jpg',
   'Đường vào đường hầm điêu khắc đất sét - panoramio (1).jpg',
@@ -33,4 +33,4 @@ for (let i = 0; i < titles.length; i++) {
   await writeFile(resolve(dir, name), bytes);
   console.log(`${Math.round(bytes.byteLength / 1024)} KB`);
 }
-console.log('Done. Real photos are now local in public/images/.');
+console.log('Downloaded historical files remain unverified: inspect identity and exact rights before any publication.');

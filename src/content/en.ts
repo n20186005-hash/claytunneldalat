@@ -297,17 +297,14 @@ export const en: GuideContent = {
   footerTagline:
     "Independent visitor guide for Đường Hầm Điêu Khắc (Clay Tunnel Da Lat) in Da Lat, Lam Dong, Vietnam. Not the official site of the attraction.",
   photoAlt: {
-    hero: "Symbolic illustration of clay-coloured landforms and trees; not a photograph or actual route",
-    tunnel:
-      "Symbolic illustration of clay-coloured landforms and trees; not a photograph or actual route",
-    lake: "Symbolic illustration of clay-coloured landforms and trees; not a photograph or actual route",
-    tunnel2:
-      "Symbolic illustration of clay-coloured landforms and trees; not a photograph or actual route",
-    lake2:
-      "Symbolic illustration of clay-coloured landforms and trees; not a photograph or actual route",
+    hero: "Historic photograph of clay sculptures at Sculpture Tunnel in Da Lat",
+    tunnel: "Historic photograph of sculpted architecture at Sculpture Tunnel",
+    lake: "Historic photograph of the sculpture park and water feature",
+    tunnel2: "Historic photograph of a horse-drawn carriage clay relief",
+    lake2: "Historic photograph of the Sculpture Tunnel visitor path",
   },
   photoCredit:
-    "Original geometric illustration · CC0 · not a photograph, site plan or current view.",
+    "Historic Sculpture Tunnel photographs · Wikimedia Commons · not current-condition images.",
   disclaimer:
     "Checked 30 October 2026. Current operator prices, hours and access are not established by an undated directory or a third-party snapshot.",
 };

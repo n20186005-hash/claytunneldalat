@@ -67,13 +67,13 @@ export function withSiteName(locale: Locale, suffix?: string): string {
   return suffix ? `${suffix} | ${SITE_NAME[locale]}` : SITE_NAME[locale];
 }
 
-/** Locally created symbolic illustrations, not site photographs or maps. */
+/** Historic visitor photographs of Sculpture Tunnel, saved locally. */
 export const PHOTO_SOURCES = {
-  hero: "/images/clay-tunnel-hero.svg",
-  tunnel: "/images/clay-tunnel-tunnel.svg",
-  lake: "/images/clay-tunnel-lake.svg",
-  tunnel2: "/images/clay-tunnel-tunnel2.svg",
-  lake2: "/images/clay-tunnel-lake2.svg",
+  hero: "/images/clay-tunnel-hero.jpg",
+  tunnel: "/images/clay-tunnel-tunnel.jpg",
+  lake: "/images/clay-tunnel-lake.jpg",
+  tunnel2: "/images/clay-tunnel-tunnel2.jpg",
+  lake2: "/images/clay-tunnel-lake2.jpg",
 } as const;
 export type PhotoKey = keyof typeof PHOTO_SOURCES;
 export const OG_IMAGE = `${SITE_URL}/images/clay-cover.png`;

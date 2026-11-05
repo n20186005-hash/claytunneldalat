@@ -297,17 +297,14 @@ export const vi: GuideContent = {
   footerTagline:
     "Hướng dẫn tham quan độc lập cho Đường Hầm Điêu Khắc (Clay Tunnel Da Lat) tại Đà Lạt, Lâm Đồng, Việt Nam. Không phải trang web chính thức của khu du lịch.",
   photoAlt: {
-    hero: "Minh họa tượng trưng địa hình màu đất sét và cây; không phải ảnh hay tuyến thực tế",
-    tunnel:
-      "Minh họa tượng trưng địa hình màu đất sét và cây; không phải ảnh hay tuyến thực tế",
-    lake: "Minh họa tượng trưng địa hình màu đất sét và cây; không phải ảnh hay tuyến thực tế",
-    tunnel2:
-      "Minh họa tượng trưng địa hình màu đất sét và cây; không phải ảnh hay tuyến thực tế",
-    lake2:
-      "Minh họa tượng trưng địa hình màu đất sét và cây; không phải ảnh hay tuyến thực tế",
+    hero: "Ảnh tư liệu các tác phẩm điêu khắc đất sét tại Đà Lạt",
+    tunnel: "Ảnh tư liệu kiến trúc điêu khắc tại Đường Hầm Điêu Khắc",
+    lake: "Ảnh tư liệu cảnh quan và hồ nước trong khu điêu khắc",
+    tunnel2: "Ảnh tư liệu phù điêu xe ngựa bằng đất sét",
+    lake2: "Ảnh tư liệu lối đi tại Đường Hầm Điêu Khắc",
   },
   photoCredit:
-    "Minh họa hình học gốc · CC0 · không phải ảnh, sơ đồ hay hiện trạng.",
+    "Ảnh tư liệu Đường Hầm Điêu Khắc · Wikimedia Commons · không phản ánh hiện trạng.",
   disclaimer:
     "Kiểm tra 30/10/2026. Danh bạ không ghi ngày hiệu lực hay ảnh chụp bên thứ ba không xác lập giá, giờ và lối vào hiện tại.",
 };

@@ -292,13 +292,13 @@ export const zh: GuideContent = {
   footerTagline:
     "Đường Hầm Điêu Khắc（Clay Tunnel Da Lat）獨立參觀指南，位於VietnamLam Dong省Da Lat市。本站並非該景區官方網站。",
   photoAlt: {
-    hero: "黏土色地形與樹木的象徵插畫，非照片或實際動線",
-    tunnel: "黏土色地形與樹木的象徵插畫，非照片或實際動線",
-    lake: "黏土色地形與樹木的象徵插畫，非照片或實際動線",
-    tunnel2: "黏土色地形與樹木的象徵插畫，非照片或實際動線",
-    lake2: "黏土色地形與樹木的象徵插畫，非照片或實際動線",
+    hero: "大叻泥雕隧道雕塑的歷史實拍照片",
+    tunnel: "泥雕隧道建築雕塑的歷史照片",
+    lake: "泥雕園區水景與雕塑的歷史照片",
+    tunnel2: "泥雕馬車浮雕的歷史照片",
+    lake2: "泥雕隧道參觀步道的歷史照片",
   },
-  photoCredit: "原創幾何插畫 · CC0 · 非照片、平面圖或現況影像。",
+  photoCredit: "泥雕隧道歷史實拍照片 · Wikimedia Commons · 非現況影像。",
   disclaimer:
     "核對日期2026-10-30。未註日期的目錄或第三方快照，不能證明經營方現行票價、時間與通行安排。",
 };
